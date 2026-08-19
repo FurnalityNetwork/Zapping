@@ -1,51 +1,385 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Furnality — Réseau Audiovisuel Indépendant</title>
-    <style>
-        body { background-color: #0f0f12; color: #ffffff; font-family: system-ui, -apple-system, sans-serif; margin: 0; padding: 20px; }
-        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 15px; max-width: 1000px; margin: 0 auto; }
-        .logo { font-size: 1.5rem; font-weight: bold; color: #6366f1; letter-spacing: 1px; }
-        .badge { background: #10b981; color: #000; font-size: 0.8rem; font-weight: bold; padding: 4px 8px; border-radius: 4px; }
-        .container { max-width: 1000px; margin: 40px auto; }
-        .player-box { background: #1a1a22; border-radius: 12px; padding: 20px; margin-bottom: 30px; border: 1px solid #2a2a35; }
-        iframe { width: 100%; height: 450px; border: none; border-radius: 8px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .card { background: #181820; border: 1px solid #282835; border-radius: 8px; padding: 20px; }
-        h3 { color: #6366f1; margin-top: 0; }
-    </style>
-</head>
-<body>
+<!doctype html>
+<html lang="fr"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260819-05-5fffd6c","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFLd8sKbwc,2","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Libre Baskerville":"YACgEUFdPdA,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YADLjI9qxTA,0","Nunito":"YACgEX8C5Gg,0","Oleo Script":"YACgEQQ14jI,0","Phantom Sans":"YAHO2E8Pb88,0","Playfair Display":"YACgEYmuCJE,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YADWjpfPmdk,0","Raleway":"YACgEVg3xZg,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Ubuntu":"YACgERDU--Q,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YADlN8CFZ8Q,0","ui-sans-serif":"YACkoN-xg4g,0"}}');</script><script src="/_sdk/7949ff62d67710d5.telemetry_sdk.js" integrity="sha512-KIvXA82Di44YY/RH9/63A9MuTuavYgDFG8PfErJn7Wli4K0LAOk+coo/aPXk3+ZNL96nHh9VYD4PE+fLes+laQ=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NŒUD — Studio audiovisuel</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #101113;
+      --paper: #f2efe8;
+      --acid: #d7ff3f;
+      --muted: #a4a7a1;
+      --line: rgba(242, 239, 232, 0.18);
+    }
 
-    <header>
-        <div class="logo">FURNALITY</div>
-        <div><span class="badge">EN DIRECT</span></div>
-    </header>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      width: 100%;
+      font-family: "DM Sans", sans-serif;
+      color: var(--paper);
+      overflow-x: hidden;
+    }
 
-    <div class="container">
-        <div class="player-box">
-            <h2>Diffusion en Direct (TV / Radio)</h2>
-            <!-- Remplacer le lien iframe ci-dessous par votre lecteur vidéo/radio -->
-            <iframe src="https://www.youtube.com/embed/live_stream?channel=YOUR_CHANNEL_ID" allowfullscreen></iframe>
+    .site-shell { width: 100%; overflow: hidden; }
+    .display-face { font-family: "Fraunces", serif; }
+    .nav-link {
+      position: relative;
+      color: rgba(242, 239, 232, 0.75);
+      font-size: 0.79rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 180ms ease;
+    }
+    .nav-link:hover, .nav-link:focus-visible { color: var(--acid); }
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      height: 1px;
+      width: 0;
+      left: 0;
+      bottom: -6px;
+      background: var(--acid);
+      transition: width 180ms ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    .hero-panel {
+      min-height: calc(100 * min(var(--vh, 1vh), 1vh));
+      position: relative;
+      isolation: isolate;
+    }
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(90deg, rgba(10,11,13,0.96) 0%, rgba(10,11,13,0.68) 42%, rgba(10,11,13,0.18) 100%);
+    }
+    .hero-panel::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(10,11,13,0.86) 0%, transparent 38%);
+    }
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0.68) contrast(1.12);
+    }
+    .eyebrow {
+      display: flex;
+      gap: .75rem;
+      align-items: center;
+      color: var(--acid);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: "";
+      display: inline-block;
+      width: 2.2rem;
+      height: 1px;
+      background: currentColor;
+    }
+    .round-button {
+      width: 3rem;
+      height: 3rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(242,239,232,.3);
+      border-radius: 999px;
+      transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+    }
+    .round-button:hover { background: var(--acid); color: var(--ink); transform: translateY(-2px); }
+    .primary-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .65rem;
+      padding: .95rem 1.25rem;
+      border-radius: 999px;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+    .primary-link:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(215,255,63,.16); }
+    .secondary-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .65rem;
+      padding: .95rem 1.2rem;
+      border: 1px solid rgba(242,239,232,.34);
+      border-radius: 999px;
+      transition: border-color 180ms ease, color 180ms ease;
+    }
+    .secondary-link:hover { border-color: var(--acid); color: var(--acid); }
+
+    .section-wrap { padding: 7rem 1.5rem; }
+    .section-inner { max-width: 1280px; margin: 0 auto; }
+    .rule { height: 1px; background: rgba(16,17,19,.16); }
+    .dark-rule { height: 1px; background: var(--line); }
+
+    .service-card {
+      overflow: hidden;
+      background: #17191c;
+      border: 1px solid rgba(242,239,232,.12);
+      transition: transform 260ms ease, border-color 260ms ease;
+    }
+    .service-card:hover { transform: translateY(-8px); border-color: rgba(215,255,63,.55); }
+    .service-image { height: 17rem; width: 100%; object-fit: cover; filter: saturate(.78); transition: transform 500ms ease; }
+    .service-card:hover .service-image { transform: scale(1.045); }
+
+    .portfolio-card { position: relative; overflow: hidden; min-height: 23rem; }
+    .portfolio-card img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(.25) saturate(.72); transition: transform 600ms ease, filter 400ms ease; }
+    .portfolio-card:hover img { transform: scale(1.06); filter: grayscale(0) saturate(1); }
+    .portfolio-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(8,9,11,.92), transparent 68%);
+      pointer-events: none;
+    }
+    .portfolio-caption { position: absolute; z-index: 1; bottom: 1.5rem; left: 1.5rem; right: 1.5rem; }
+
+    .process-no {
+      font-family: "Fraunces", serif;
+      color: var(--acid);
+      font-size: clamp(3.3rem, 7vw, 6.5rem);
+      line-height: .85;
+      letter-spacing: -.08em;
+    }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 650ms ease, transform 650ms ease; }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+    .mobile-panel { display: none; }
+    .mobile-panel.is-open { display: flex; }
+
+    @media (max-width: 767px) {
+      .section-wrap { padding: 5rem 1.25rem; }
+      .hero-panel { min-height: calc(92 * min(var(--vh, 1vh), 1vh)); }
+      .hero-panel::before { background: linear-gradient(90deg, rgba(10,11,13,.94), rgba(10,11,13,.45)); }
+      .desktop-nav { display: none; }
+      .mobile-panel {
+        position: absolute;
+        top: calc(100% + .7rem);
+        left: 1rem;
+        right: 1rem;
+        flex-direction: column;
+        gap: 1.15rem;
+        padding: 1.4rem;
+        background: #15171a;
+        border: 1px solid rgba(242,239,232,.16);
+      }
+    }
+  </style>
+  <script src="/_sdk/0e8d3a91e1c6f495.data_sdk.js" type="text/javascript" integrity="sha512-c00oDoGjsMgluCLLEyVl3suwEkgjOGGplVFbsilUoBg4aMKNmsL3mwsc9r0dPn95qiSZyjBousQXgROkAW7p/w=="></script>
+  <script src="/_sdk/eba18683f23e5798.resizing_sdk.js" type="text/javascript" integrity="sha512-E0UWUllhwPXaNJtjyTKXWKrIE+FruPfFpO4mRmMDP2LI+U9bOizy5npCq6xx/JyWcvSK7D3TFf2wFR2Mha9kbA=="></script>
+ </head>
+ <body data-template-id="__page-root" style="background: rgb(16, 17, 19);">
+  <div class="site-shell">
+   <header class="absolute top-0 z-20 w-full px-5 pt-5 md:px-10 md:pt-8">
+    <nav aria-label="Navigation principale" class="relative mx-auto flex max-w-7xl items-center justify-between"><a href="#accueil" data-template-id="studio-logo" class="canva-link text-lg font-bold tracking-[0.22em]" style="color: rgb(242, 239, 232); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.12rem;">NŒUD</a>
+     <div class="desktop-nav flex items-center gap-8"><a href="#realisations" data-template-id="nav-work" class="canva-link nav-link" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 16px;">Réalisations</a> <a href="#services" data-template-id="nav-services" class="canva-link nav-link" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 16px;">Services</a> <a href="#process" data-template-id="nav-process" class="canva-link nav-link" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 16px;">Méthode</a> <a href="#contact" data-template-id="nav-contact" class="canva-link nav-link" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 16px;">Contact</a>
+     </div><a href="#contact" data-template-id="nav-cta" class="canva-button hidden rounded-full px-5 py-3 text-sm font-bold md:inline-flex" style="background: rgb(215, 255, 63); color: rgb(16, 17, 19); font-weight: 700; font-style: normal; font-size: 16px;">Parlons projet</a> <button id="menu-toggle" type="button" class="round-button md:hidden" aria-label="Ouvrir le menu" aria-expanded="false"> <i data-lucide="menu" width="19" height="19"></i> </button>
+     <div id="mobile-menu" class="mobile-panel" aria-label="Menu mobile"><a href="#realisations" data-template-id="mobile-nav-work" class="canva-link nav-link" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 16px;">Réalisations</a> <a href="#services" data-template-id="mobile-nav-services" class="canva-link nav-link" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 16px;">Services</a> <a href="#process" data-template-id="mobile-nav-process" class="canva-link nav-link" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 16px;">Méthode</a> <a href="#contact" data-template-id="mobile-nav-contact" class="canva-link nav-link" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 16px;">Contact</a>
+     </div>
+    </nav>
+   </header>
+   <main>
+    <section id="accueil" class="hero-panel flex items-end px-5 pb-10 pt-32 md:px-10 md:pb-14"><img data-template-id="hero-image" loading="lazy" class="canva-image hero-media" src="https://images.pexels.com/photos/23384400/pexels-photo-23384400.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920" alt="Un caméraman professionnel filme dans un décor créatif et sombre éclairé par une lumière chaude.">
+     <div class="mx-auto w-full max-w-7xl">
+      <div class="max-w-4xl">
+       <p data-template-id="hero-eyebrow" class="canva-text eyebrow mb-6" style="color: rgb(215, 255, 63); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.14rem;">Studio de narration visuelle</p>
+       <h1 data-template-id="hero-title" class="canva-text display-face max-w-4xl font-medium leading-[0.94] tracking-[-0.055em]" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 32px;">Des images qui font avancer les idées.</h1>
+       <p data-template-id="hero-description" class="canva-text mt-7 max-w-xl text-base leading-relaxed text-stone-200 md:text-lg" style="color: rgb(231, 226, 217); font-weight: 400; font-style: normal; font-size: 18px; line-height: 1.55;">NŒUD imagine et produit des films, des photographies et des récits de marque qui donnent de la profondeur à votre présence.</p>
+       <div class="mt-9 flex flex-wrap gap-3"><a href="#contact" data-template-id="hero-primary-cta" class="canva-button primary-link font-bold" style="background: rgb(215, 255, 63); color: rgb(16, 17, 19); font-weight: 700; font-style: normal; font-size: 16px;">Lancer un projet</a> <a href="#realisations" data-template-id="hero-secondary-cta" class="canva-button secondary-link font-semibold" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 16px;">Voir les réalisations</a>
+       </div>
+      </div>
+      <div class="mt-14 flex items-center justify-between border-t border-white/20 pt-5 text-xs font-semibold uppercase tracking-[0.15em] text-stone-300"><span data-template-id="hero-location" class="canva-text" style="color: rgb(231, 226, 217); font-weight: 600; font-style: normal; font-size: 16px; letter-spacing: 0.1rem;">Nouméa · Paris · partout</span> <a href="#services" class="round-button" aria-label="Découvrir nos services"> <i data-lucide="arrow-down" width="18" height="18"></i> </a>
+      </div>
+     </div>
+    </section>
+    <section id="services" data-template-id="services-section" class="canva-section section-wrap" style="background: rgb(242, 239, 232);">
+     <div class="section-inner">
+      <div class="grid gap-8 border-b border-black/15 pb-12 md:grid-cols-[.75fr_1.25fr] md:items-end">
+       <p data-template-id="services-eyebrow" class="canva-text eyebrow" style="color: rgb(18, 19, 21); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.14rem;">Ce que nous faisons</p>
+       <div class="reveal">
+        <h2 data-template-id="services-title" class="canva-text display-face max-w-3xl font-medium leading-[0.98] tracking-[-0.045em]" style="color: rgb(18, 19, 21); font-weight: 600; font-style: normal; font-size: 24px;">Une production pensée pour être vue, ressentie et retenue.</h2>
+        <p data-template-id="services-description" class="canva-text mt-5 max-w-xl leading-relaxed text-neutral-700" style="color: rgb(75, 77, 74); font-weight: 400; font-style: normal; font-size: 17px; line-height: 1.55;">Du premier échange à la dernière image, nous réunissons direction créative, précision technique et attention aux détails.</p>
+       </div>
+      </div>
+      <div class="mt-10 grid gap-5 md:grid-cols-3">
+       <article data-template-id="service-video-card" class="canva-card service-card reveal" style="background: rgb(23, 25, 28);">
+        <div class="overflow-hidden"><img data-template-id="service-video-image" loading="lazy" class="canva-image service-image" src="https://images.pexels.com/photos/7634784/pexels-photo-7634784.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Matériel de caméra professionnel filmant une scène cinématographique en intérieur.">
         </div>
-
-        <div class="grid">
-            <div class="card">
-                <h3>Grille des Programmes</h3>
-                <p>Retrouvez vos émissions en direct vidéo et radio au quotidien.</p>
-            </div>
-            <div class="card">
-                <h3>Espace Presse & Kit Média</h3>
-                <p>Téléchargez nos communiqués et fiches techniques.</p>
-            </div>
-            <div class="card">
-                <h3>Contact & Partenariats</h3>
-                <p>Proposer un projet ou rejoindre le réseau.</p>
-            </div>
+        <div class="p-6">
+         <p data-template-id="service-video-number" class="canva-text text-xs font-bold tracking-[0.16em]" style="color: rgb(215, 255, 63); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.1rem;">01 / IMAGE EN MOUVEMENT</p>
+         <h3 data-template-id="service-video-title" class="canva-text mt-6 font-semibold" style="color: rgb(242, 239, 232); font-weight: 700; font-style: normal; font-size: 23px;">Films de marque</h3>
+         <p data-template-id="service-video-description" class="canva-text mt-3 leading-relaxed" style="color: rgb(199, 200, 195); font-weight: 400; font-style: normal; font-size: 15px; line-height: 1.55;">Films publicitaires, manifestes, portraits et contenus sociaux conçus pour créer un impact immédiat.</p>
         </div>
+       </article>
+       <article data-template-id="service-photo-card" class="canva-card service-card reveal" style="transition-delay: 100ms; background: rgb(23, 25, 28);">
+        <div class="overflow-hidden"><img data-template-id="service-photo-image" loading="lazy" class="canva-image service-image" src="https://images.pexels.com/photos/30332804/pexels-photo-30332804.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Studio photo moderne avec fond brun et équipement d'éclairage professionnel.">
+        </div>
+        <div class="p-6">
+         <p data-template-id="service-photo-number" class="canva-text text-xs font-bold tracking-[0.16em]" style="color: rgb(215, 255, 63); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.1rem;">02 / IMAGE FIXE</p>
+         <h3 data-template-id="service-photo-title" class="canva-text mt-6 font-semibold" style="color: rgb(242, 239, 232); font-weight: 700; font-style: normal; font-size: 23px;">Photographie éditoriale</h3>
+         <p data-template-id="service-photo-description" class="canva-text mt-3 leading-relaxed" style="color: rgb(199, 200, 195); font-weight: 400; font-style: normal; font-size: 15px; line-height: 1.55;">Des images de campagne, de produit et de portrait qui installent un territoire visuel singulier.</p>
+        </div>
+       </article>
+       <article data-template-id="service-post-card" class="canva-card service-card reveal" style="transition-delay: 200ms; background: rgb(23, 25, 28);">
+        <div class="overflow-hidden"><img data-template-id="service-post-image" loading="lazy" class="canva-image service-image" src="https://images.pexels.com/photos/8100060/pexels-photo-8100060.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Monteur vidéo travaillant sur deux écrans pour l'étalonnage et le montage.">
+        </div>
+        <div class="p-6">
+         <p data-template-id="service-post-number" class="canva-text text-xs font-bold tracking-[0.16em]" style="color: rgb(215, 255, 63); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.1rem;">03 / FINITION</p>
+         <h3 data-template-id="service-post-title" class="canva-text mt-6 font-semibold" style="color: rgb(242, 239, 232); font-weight: 700; font-style: normal; font-size: 23px;">Post-production</h3>
+         <p data-template-id="service-post-description" class="canva-text mt-3 leading-relaxed" style="color: rgb(199, 200, 195); font-weight: 400; font-style: normal; font-size: 15px; line-height: 1.55;">Montage, étalonnage, sound design et déclinaisons : le rythme juste, sur chaque écran.</p>
+        </div>
+       </article>
+      </div>
+     </div>
+    </section>
+    <section id="realisations" data-template-id="portfolio-section" class="canva-section section-wrap" style="background: rgb(16, 17, 19);">
+     <div class="section-inner">
+      <div class="flex flex-col justify-between gap-7 md:flex-row md:items-end">
+       <div class="reveal">
+        <p data-template-id="portfolio-eyebrow" class="canva-text eyebrow mb-6" style="color: rgb(215, 255, 63); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.14rem;">Réalisations choisies</p>
+        <h2 data-template-id="portfolio-title" class="canva-text display-face max-w-3xl font-medium leading-[0.98] tracking-[-0.045em]" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 24px;">Des histoires à la mesure de celles et ceux qui les portent.</h2>
+       </div>
+       <p data-template-id="portfolio-description" class="canva-text max-w-sm leading-relaxed text-stone-300" style="color: rgb(199, 200, 195); font-weight: 400; font-style: normal; font-size: 16px; line-height: 1.55;">Une sélection de formats où le fond et la forme se rencontrent pour faire émerger une signature.</p>
+      </div>
+      <div class="mt-12 grid gap-5 md:grid-cols-12">
+       <article data-template-id="portfolio-card-one" class="canva-card portfolio-card reveal md:col-span-7 md:min-h-[35rem]" style="background: rgb(32, 34, 38);"><img data-template-id="portfolio-image-one" loading="lazy" class="canva-image" src="https://images.pexels.com/photos/19224452/pexels-photo-19224452.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1280" alt="Équipe de tournage filmant une scène en extérieur avec caméra et perche son.">
+        <div class="portfolio-caption">
+         <p data-template-id="portfolio-type-one" class="canva-text text-xs font-bold uppercase tracking-[0.15em]" style="color: rgb(215, 255, 63); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.1rem;">Campagne manifeste · 2025</p>
+         <h3 data-template-id="portfolio-title-one" class="canva-text mt-2 font-semibold" style="color: rgb(242, 239, 232); font-weight: 700; font-style: normal; font-size: 24px;">HORIZON — L'énergie en mouvement</h3>
+        </div>
+       </article>
+       <div class="grid gap-5 md:col-span-5">
+        <article data-template-id="portfolio-card-two" class="canva-card portfolio-card reveal min-h-[17rem]" style="transition-delay: 100ms; background: rgb(32, 34, 38);"><img data-template-id="portfolio-image-two" loading="lazy" class="canva-image" src="https://images.pexels.com/photos/28728922/pexels-photo-28728922.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Vidéaste filmant une femme dans un bureau avec un équipement professionnel.">
+         <div class="portfolio-caption">
+          <p data-template-id="portfolio-type-two" class="canva-text text-xs font-bold uppercase tracking-[0.15em]" style="color: rgb(215, 255, 63); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.1rem;">Série portrait · 2025</p>
+          <h3 data-template-id="portfolio-title-two" class="canva-text mt-2 font-semibold" style="color: rgb(242, 239, 232); font-weight: 700; font-style: normal; font-size: 21px;">FACES — Les bâtisseurs</h3>
+         </div>
+        </article>
+        <article data-template-id="portfolio-card-three" class="canva-card portfolio-card reveal min-h-[17rem]" style="transition-delay: 170ms; background: rgb(32, 34, 38);"><img data-template-id="portfolio-image-three" loading="lazy" class="canva-image" src="https://images.pexels.com/photos/8414227/pexels-photo-8414227.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Vue aérienne cinématographique de montagnes et de vallées arides au coucher du soleil.">
+         <div class="portfolio-caption">
+          <p data-template-id="portfolio-type-three" class="canva-text text-xs font-bold uppercase tracking-[0.15em]" style="color: rgb(215, 255, 63); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.1rem;">Destination film · 2024</p>
+          <h3 data-template-id="portfolio-title-three" class="canva-text mt-2 font-semibold" style="color: rgb(242, 239, 232); font-weight: 700; font-style: normal; font-size: 21px;">TERRES — Une autre échelle</h3>
+         </div>
+        </article>
+       </div>
+      </div>
+     </div>
+    </section>
+    <section id="process" data-template-id="process-section" class="canva-section section-wrap" style="background: rgb(215, 255, 63);">
+     <div class="section-inner">
+      <div class="grid gap-8 md:grid-cols-[.75fr_1.25fr]">
+       <p data-template-id="process-eyebrow" class="canva-text eyebrow" style="color: rgb(18, 19, 21); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.14rem;">Notre manière de faire</p>
+       <div class="reveal">
+        <h2 data-template-id="process-title" class="canva-text display-face max-w-2xl font-medium leading-[0.98] tracking-[-0.045em]" style="color: rgb(18, 19, 21); font-weight: 600; font-style: normal; font-size: 24px;">Une méthode claire. De l’espace pour les grandes idées.</h2>
+        <p data-template-id="process-description" class="canva-text mt-5 max-w-xl leading-relaxed text-neutral-700" style="color: rgb(49, 52, 42); font-weight: 400; font-style: normal; font-size: 17px; line-height: 1.55;">Chaque production avance avec un cap partagé, un regard attentif et une équipe mobilisée au bon moment.</p>
+       </div>
+      </div>
+      <div class="mt-16 grid border-t border-black/15 md:grid-cols-4">
+       <article class="reveal border-b border-black/15 px-0 py-7 md:border-b-0 md:border-r md:px-6 md:first:pl-0">
+        <p class="process-no">01</p>
+        <h3 data-template-id="process-step-one-title" class="canva-text mt-8 font-bold" style="color: rgb(18, 19, 21); font-weight: 700; font-style: normal; font-size: 21px;">Écouter</h3>
+        <p data-template-id="process-step-one-description" class="canva-text mt-3 leading-relaxed text-neutral-700" style="color: rgb(49, 52, 42); font-weight: 400; font-style: normal; font-size: 15px; line-height: 1.55;">Comprendre le contexte, l'intention et la place de votre récit.</p>
+       </article>
+       <article class="reveal border-b border-black/15 py-7 md:border-b-0 md:border-r md:px-6" style="transition-delay:90ms;">
+        <p class="process-no">02</p>
+        <h3 data-template-id="process-step-two-title" class="canva-text mt-8 font-bold" style="color: rgb(18, 19, 21); font-weight: 700; font-style: normal; font-size: 21px;">Imaginer</h3>
+        <p data-template-id="process-step-two-description" class="canva-text mt-3 leading-relaxed text-neutral-700" style="color: rgb(49, 52, 42); font-weight: 400; font-style: normal; font-size: 15px; line-height: 1.55;">Donner une direction créative, un angle et une émotion à l'histoire.</p>
+       </article>
+       <article class="reveal border-b border-black/15 py-7 md:border-b-0 md:border-r md:px-6" style="transition-delay:180ms;">
+        <p class="process-no">03</p>
+        <h3 data-template-id="process-step-three-title" class="canva-text mt-8 font-bold" style="color: rgb(18, 19, 21); font-weight: 700; font-style: normal; font-size: 21px;">Produire</h3>
+        <p data-template-id="process-step-three-description" class="canva-text mt-3 leading-relaxed text-neutral-700" style="color: rgb(49, 52, 42); font-weight: 400; font-style: normal; font-size: 15px; line-height: 1.55;">Orchestrer le tournage avec fluidité, exigence et une énergie collective.</p>
+       </article>
+       <article class="reveal py-7 md:pr-0 md:pl-6" style="transition-delay:270ms;">
+        <p class="process-no">04</p>
+        <h3 data-template-id="process-step-four-title" class="canva-text mt-8 font-bold" style="color: rgb(18, 19, 21); font-weight: 700; font-style: normal; font-size: 21px;">Faire circuler</h3>
+        <p data-template-id="process-step-four-description" class="canva-text mt-3 leading-relaxed text-neutral-700" style="color: rgb(49, 52, 42); font-weight: 400; font-style: normal; font-size: 15px; line-height: 1.55;">Finaliser les images et les adapter aux usages qui comptent.</p>
+       </article>
+      </div>
+     </div>
+    </section>
+    <section id="contact" data-template-id="contact-section" class="canva-section px-5 py-16 md:px-10 md:py-24" style="background: rgb(16, 17, 19);">
+     <div class="section-inner">
+      <div class="border-y border-white/20 py-12 text-center md:py-20">
+       <p data-template-id="contact-eyebrow" class="canva-text eyebrow mx-auto mb-7 w-fit" style="color: rgb(215, 255, 63); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.14rem;">Votre prochaine histoire commence ici</p>
+       <h2 data-template-id="contact-title" class="canva-text display-face mx-auto max-w-4xl font-medium leading-[0.95] tracking-[-0.055em]" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 24px;">Un projet en tête ? Donnons-lui une image.</h2>
+       <p data-template-id="contact-description" class="canva-text mx-auto mt-6 max-w-xl leading-relaxed text-stone-300" style="color: rgb(199, 200, 195); font-weight: 400; font-style: normal; font-size: 17px; line-height: 1.55;">Parlez-nous de votre besoin, même encore flou. Nous reviendrons vers vous avec une première perspective.</p>
+       <div class="mt-9 flex flex-wrap justify-center gap-3"><a href="mailto:bonjour@noeud-studio.fr?subject=Demande%20de%20devis" data-template-id="contact-primary-cta" class="canva-button primary-link font-bold" style="background: rgb(215, 255, 63); color: rgb(16, 17, 19); font-weight: 700; font-style: normal; font-size: 16px;">Demander un devis</a> <a href="mailto:bonjour@noeud-studio.fr?subject=Demande%20de%20rendez-vous" data-template-id="contact-secondary-cta" class="canva-button secondary-link font-semibold" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 16px;">Réserver un échange</a>
+       </div>
+      </div>
+      <div class="grid gap-7 py-8 text-center md:grid-cols-3 md:text-left">
+       <div>
+        <p data-template-id="contact-email-label" class="canva-text text-xs font-bold uppercase tracking-[0.15em] text-stone-400" style="color: rgb(170, 169, 159); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.1rem;">Écrivez-nous</p><a href="mailto:bonjour@noeud-studio.fr" data-template-id="contact-email" class="canva-link mt-2 inline-block font-semibold" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 16px;">bonjour@noeud-studio.fr</a>
+       </div>
+       <div>
+        <p data-template-id="contact-phone-label" class="canva-text text-xs font-bold uppercase tracking-[0.15em] text-stone-400" style="color: rgb(170, 169, 159); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.1rem;">Appelez-nous</p><a href="tel:+33600000000" data-template-id="contact-phone" class="canva-link mt-2 inline-block font-semibold" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 16px;">+33 (0)6 00 00 00 00</a>
+       </div>
+       <div>
+        <p data-template-id="contact-location-label" class="canva-text text-xs font-bold uppercase tracking-[0.15em] text-stone-400" style="color: rgb(170, 169, 159); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.1rem;">Nous trouver</p>
+        <p data-template-id="contact-location" class="canva-text mt-2 font-semibold" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 16px;">Nouméa · Paris · à distance</p>
+       </div>
+      </div>
+     </div>
+    </section>
+   </main>
+   <footer class="px-5 pb-7 pt-2 md:px-10">
+    <div class="mx-auto flex max-w-7xl flex-col justify-between gap-4 border-t border-white/20 pt-6 text-xs text-stone-400 md:flex-row">
+     <p data-template-id="footer-brand" class="canva-text font-bold tracking-[0.15em]" style="color: rgb(242, 239, 232); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.1rem;">NŒUD — STUDIO AUDIOVISUEL</p>
+     <p data-template-id="footer-copy" class="canva-text" style="color: rgb(170, 169, 159); font-weight: 400; font-style: normal; font-size: 13px;">© 2026 — Images en mouvement, idées en lumière.</p>
     </div>
+   </footer>
+  </div>
+  <script src="/_sdk/d97541380e824b1a.editing_sdk.js" integrity="sha512-iBVkuiyctyjmaqUwrsoYSc/nxwymdEKZMKPeBCNj6uN/7hFPTiMVeunYJjJVnUh1GNECKEyCerl7IHtlqhzSYQ=="></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
 
-</body>
-</html>
+      const menuToggle = document.getElementById("menu-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      menuToggle.addEventListener("click", () => {
+        const isOpen = mobileMenu.classList.toggle("is-open");
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        menuToggle.setAttribute("aria-label", isOpen ? "Fermer le menu" : "Ouvrir le menu");
+      });
+
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.remove("is-open");
+          menuToggle.setAttribute("aria-expanded", "false");
+          menuToggle.setAttribute("aria-label", "Ouvrir le menu");
+        });
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.14 });
+
+      document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+    });
+  </script>
+ 
+</body></html>
