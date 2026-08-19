@@ -2,17 +2,19 @@
 <html lang="fr"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260819-05-5fffd6c","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFLd8sKbwc,2","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Libre Baskerville":"YACgEUFdPdA,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YADLjI9qxTA,0","Nunito":"YACgEX8C5Gg,0","Oleo Script":"YACgEQQ14jI,0","Phantom Sans":"YAHO2E8Pb88,0","Playfair Display":"YACgEYmuCJE,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YADWjpfPmdk,0","Raleway":"YACgEVg3xZg,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Ubuntu":"YACgERDU--Q,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YADlN8CFZ8Q,0","ui-sans-serif":"YACkoN-xg4g,0"}}');</script><script src="/_sdk/7949ff62d67710d5.telemetry_sdk.js" integrity="sha512-KIvXA82Di44YY/RH9/63A9MuTuavYgDFG8PfErJn7Wli4K0LAOk+coo/aPXk3+ZNL96nHh9VYD4PE+fLes+laQ=="></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NŒUD — Studio audiovisuel</title>
+  <title>Furnality TV — L'image en grand</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Petrona:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #101113;
-      --paper: #f2efe8;
-      --acid: #d7ff3f;
-      --muted: #a4a7a1;
-      --line: rgba(242, 239, 232, 0.18);
+      --ink: #02040c;
+      --night: #061126;
+      --panel: rgba(12, 24, 51, 0.68);
+      --line: rgba(185, 211, 255, 0.16);
+      --mist: #dce9ff;
+      --blue: #62a5ff;
+      --electric: #a7d1ff;
     }
 
     * { box-sizing: border-box; }
@@ -20,330 +22,416 @@
     body {
       margin: 0;
       width: 100%;
-      font-family: "DM Sans", sans-serif;
-      color: var(--paper);
       overflow-x: hidden;
+      color: var(--mist);
+      background: var(--ink);
+      font-family: "Petrona", serif;
     }
 
     .site-shell { width: 100%; overflow: hidden; }
-    .display-face { font-family: "Fraunces", serif; }
-    .nav-link {
-      position: relative;
-      color: rgba(242, 239, 232, 0.75);
-      font-size: 0.79rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      transition: color 180ms ease;
-    }
-    .nav-link:hover, .nav-link:focus-visible { color: var(--acid); }
-    .nav-link::after {
-      content: "";
-      position: absolute;
-      height: 1px;
-      width: 0;
-      left: 0;
-      bottom: -6px;
-      background: var(--acid);
-      transition: width 180ms ease;
-    }
-    .nav-link:hover::after { width: 100%; }
+    .display-face { font-family: "Caledonian", "Times New Roman", serif !important; }
+    .nav-link, .primary-button, .secondary-button, .eyebrow, button, .canva-button, .canva-link, [class*="uppercase"], h1, h2, h3, h4, h5, h6 { font-family: "Caledonian", "Times New Roman", serif !important; }
+    p, span, article, section, footer, main { font-family: "Petrona", serif; }
 
-    .hero-panel {
+    .top-nav {
+      background: linear-gradient(180deg, rgba(2, 4, 12, .88), rgba(2, 4, 12, 0));
+      backdrop-filter: blur(9px);
+    }
+
+    .nav-link {
+      color: rgba(220, 233, 255, .62);
+      font-size: .7rem;
+      letter-spacing: .13em;
+      font-weight: 700;
+      text-transform: uppercase;
+      transition: color .2s ease;
+    }
+    .nav-link:hover, .nav-link:focus-visible { color: #fff; }
+
+    .hero {
       min-height: calc(100 * min(var(--vh, 1vh), 1vh));
       position: relative;
+      display: flex;
+      align-items: flex-end;
       isolation: isolate;
     }
-    .hero-panel::before {
+    .hero::before {
       content: "";
       position: absolute;
       inset: 0;
       z-index: -1;
-      background: linear-gradient(90deg, rgba(10,11,13,0.96) 0%, rgba(10,11,13,0.68) 42%, rgba(10,11,13,0.18) 100%);
+      background:
+        radial-gradient(circle at 58% 52%, rgba(77, 134, 232, .28), transparent 28%),
+        linear-gradient(90deg, rgba(2,4,12,.96) 0%, rgba(2,4,12,.64) 42%, rgba(2,4,12,.3) 100%);
     }
-    .hero-panel::after {
+    .hero::after {
       content: "";
       position: absolute;
+      inset: 0;
       z-index: -1;
-      inset: 0;
-      background: linear-gradient(0deg, rgba(10,11,13,0.86) 0%, transparent 38%);
+      background: linear-gradient(0deg, #02040c 0%, transparent 36%, rgba(2,4,12,.22) 100%);
     }
-    .hero-media {
+    .hero-image {
       position: absolute;
-      inset: 0;
       z-index: -2;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: saturate(0.68) contrast(1.12);
+      filter: saturate(.8) contrast(1.12) brightness(.7);
     }
-    .eyebrow {
-      display: flex;
-      gap: .75rem;
-      align-items: center;
-      color: var(--acid);
-      font-size: .72rem;
+
+    .hero-number {
+      font-size: clamp(8rem, 22vw, 20rem);
+      line-height: .65;
+      letter-spacing: -.1em;
+      color: rgba(148, 191, 255, .14);
       font-weight: 700;
-      letter-spacing: .17em;
+      user-select: none;
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      background: rgba(8, 18, 41, .48);
+      backdrop-filter: blur(12px);
+      border-radius: 999px;
+    }
+
+    .primary-button, .secondary-button {
+      display: inline-flex;
+      align-items: center;
+      gap: .65rem;
+      padding: .9rem 1.15rem;
+      border-radius: 999px;
+      font-size: .78rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .primary-button:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(95, 161, 255, .28); }
+    .secondary-button:hover { transform: translateY(-3px); background: rgba(110, 164, 255, .16); }
+
+    .section-space { padding: 6.5rem 1.25rem; }
+    .section-inner { max-width: 1360px; margin: 0 auto; }
+
+    .eyebrow {
+      color: var(--blue);
+      font-size: .66rem;
+      font-weight: 700;
+      letter-spacing: .18em;
       text-transform: uppercase;
     }
-    .eyebrow::before {
-      content: "";
-      display: inline-block;
-      width: 2.2rem;
-      height: 1px;
-      background: currentColor;
-    }
-    .round-button {
-      width: 3rem;
-      height: 3rem;
-      display: inline-flex;
+
+    .line-top { border-top: 1px solid var(--line); }
+
+    .channel-card {
+      min-height: 5.75rem;
+      display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid rgba(242,239,232,.3);
-      border-radius: 999px;
-      transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+      border: 1px solid var(--line);
+      border-radius: .65rem;
+      background: rgba(10, 20, 43, .6);
+      color: #fff;
+      transition: transform .25s ease, border-color .25s ease, background .25s ease;
     }
-    .round-button:hover { background: var(--acid); color: var(--ink); transform: translateY(-2px); }
-    .primary-link {
-      display: inline-flex;
-      align-items: center;
-      gap: .65rem;
-      padding: .95rem 1.25rem;
-      border-radius: 999px;
-      transition: transform 180ms ease, box-shadow 180ms ease;
+    .channel-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(129, 181, 255, .7);
+      background: rgba(29, 62, 119, .48);
     }
-    .primary-link:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(215,255,63,.16); }
-    .secondary-link {
-      display: inline-flex;
-      align-items: center;
-      gap: .65rem;
-      padding: .95rem 1.2rem;
-      border: 1px solid rgba(242,239,232,.34);
-      border-radius: 999px;
-      transition: border-color 180ms ease, color 180ms ease;
-    }
-    .secondary-link:hover { border-color: var(--acid); color: var(--acid); }
 
-    .section-wrap { padding: 7rem 1.5rem; }
-    .section-inner { max-width: 1280px; margin: 0 auto; }
-    .rule { height: 1px; background: rgba(16,17,19,.16); }
-    .dark-rule { height: 1px; background: var(--line); }
-
-    .service-card {
+    .show-card {
+      position: relative;
+      min-height: 18rem;
       overflow: hidden;
-      background: #17191c;
-      border: 1px solid rgba(242,239,232,.12);
-      transition: transform 260ms ease, border-color 260ms ease;
+      border-radius: 1rem;
+      border: 1px solid var(--line);
+      background: #0a1630;
     }
-    .service-card:hover { transform: translateY(-8px); border-color: rgba(215,255,63,.55); }
-    .service-image { height: 17rem; width: 100%; object-fit: cover; filter: saturate(.78); transition: transform 500ms ease; }
-    .service-card:hover .service-image { transform: scale(1.045); }
-
-    .portfolio-card { position: relative; overflow: hidden; min-height: 23rem; }
-    .portfolio-card img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(.25) saturate(.72); transition: transform 600ms ease, filter 400ms ease; }
-    .portfolio-card:hover img { transform: scale(1.06); filter: grayscale(0) saturate(1); }
-    .portfolio-card::after {
+    .show-card img {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      inset: 0;
+      object-fit: cover;
+      filter: saturate(.82) brightness(.72);
+      transition: transform .55s ease, filter .35s ease;
+    }
+    .show-card::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(0deg, rgba(8,9,11,.92), transparent 68%);
-      pointer-events: none;
+      background: linear-gradient(0deg, rgba(1,4,13,.96), transparent 68%);
     }
-    .portfolio-caption { position: absolute; z-index: 1; bottom: 1.5rem; left: 1.5rem; right: 1.5rem; }
+    .show-card:hover img { transform: scale(1.07); filter: saturate(1.05) brightness(.88); }
+    .show-card-content { position: absolute; z-index: 1; inset: auto 1.15rem 1.15rem; }
 
-    .process-no {
-      font-family: "Fraunces", serif;
-      color: var(--acid);
-      font-size: clamp(3.3rem, 7vw, 6.5rem);
-      line-height: .85;
-      letter-spacing: -.08em;
+    .program-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: .8rem;
+      background: rgba(12, 24, 51, .66);
+      transition: transform .25s ease, border-color .25s ease;
     }
-    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 650ms ease, transform 650ms ease; }
-    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .program-card:hover { transform: translateY(-5px); border-color: rgba(129,181,255,.74); }
+    .program-card img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      filter: saturate(.78);
+      transition: transform .45s ease;
+    }
+    .program-card:hover img { transform: scale(1.05); }
 
-    .mobile-panel { display: none; }
-    .mobile-panel.is-open { display: flex; }
+    .feature-panel {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(153, 197, 255, .28);
+      border-radius: 1.4rem;
+      min-height: 33rem;
+      isolation: isolate;
+    }
+    .feature-panel::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(3,7,18,.94) 4%, rgba(3,7,18,.45) 65%, rgba(3,7,18,.18));
+    }
+    .feature-image {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      object-fit: cover;
+      filter: saturate(.86) contrast(1.15) brightness(.67);
+    }
+
+    .footer-grid { border-top: 1px solid var(--line); }
+    .footer-link { color: rgba(220,233,255,.56); font-size: .82rem; transition: color .2s ease; }
+    .footer-link:hover { color: #fff; }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .mobile-menu { display: none; }
+    .mobile-menu.open { display: flex; }
 
     @media (max-width: 767px) {
-      .section-wrap { padding: 5rem 1.25rem; }
-      .hero-panel { min-height: calc(92 * min(var(--vh, 1vh), 1vh)); }
-      .hero-panel::before { background: linear-gradient(90deg, rgba(10,11,13,.94), rgba(10,11,13,.45)); }
-      .desktop-nav { display: none; }
-      .mobile-panel {
+      .desktop-links { display: none; }
+      .section-space { padding: 4.5rem 1.1rem; }
+      .hero { min-height: calc(92 * min(var(--vh, 1vh), 1vh)); }
+      .mobile-menu {
         position: absolute;
         top: calc(100% + .7rem);
-        left: 1rem;
-        right: 1rem;
+        left: 0;
+        right: 0;
         flex-direction: column;
-        gap: 1.15rem;
-        padding: 1.4rem;
-        background: #15171a;
-        border: 1px solid rgba(242,239,232,.16);
+        gap: 1rem;
+        padding: 1.25rem;
+        border: 1px solid var(--line);
+        border-radius: 1rem;
+        background: rgba(4, 10, 25, .97);
+        backdrop-filter: blur(20px);
       }
+      .hero-number { font-size: 9rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
     }
   </style>
   <script src="/_sdk/0e8d3a91e1c6f495.data_sdk.js" type="text/javascript" integrity="sha512-c00oDoGjsMgluCLLEyVl3suwEkgjOGGplVFbsilUoBg4aMKNmsL3mwsc9r0dPn95qiSZyjBousQXgROkAW7p/w=="></script>
   <script src="/_sdk/eba18683f23e5798.resizing_sdk.js" type="text/javascript" integrity="sha512-E0UWUllhwPXaNJtjyTKXWKrIE+FruPfFpO4mRmMDP2LI+U9bOizy5npCq6xx/JyWcvSK7D3TFf2wFR2Mha9kbA=="></script>
  </head>
- <body data-template-id="__page-root" style="background: rgb(16, 17, 19);">
+ <body data-template-id="__page-root" style="background: rgb(2, 4, 12);">
   <div class="site-shell">
-   <header class="absolute top-0 z-20 w-full px-5 pt-5 md:px-10 md:pt-8">
-    <nav aria-label="Navigation principale" class="relative mx-auto flex max-w-7xl items-center justify-between"><a href="#accueil" data-template-id="studio-logo" class="canva-link text-lg font-bold tracking-[0.22em]" style="color: rgb(242, 239, 232); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.12rem;">NŒUD</a>
-     <div class="desktop-nav flex items-center gap-8"><a href="#realisations" data-template-id="nav-work" class="canva-link nav-link" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 16px;">Réalisations</a> <a href="#services" data-template-id="nav-services" class="canva-link nav-link" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 16px;">Services</a> <a href="#process" data-template-id="nav-process" class="canva-link nav-link" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 16px;">Méthode</a> <a href="#contact" data-template-id="nav-contact" class="canva-link nav-link" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 16px;">Contact</a>
-     </div><a href="#contact" data-template-id="nav-cta" class="canva-button hidden rounded-full px-5 py-3 text-sm font-bold md:inline-flex" style="background: rgb(215, 255, 63); color: rgb(16, 17, 19); font-weight: 700; font-style: normal; font-size: 16px;">Parlons projet</a> <button id="menu-toggle" type="button" class="round-button md:hidden" aria-label="Ouvrir le menu" aria-expanded="false"> <i data-lucide="menu" width="19" height="19"></i> </button>
-     <div id="mobile-menu" class="mobile-panel" aria-label="Menu mobile"><a href="#realisations" data-template-id="mobile-nav-work" class="canva-link nav-link" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 16px;">Réalisations</a> <a href="#services" data-template-id="mobile-nav-services" class="canva-link nav-link" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 16px;">Services</a> <a href="#process" data-template-id="mobile-nav-process" class="canva-link nav-link" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 16px;">Méthode</a> <a href="#contact" data-template-id="mobile-nav-contact" class="canva-link nav-link" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 16px;">Contact</a>
+   <header class="top-nav fixed top-0 z-40 w-full px-5 py-5 md:px-10">
+    <nav class="relative mx-auto flex max-w-7xl items-center justify-between" aria-label="Navigation principale">
+     <a href="#accueil" data-template-id="brand-logo" class="canva-link text-lg font-bold tracking-[0.16em]" style="color: rgb(244, 248, 255); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.12rem;">FURNALITY</a>
+     <div class="desktop-links flex items-center gap-7">
+      <a href="#chaines" data-template-id="nav-channels" class="canva-link nav-link" style="color: rgb(220, 233, 255); font-weight: 700; font-style: normal; font-size: 16px;">Chaînes</a> <a href="#selection" data-template-id="nav-selection" class="canva-link nav-link" style="color: rgb(220, 233, 255); font-weight: 700; font-style: normal; font-size: 16px;">Sélections</a> <a href="#programmes" data-template-id="nav-programs" class="canva-link nav-link" style="color: rgb(220, 233, 255); font-weight: 700; font-style: normal; font-size: 16px;">Programmes</a>
+     </div>
+     <div class="flex items-center gap-3">
+      <a href="#contact" data-template-id="nav-cta" class="canva-button primary-button hidden md:inline-flex" style="background: rgb(220, 233, 255); color: rgb(6, 17, 38); font-weight: 700; font-style: normal; font-size: 16px;">Nous contacter</a> <button id="menu-button" type="button" class="pill inline-flex h-10 w-10 items-center justify-center md:hidden" aria-label="Ouvrir le menu" aria-expanded="false"> <i data-lucide="menu" width="18" height="18"></i> </button>
+     </div>
+     <div id="mobile-menu" class="mobile-menu" aria-label="Menu mobile">
+      <a href="#chaines" data-template-id="mobile-nav-channels" class="canva-link nav-link" style="color: rgb(220, 233, 255); font-weight: 700; font-style: normal; font-size: 16px;">Chaînes</a> <a href="#selection" data-template-id="mobile-nav-selection" class="canva-link nav-link" style="color: rgb(220, 233, 255); font-weight: 700; font-style: normal; font-size: 16px;">Sélections</a> <a href="#programmes" data-template-id="mobile-nav-programs" class="canva-link nav-link" style="color: rgb(220, 233, 255); font-weight: 700; font-style: normal; font-size: 16px;">Programmes</a> <a href="#contact" data-template-id="mobile-nav-contact" class="canva-link nav-link" style="color: rgb(220, 233, 255); font-weight: 700; font-style: normal; font-size: 16px;">Nous contacter</a>
      </div>
     </nav>
    </header>
    <main>
-    <section id="accueil" class="hero-panel flex items-end px-5 pb-10 pt-32 md:px-10 md:pb-14"><img data-template-id="hero-image" loading="lazy" class="canva-image hero-media" src="https://images.pexels.com/photos/23384400/pexels-photo-23384400.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920" alt="Un caméraman professionnel filme dans un décor créatif et sombre éclairé par une lumière chaude.">
-     <div class="mx-auto w-full max-w-7xl">
-      <div class="max-w-4xl">
-       <p data-template-id="hero-eyebrow" class="canva-text eyebrow mb-6" style="color: rgb(215, 255, 63); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.14rem;">Studio de narration visuelle</p>
-       <h1 data-template-id="hero-title" class="canva-text display-face max-w-4xl font-medium leading-[0.94] tracking-[-0.055em]" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 32px;">Des images qui font avancer les idées.</h1>
-       <p data-template-id="hero-description" class="canva-text mt-7 max-w-xl text-base leading-relaxed text-stone-200 md:text-lg" style="color: rgb(231, 226, 217); font-weight: 400; font-style: normal; font-size: 18px; line-height: 1.55;">NŒUD imagine et produit des films, des photographies et des récits de marque qui donnent de la profondeur à votre présence.</p>
-       <div class="mt-9 flex flex-wrap gap-3"><a href="#contact" data-template-id="hero-primary-cta" class="canva-button primary-link font-bold" style="background: rgb(215, 255, 63); color: rgb(16, 17, 19); font-weight: 700; font-style: normal; font-size: 16px;">Lancer un projet</a> <a href="#realisations" data-template-id="hero-secondary-cta" class="canva-button secondary-link font-semibold" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 16px;">Voir les réalisations</a>
+    <section id="accueil" class="hero px-5 pb-12 pt-32 md:px-10 md:pb-14">
+     <img data-template-id="hero-image" loading="lazy" class="canva-image hero-image" src="https://images.pexels.com/photos/30018091/pexels-photo-30018091.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920" alt="Vagues abstraites bleu nuit créées en rendu 3D">
+     <div class="absolute right-[8%] top-[31%] z-0"><span class="hero-number">27</span>
+     </div>
+     <div class="relative mx-auto w-full max-w-7xl">
+      <div class="max-w-4xl reveal">
+       <p data-template-id="hero-kicker" class="canva-text eyebrow mb-5" style="color: rgb(143, 194, 255); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.15rem;">Furnality TV · Saison 27</p>
+       <h1 data-template-id="hero-title" class="canva-text display-face max-w-4xl font-semibold leading-[.9] tracking-[-.06em]" style="color: rgb(244, 248, 255); font-family: Caledonian; font-weight: 600; font-style: normal; font-size: 32px;">L’image prend toute la place.</h1>
+       <p data-template-id="hero-description" class="canva-text mt-7 max-w-xl text-base leading-relaxed text-blue-100/80 md:text-lg" style="color: rgb(220, 233, 255); font-weight: 400; font-style: normal; font-size: 18px; line-height: 1.55;">Furnality compose une télévision de paysages, de récits et de formats qui ouvrent le regard.</p>
+       <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#selection" data-template-id="hero-primary-cta" class="canva-button primary-button" style="background: rgb(220, 233, 255); color: rgb(6, 17, 38); font-weight: 700; font-style: normal; font-size: 16px;">Explorer Furnality</a> <a href="#programmes" data-template-id="hero-secondary-cta" class="canva-button secondary-button pill" style="background: rgba(8, 18, 41, 0.48); color: rgb(244, 248, 255); font-weight: 700; font-style: normal; font-size: 16px;">Voir la sélection</a>
        </div>
       </div>
-      <div class="mt-14 flex items-center justify-between border-t border-white/20 pt-5 text-xs font-semibold uppercase tracking-[0.15em] text-stone-300"><span data-template-id="hero-location" class="canva-text" style="color: rgb(231, 226, 217); font-weight: 600; font-style: normal; font-size: 16px; letter-spacing: 0.1rem;">Nouméa · Paris · partout</span> <a href="#services" class="round-button" aria-label="Découvrir nos services"> <i data-lucide="arrow-down" width="18" height="18"></i> </a>
+      <div class="mt-16 flex flex-wrap items-end justify-between gap-6 border-t border-blue-100/20 pt-5">
+       <div class="flex flex-wrap gap-8">
+        <div>
+         <p data-template-id="hero-meta-label" class="canva-text text-[10px] font-bold uppercase tracking-[.16em] text-blue-200/50" style="color: rgb(155, 188, 233); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.12rem;">En ce moment</p>
+         <p data-template-id="hero-meta-value" class="canva-text mt-1 text-sm font-semibold" style="color: rgb(244, 248, 255); font-weight: 600; font-style: normal; font-size: 16px;">Zapping · Horizons denses</p>
+        </div>
+        <div>
+         <p data-template-id="hero-time-label" class="canva-text text-[10px] font-bold uppercase tracking-[.16em] text-blue-200/50" style="color: rgb(155, 188, 233); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.12rem;">Prochaine diffusion</p>
+         <p data-template-id="hero-time-value" class="canva-text mt-1 text-sm font-semibold" style="color: rgb(244, 248, 255); font-weight: 600; font-style: normal; font-size: 16px;">Ce soir · 20:30</p>
+        </div>
+       </div><a href="#chaines" class="pill inline-flex h-11 w-11 items-center justify-center transition hover:bg-blue-300 hover:text-slate-950" aria-label="Découvrir les chaînes"> <i data-lucide="arrow-down" width="18" height="18"></i> </a>
       </div>
      </div>
     </section>
-    <section id="services" data-template-id="services-section" class="canva-section section-wrap" style="background: rgb(242, 239, 232);">
+    <section id="chaines" class="section-space">
      <div class="section-inner">
-      <div class="grid gap-8 border-b border-black/15 pb-12 md:grid-cols-[.75fr_1.25fr] md:items-end">
-       <p data-template-id="services-eyebrow" class="canva-text eyebrow" style="color: rgb(18, 19, 21); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.14rem;">Ce que nous faisons</p>
+      <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
        <div class="reveal">
-        <h2 data-template-id="services-title" class="canva-text display-face max-w-3xl font-medium leading-[0.98] tracking-[-0.045em]" style="color: rgb(18, 19, 21); font-weight: 600; font-style: normal; font-size: 24px;">Une production pensée pour être vue, ressentie et retenue.</h2>
-        <p data-template-id="services-description" class="canva-text mt-5 max-w-xl leading-relaxed text-neutral-700" style="color: rgb(75, 77, 74); font-weight: 400; font-style: normal; font-size: 17px; line-height: 1.55;">Du premier échange à la dernière image, nous réunissons direction créative, précision technique et attention aux détails.</p>
+        <p data-template-id="channels-kicker" class="canva-text eyebrow mb-4" style="color: rgb(98, 165, 255); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.15rem;">Choisir un signal</p>
+        <h2 data-template-id="channels-title" class="canva-text display-face max-w-2xl font-semibold leading-[.95] tracking-[-.045em]" style="color: rgb(244, 248, 255); font-weight: 600; font-style: normal; font-size: 24px;">Une constellation de chaînes, un seul écran vivant.</h2>
        </div>
+       <p data-template-id="channels-description" class="canva-text max-w-sm leading-relaxed text-blue-100/60" style="color: rgb(183, 202, 233); font-weight: 400; font-style: normal; font-size: 16px; line-height: 1.55;">Documentaire, musique, récits, voyage et culture visuelle : entrez par l’univers qui vous appelle.</p>
       </div>
-      <div class="mt-10 grid gap-5 md:grid-cols-3">
-       <article data-template-id="service-video-card" class="canva-card service-card reveal" style="background: rgb(23, 25, 28);">
-        <div class="overflow-hidden"><img data-template-id="service-video-image" loading="lazy" class="canva-image service-image" src="https://images.pexels.com/photos/7634784/pexels-photo-7634784.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Matériel de caméra professionnel filmant une scène cinématographique en intérieur.">
-        </div>
-        <div class="p-6">
-         <p data-template-id="service-video-number" class="canva-text text-xs font-bold tracking-[0.16em]" style="color: rgb(215, 255, 63); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.1rem;">01 / IMAGE EN MOUVEMENT</p>
-         <h3 data-template-id="service-video-title" class="canva-text mt-6 font-semibold" style="color: rgb(242, 239, 232); font-weight: 700; font-style: normal; font-size: 23px;">Films de marque</h3>
-         <p data-template-id="service-video-description" class="canva-text mt-3 leading-relaxed" style="color: rgb(199, 200, 195); font-weight: 400; font-style: normal; font-size: 15px; line-height: 1.55;">Films publicitaires, manifestes, portraits et contenus sociaux conçus pour créer un impact immédiat.</p>
-        </div>
+      <div class="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+       <article data-template-id="channel-one" class="canva-card channel-card" style="background: rgb(8, 26, 61);"><span data-template-id="channel-one-name" class="canva-text text-lg font-bold tracking-tight" style="color: rgb(94, 163, 255); font-weight: 700; font-style: normal; font-size: 16px;">NOVA</span>
        </article>
-       <article data-template-id="service-photo-card" class="canva-card service-card reveal" style="transition-delay: 100ms; background: rgb(23, 25, 28);">
-        <div class="overflow-hidden"><img data-template-id="service-photo-image" loading="lazy" class="canva-image service-image" src="https://images.pexels.com/photos/30332804/pexels-photo-30332804.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Studio photo moderne avec fond brun et équipement d'éclairage professionnel.">
-        </div>
-        <div class="p-6">
-         <p data-template-id="service-photo-number" class="canva-text text-xs font-bold tracking-[0.16em]" style="color: rgb(215, 255, 63); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.1rem;">02 / IMAGE FIXE</p>
-         <h3 data-template-id="service-photo-title" class="canva-text mt-6 font-semibold" style="color: rgb(242, 239, 232); font-weight: 700; font-style: normal; font-size: 23px;">Photographie éditoriale</h3>
-         <p data-template-id="service-photo-description" class="canva-text mt-3 leading-relaxed" style="color: rgb(199, 200, 195); font-weight: 400; font-style: normal; font-size: 15px; line-height: 1.55;">Des images de campagne, de produit et de portrait qui installent un territoire visuel singulier.</p>
-        </div>
+       <article data-template-id="channel-two" class="canva-card channel-card" style="background: rgb(22, 11, 31);"><span data-template-id="channel-two-name" class="canva-text text-lg font-bold tracking-tight" style="color: rgb(255, 61, 105); font-weight: 700; font-style: normal; font-size: 16px;">M/V/C</span>
        </article>
-       <article data-template-id="service-post-card" class="canva-card service-card reveal" style="transition-delay: 200ms; background: rgb(23, 25, 28);">
-        <div class="overflow-hidden"><img data-template-id="service-post-image" loading="lazy" class="canva-image service-image" src="https://images.pexels.com/photos/8100060/pexels-photo-8100060.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Monteur vidéo travaillant sur deux écrans pour l'étalonnage et le montage.">
-        </div>
-        <div class="p-6">
-         <p data-template-id="service-post-number" class="canva-text text-xs font-bold tracking-[0.16em]" style="color: rgb(215, 255, 63); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.1rem;">03 / FINITION</p>
-         <h3 data-template-id="service-post-title" class="canva-text mt-6 font-semibold" style="color: rgb(242, 239, 232); font-weight: 700; font-style: normal; font-size: 23px;">Post-production</h3>
-         <p data-template-id="service-post-description" class="canva-text mt-3 leading-relaxed" style="color: rgb(199, 200, 195); font-weight: 400; font-style: normal; font-size: 15px; line-height: 1.55;">Montage, étalonnage, sound design et déclinaisons : le rythme juste, sur chaque écran.</p>
-        </div>
+       <article data-template-id="channel-three" class="canva-card channel-card" style="background: rgb(7, 29, 29);"><span data-template-id="channel-three-name" class="canva-text text-lg font-bold tracking-tight" style="color: rgb(93, 228, 190); font-weight: 700; font-style: normal; font-size: 16px;">ORBIT</span>
+       </article>
+       <article data-template-id="channel-four" class="canva-card channel-card" style="background: rgb(23, 10, 53);"><span data-template-id="channel-four-name" class="canva-text text-lg font-bold tracking-tight" style="color: rgb(167, 107, 255); font-weight: 700; font-style: normal; font-size: 16px;">PULSE</span>
+       </article>
+       <article data-template-id="channel-five" class="canva-card channel-card" style="background: rgb(36, 28, 5);"><span data-template-id="channel-five-name" class="canva-text text-lg font-bold tracking-tight" style="color: rgb(255, 214, 91); font-weight: 700; font-style: normal; font-size: 16px;">ALT.</span>
+       </article>
+       <article data-template-id="channel-six" class="canva-card channel-card" style="background: rgb(32, 20, 14);"><span data-template-id="channel-six-name" class="canva-text text-lg font-bold tracking-tight" style="color: rgb(255, 156, 70); font-weight: 700; font-style: normal; font-size: 16px;">ONE</span>
        </article>
       </div>
      </div>
     </section>
-    <section id="realisations" data-template-id="portfolio-section" class="canva-section section-wrap" style="background: rgb(16, 17, 19);">
-     <div class="section-inner">
-      <div class="flex flex-col justify-between gap-7 md:flex-row md:items-end">
+    <section id="selection" class="section-space pt-4">
+     <div class="section-inner line-top pt-12">
+      <div class="flex flex-col justify-between gap-5 md:flex-row md:items-end">
        <div class="reveal">
-        <p data-template-id="portfolio-eyebrow" class="canva-text eyebrow mb-6" style="color: rgb(215, 255, 63); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.14rem;">Réalisations choisies</p>
-        <h2 data-template-id="portfolio-title" class="canva-text display-face max-w-3xl font-medium leading-[0.98] tracking-[-0.045em]" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 24px;">Des histoires à la mesure de celles et ceux qui les portent.</h2>
-       </div>
-       <p data-template-id="portfolio-description" class="canva-text max-w-sm leading-relaxed text-stone-300" style="color: rgb(199, 200, 195); font-weight: 400; font-style: normal; font-size: 16px; line-height: 1.55;">Une sélection de formats où le fond et la forme se rencontrent pour faire émerger une signature.</p>
+        <p data-template-id="selection-kicker" class="canva-text eyebrow mb-4" style="color: rgb(98, 165, 255); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.15rem;">Les grands formats</p>
+        <h2 data-template-id="selection-title" class="canva-text display-face max-w-3xl font-semibold leading-[.95] tracking-[-.045em]" style="color: rgb(244, 248, 255); font-weight: 600; font-style: normal; font-size: 24px;">À voir sans attendre.</h2>
+       </div><a href="#programmes" data-template-id="selection-link" class="canva-link text-sm font-bold uppercase tracking-[.12em] text-blue-300 transition hover:text-white" style="color: rgb(143, 194, 255); font-weight: 700; font-style: normal; font-size: 16px;">Tout parcourir →</a>
       </div>
-      <div class="mt-12 grid gap-5 md:grid-cols-12">
-       <article data-template-id="portfolio-card-one" class="canva-card portfolio-card reveal md:col-span-7 md:min-h-[35rem]" style="background: rgb(32, 34, 38);"><img data-template-id="portfolio-image-one" loading="lazy" class="canva-image" src="https://images.pexels.com/photos/19224452/pexels-photo-19224452.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1280" alt="Équipe de tournage filmant une scène en extérieur avec caméra et perche son.">
-        <div class="portfolio-caption">
-         <p data-template-id="portfolio-type-one" class="canva-text text-xs font-bold uppercase tracking-[0.15em]" style="color: rgb(215, 255, 63); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.1rem;">Campagne manifeste · 2025</p>
-         <h3 data-template-id="portfolio-title-one" class="canva-text mt-2 font-semibold" style="color: rgb(242, 239, 232); font-weight: 700; font-style: normal; font-size: 24px;">HORIZON — L'énergie en mouvement</h3>
+      <div class="mt-10 grid gap-4 md:grid-cols-12">
+       <article data-template-id="selection-card-one" class="canva-card show-card reveal md:col-span-6 md:min-h-[30rem]" style="background: rgb(10, 22, 48);">
+        <img data-template-id="selection-image-one" loading="lazy" class="canva-image" src="https://images.pexels.com/photos/18831982/pexels-photo-18831982.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1280" alt="Scène de montagne nocturne avec nuages et étoiles">
+        <div class="show-card-content">
+         <p data-template-id="selection-type-one" class="canva-text text-[10px] font-bold uppercase tracking-[.17em] text-blue-300" style="color: rgb(143, 194, 255); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.13rem;">Documentaire original</p>
+         <h3 data-template-id="selection-title-one" class="canva-text mt-2 text-2xl font-bold tracking-tight" style="color: rgb(244, 248, 255); font-weight: 700; font-style: normal; font-size: 19px;">Lignes de crête</h3>
         </div>
        </article>
-       <div class="grid gap-5 md:col-span-5">
-        <article data-template-id="portfolio-card-two" class="canva-card portfolio-card reveal min-h-[17rem]" style="transition-delay: 100ms; background: rgb(32, 34, 38);"><img data-template-id="portfolio-image-two" loading="lazy" class="canva-image" src="https://images.pexels.com/photos/28728922/pexels-photo-28728922.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Vidéaste filmant une femme dans un bureau avec un équipement professionnel.">
-         <div class="portfolio-caption">
-          <p data-template-id="portfolio-type-two" class="canva-text text-xs font-bold uppercase tracking-[0.15em]" style="color: rgb(215, 255, 63); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.1rem;">Série portrait · 2025</p>
-          <h3 data-template-id="portfolio-title-two" class="canva-text mt-2 font-semibold" style="color: rgb(242, 239, 232); font-weight: 700; font-style: normal; font-size: 21px;">FACES — Les bâtisseurs</h3>
-         </div>
-        </article>
-        <article data-template-id="portfolio-card-three" class="canva-card portfolio-card reveal min-h-[17rem]" style="transition-delay: 170ms; background: rgb(32, 34, 38);"><img data-template-id="portfolio-image-three" loading="lazy" class="canva-image" src="https://images.pexels.com/photos/8414227/pexels-photo-8414227.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Vue aérienne cinématographique de montagnes et de vallées arides au coucher du soleil.">
-         <div class="portfolio-caption">
-          <p data-template-id="portfolio-type-three" class="canva-text text-xs font-bold uppercase tracking-[0.15em]" style="color: rgb(215, 255, 63); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.1rem;">Destination film · 2024</p>
-          <h3 data-template-id="portfolio-title-three" class="canva-text mt-2 font-semibold" style="color: rgb(242, 239, 232); font-weight: 700; font-style: normal; font-size: 21px;">TERRES — Une autre échelle</h3>
-         </div>
-        </article>
-       </div>
-      </div>
-     </div>
-    </section>
-    <section id="process" data-template-id="process-section" class="canva-section section-wrap" style="background: rgb(215, 255, 63);">
-     <div class="section-inner">
-      <div class="grid gap-8 md:grid-cols-[.75fr_1.25fr]">
-       <p data-template-id="process-eyebrow" class="canva-text eyebrow" style="color: rgb(18, 19, 21); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.14rem;">Notre manière de faire</p>
-       <div class="reveal">
-        <h2 data-template-id="process-title" class="canva-text display-face max-w-2xl font-medium leading-[0.98] tracking-[-0.045em]" style="color: rgb(18, 19, 21); font-weight: 600; font-style: normal; font-size: 24px;">Une méthode claire. De l’espace pour les grandes idées.</h2>
-        <p data-template-id="process-description" class="canva-text mt-5 max-w-xl leading-relaxed text-neutral-700" style="color: rgb(49, 52, 42); font-weight: 400; font-style: normal; font-size: 17px; line-height: 1.55;">Chaque production avance avec un cap partagé, un regard attentif et une équipe mobilisée au bon moment.</p>
-       </div>
-      </div>
-      <div class="mt-16 grid border-t border-black/15 md:grid-cols-4">
-       <article class="reveal border-b border-black/15 px-0 py-7 md:border-b-0 md:border-r md:px-6 md:first:pl-0">
-        <p class="process-no">01</p>
-        <h3 data-template-id="process-step-one-title" class="canva-text mt-8 font-bold" style="color: rgb(18, 19, 21); font-weight: 700; font-style: normal; font-size: 21px;">Écouter</h3>
-        <p data-template-id="process-step-one-description" class="canva-text mt-3 leading-relaxed text-neutral-700" style="color: rgb(49, 52, 42); font-weight: 400; font-style: normal; font-size: 15px; line-height: 1.55;">Comprendre le contexte, l'intention et la place de votre récit.</p>
+       <article data-template-id="selection-card-two" class="canva-card show-card reveal md:col-span-3 md:min-h-[30rem]" style="transition-delay: 100ms; background: rgb(10, 22, 48);">
+        <img data-template-id="selection-image-two" loading="lazy" class="canva-image" src="https://images.pexels.com/photos/32635228/pexels-photo-32635228.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Vagues sombres et calmes photographiées au crépuscule">
+        <div class="show-card-content">
+         <p data-template-id="selection-type-two" class="canva-text text-[10px] font-bold uppercase tracking-[.17em] text-blue-300" style="color: rgb(143, 194, 255); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.13rem;">Immersion</p>
+         <h3 data-template-id="selection-title-two" class="canva-text mt-2 text-xl font-bold tracking-tight" style="color: rgb(244, 248, 255); font-weight: 700; font-style: normal; font-size: 19px;">Bleu profond</h3>
+        </div>
        </article>
-       <article class="reveal border-b border-black/15 py-7 md:border-b-0 md:border-r md:px-6" style="transition-delay:90ms;">
-        <p class="process-no">02</p>
-        <h3 data-template-id="process-step-two-title" class="canva-text mt-8 font-bold" style="color: rgb(18, 19, 21); font-weight: 700; font-style: normal; font-size: 21px;">Imaginer</h3>
-        <p data-template-id="process-step-two-description" class="canva-text mt-3 leading-relaxed text-neutral-700" style="color: rgb(49, 52, 42); font-weight: 400; font-style: normal; font-size: 15px; line-height: 1.55;">Donner une direction créative, un angle et une émotion à l'histoire.</p>
-       </article>
-       <article class="reveal border-b border-black/15 py-7 md:border-b-0 md:border-r md:px-6" style="transition-delay:180ms;">
-        <p class="process-no">03</p>
-        <h3 data-template-id="process-step-three-title" class="canva-text mt-8 font-bold" style="color: rgb(18, 19, 21); font-weight: 700; font-style: normal; font-size: 21px;">Produire</h3>
-        <p data-template-id="process-step-three-description" class="canva-text mt-3 leading-relaxed text-neutral-700" style="color: rgb(49, 52, 42); font-weight: 400; font-style: normal; font-size: 15px; line-height: 1.55;">Orchestrer le tournage avec fluidité, exigence et une énergie collective.</p>
-       </article>
-       <article class="reveal py-7 md:pr-0 md:pl-6" style="transition-delay:270ms;">
-        <p class="process-no">04</p>
-        <h3 data-template-id="process-step-four-title" class="canva-text mt-8 font-bold" style="color: rgb(18, 19, 21); font-weight: 700; font-style: normal; font-size: 21px;">Faire circuler</h3>
-        <p data-template-id="process-step-four-description" class="canva-text mt-3 leading-relaxed text-neutral-700" style="color: rgb(49, 52, 42); font-weight: 400; font-style: normal; font-size: 15px; line-height: 1.55;">Finaliser les images et les adapter aux usages qui comptent.</p>
+       <article data-template-id="selection-card-three" class="canva-card show-card reveal md:col-span-3 md:min-h-[30rem]" style="transition-delay: 180ms; background: rgb(10, 22, 48);">
+        <img data-template-id="selection-image-three" loading="lazy" class="canva-image" src="https://images.pexels.com/photos/28237726/pexels-photo-28237726.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Aurore boréale illuminant le ciel nocturne en Norvège">
+        <div class="show-card-content">
+         <p data-template-id="selection-type-three" class="canva-text text-[10px] font-bold uppercase tracking-[.17em] text-blue-300" style="color: rgb(143, 194, 255); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.13rem;">Sessions live</p>
+         <h3 data-template-id="selection-title-three" class="canva-text mt-2 text-xl font-bold tracking-tight" style="color: rgb(244, 248, 255); font-weight: 700; font-style: normal; font-size: 19px;">Nuits polaires</h3>
+        </div>
        </article>
       </div>
      </div>
     </section>
-    <section id="contact" data-template-id="contact-section" class="canva-section px-5 py-16 md:px-10 md:py-24" style="background: rgb(16, 17, 19);">
+    <section id="programmes" class="section-space pt-2">
+     <div class="section-inner line-top pt-12">
+      <div class="reveal">
+       <p data-template-id="programs-kicker" class="canva-text eyebrow mb-4" style="color: rgb(98, 165, 255); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.15rem;">Nouveautés Furnality</p>
+       <h2 data-template-id="programs-title" class="canva-text display-face max-w-3xl font-semibold leading-[.95] tracking-[-.045em]" style="color: rgb(244, 248, 255); font-weight: 600; font-style: normal; font-size: 24px;">Des mondes à portée de regard.</h2>
+      </div>
+      <div class="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+       <article data-template-id="program-card-one" class="canva-card program-card reveal" style="background: rgb(12, 24, 51);">
+        <div class="overflow-hidden"><img data-template-id="program-image-one" loading="lazy" class="canva-image" src="https://images.pexels.com/photos/20020265/pexels-photo-20020265.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Forêt dense enveloppée de brume sous un ciel couvert">
+        </div>
+        <div class="p-5">
+         <p data-template-id="program-genre-one" class="canva-text text-[10px] font-bold uppercase tracking-[.14em] text-blue-300" style="color: rgb(143, 194, 255); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.13rem;">Nature</p>
+         <h3 data-template-id="program-title-one" class="canva-text mt-2 text-lg font-bold" style="color: rgb(244, 248, 255); font-weight: 700; font-style: normal; font-size: 19px;">La forêt retient son souffle</h3>
+        </div>
+       </article>
+       <article data-template-id="program-card-two" class="canva-card program-card reveal" style="transition-delay: 80ms; background: rgb(12, 24, 51);">
+        <div class="overflow-hidden"><img data-template-id="program-image-two" loading="lazy" class="canva-image" src="https://images.pexels.com/photos/33442715/pexels-photo-33442715.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Dunes de sable dorées sous un ciel spectaculaire au coucher du soleil">
+        </div>
+        <div class="p-5">
+         <p data-template-id="program-genre-two" class="canva-text text-[10px] font-bold uppercase tracking-[.14em] text-blue-300" style="color: rgb(143, 194, 255); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.13rem;">Évasion</p>
+         <h3 data-template-id="program-title-two" class="canva-text mt-2 text-lg font-bold" style="color: rgb(244, 248, 255); font-weight: 700; font-style: normal; font-size: 19px;">Dunes intérieures</h3>
+        </div>
+       </article>
+       <article data-template-id="program-card-three" class="canva-card program-card reveal" style="transition-delay: 160ms; background: rgb(12, 24, 51);">
+        <div class="overflow-hidden"><img data-template-id="program-image-three" loading="lazy" class="canva-image" src="https://images.pexels.com/photos/16059252/pexels-photo-16059252.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Ville nocturne brumeuse illuminée de lumières néon bleues">
+        </div>
+        <div class="p-5">
+         <p data-template-id="program-genre-three" class="canva-text text-[10px] font-bold uppercase tracking-[.14em] text-blue-300" style="color: rgb(143, 194, 255); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.13rem;">Culture urbaine</p>
+         <h3 data-template-id="program-title-three" class="canva-text mt-2 text-lg font-bold" style="color: rgb(244, 248, 255); font-weight: 700; font-style: normal; font-size: 19px;">Après minuit</h3>
+        </div>
+       </article>
+       <article data-template-id="program-card-four" class="canva-card program-card reveal" style="transition-delay: 240ms; background: rgb(12, 24, 51);">
+        <div class="overflow-hidden"><img data-template-id="program-image-four" loading="lazy" class="canva-image" src="https://images.pexels.com/photos/27564083/pexels-photo-27564083.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Éruption volcanique et lave lumineuse au crépuscule">
+        </div>
+        <div class="p-5">
+         <p data-template-id="program-genre-four" class="canva-text text-[10px] font-bold uppercase tracking-[.14em] text-blue-300" style="color: rgb(143, 194, 255); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.13rem;">Extrême</p>
+         <h3 data-template-id="program-title-four" class="canva-text mt-2 text-lg font-bold" style="color: rgb(244, 248, 255); font-weight: 700; font-style: normal; font-size: 19px;">Terre en feu</h3>
+        </div>
+       </article>
+      </div>
+     </div>
+    </section>
+    <section id="contact" class="section-space pt-4">
      <div class="section-inner">
-      <div class="border-y border-white/20 py-12 text-center md:py-20">
-       <p data-template-id="contact-eyebrow" class="canva-text eyebrow mx-auto mb-7 w-fit" style="color: rgb(215, 255, 63); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.14rem;">Votre prochaine histoire commence ici</p>
-       <h2 data-template-id="contact-title" class="canva-text display-face mx-auto max-w-4xl font-medium leading-[0.95] tracking-[-0.055em]" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 24px;">Un projet en tête ? Donnons-lui une image.</h2>
-       <p data-template-id="contact-description" class="canva-text mx-auto mt-6 max-w-xl leading-relaxed text-stone-300" style="color: rgb(199, 200, 195); font-weight: 400; font-style: normal; font-size: 17px; line-height: 1.55;">Parlez-nous de votre besoin, même encore flou. Nous reviendrons vers vous avec une première perspective.</p>
-       <div class="mt-9 flex flex-wrap justify-center gap-3"><a href="mailto:bonjour@noeud-studio.fr?subject=Demande%20de%20devis" data-template-id="contact-primary-cta" class="canva-button primary-link font-bold" style="background: rgb(215, 255, 63); color: rgb(16, 17, 19); font-weight: 700; font-style: normal; font-size: 16px;">Demander un devis</a> <a href="mailto:bonjour@noeud-studio.fr?subject=Demande%20de%20rendez-vous" data-template-id="contact-secondary-cta" class="canva-button secondary-link font-semibold" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 16px;">Réserver un échange</a>
+      <article data-template-id="feature-panel" class="canva-banner feature-panel flex items-end p-7 md:p-14" style="background: rgb(6, 17, 38);">
+       <img data-template-id="feature-image" loading="lazy" class="canva-image feature-image" src="https://images.pexels.com/photos/10461968/pexels-photo-10461968.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920" alt="Traînées lumineuses bleues et blanches sur un fond sombre abstrait">
+       <div class="relative max-w-3xl reveal">
+        <p data-template-id="feature-kicker" class="canva-text eyebrow mb-5" style="color: rgb(143, 194, 255); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.15rem;">Furnality, en direct</p>
+        <h2 data-template-id="feature-title" class="canva-text display-face font-semibold leading-[.88] tracking-[-.065em]" style="color: rgb(244, 248, 255); font-weight: 600; font-style: normal; font-size: 24px;">Zapping. L’instant, en grand.</h2>
+        <p data-template-id="feature-description" class="canva-text mt-6 max-w-xl leading-relaxed text-blue-100/75" style="color: rgb(220, 233, 255); font-weight: 400; font-style: normal; font-size: 17px; line-height: 1.55;">La programmation Furnality se déplace, se mélange et se réinvente chaque soir. Prenez place dans le flux.</p><a href="mailto:hello@furnality.tv?subject=Projet%20Furnality" data-template-id="feature-cta" class="canva-button primary-button mt-8" style="background: rgb(220, 233, 255); color: rgb(6, 17, 38); font-weight: 700; font-style: normal; font-size: 16px;">Proposer un projet</a>
        </div>
-      </div>
-      <div class="grid gap-7 py-8 text-center md:grid-cols-3 md:text-left">
-       <div>
-        <p data-template-id="contact-email-label" class="canva-text text-xs font-bold uppercase tracking-[0.15em] text-stone-400" style="color: rgb(170, 169, 159); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.1rem;">Écrivez-nous</p><a href="mailto:bonjour@noeud-studio.fr" data-template-id="contact-email" class="canva-link mt-2 inline-block font-semibold" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 16px;">bonjour@noeud-studio.fr</a>
-       </div>
-       <div>
-        <p data-template-id="contact-phone-label" class="canva-text text-xs font-bold uppercase tracking-[0.15em] text-stone-400" style="color: rgb(170, 169, 159); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.1rem;">Appelez-nous</p><a href="tel:+33600000000" data-template-id="contact-phone" class="canva-link mt-2 inline-block font-semibold" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 16px;">+33 (0)6 00 00 00 00</a>
-       </div>
-       <div>
-        <p data-template-id="contact-location-label" class="canva-text text-xs font-bold uppercase tracking-[0.15em] text-stone-400" style="color: rgb(170, 169, 159); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.1rem;">Nous trouver</p>
-        <p data-template-id="contact-location" class="canva-text mt-2 font-semibold" style="color: rgb(242, 239, 232); font-weight: 600; font-style: normal; font-size: 16px;">Nouméa · Paris · à distance</p>
-       </div>
-      </div>
+      </article>
      </div>
     </section>
    </main>
-   <footer class="px-5 pb-7 pt-2 md:px-10">
-    <div class="mx-auto flex max-w-7xl flex-col justify-between gap-4 border-t border-white/20 pt-6 text-xs text-stone-400 md:flex-row">
-     <p data-template-id="footer-brand" class="canva-text font-bold tracking-[0.15em]" style="color: rgb(242, 239, 232); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.1rem;">NŒUD — STUDIO AUDIOVISUEL</p>
-     <p data-template-id="footer-copy" class="canva-text" style="color: rgb(170, 169, 159); font-weight: 400; font-style: normal; font-size: 13px;">© 2026 — Images en mouvement, idées en lumière.</p>
+   <footer class="px-5 pb-8 pt-8 md:px-10">
+    <div class="footer-grid mx-auto max-w-7xl pt-9">
+     <div class="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
+      <div>
+       <p data-template-id="footer-logo" class="canva-text text-xl font-bold tracking-[.16em]" style="color: rgb(244, 248, 255); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.12rem;">FURNALITY</p>
+       <p data-template-id="footer-intro" class="canva-text mt-4 max-w-xs text-sm leading-relaxed text-blue-100/55" style="color: rgb(183, 202, 233); font-weight: 400; font-style: normal; font-size: 14px; line-height: 1.5;">Furnality imagine une télévision sensible, visuelle et ouverte sur des ailleurs.</p>
+      </div>
+      <div>
+       <h2 data-template-id="footer-explore-label" class="canva-text text-[10px] font-bold uppercase tracking-[.16em] text-blue-200/45" style="color: rgb(142, 169, 207); font-weight: 700; font-style: normal; font-size: 24px; letter-spacing: 0.14rem;">Explorer</h2>
+       <nav class="mt-4 flex flex-col gap-2" aria-label="Explorer Furnality">
+        <a href="#chaines" data-template-id="footer-link-channels" class="canva-link footer-link" style="color: rgb(183, 202, 233); font-weight: 400; font-style: normal; font-size: 16px;">Les chaînes</a> <a href="#selection" data-template-id="footer-link-selection" class="canva-link footer-link" style="color: rgb(183, 202, 233); font-weight: 400; font-style: normal; font-size: 16px;">Les sélections</a> <a href="#programmes" data-template-id="footer-link-programs" class="canva-link footer-link" style="color: rgb(183, 202, 233); font-weight: 400; font-style: normal; font-size: 16px;">Les programmes</a>
+       </nav>
+      </div>
+      <div>
+       <h2 data-template-id="footer-follow-label" class="canva-text text-[10px] font-bold uppercase tracking-[.16em] text-blue-200/45" style="color: rgb(142, 169, 207); font-weight: 700; font-style: normal; font-size: 24px; letter-spacing: 0.14rem;">Suivre Furnality</h2>
+       <div class="mt-4 flex flex-col gap-2">
+        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" data-template-id="footer-instagram" class="canva-link footer-link" style="color: rgb(183, 202, 233); font-weight: 400; font-style: normal; font-size: 16px;">Instagram</a> <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" data-template-id="footer-youtube" class="canva-link footer-link" style="color: rgb(183, 202, 233); font-weight: 400; font-style: normal; font-size: 16px;">YouTube</a> <a href="mailto:hello@furnality.tv" data-template-id="footer-email" class="canva-link footer-link" style="color: rgb(183, 202, 233); font-weight: 400; font-style: normal; font-size: 16px;">hello@furnality.tv</a>
+       </div>
+      </div>
+      <div>
+       <h2 data-template-id="footer-studio-label" class="canva-text text-[10px] font-bold uppercase tracking-[.16em] text-blue-200/45" style="color: rgb(142, 169, 207); font-weight: 700; font-style: normal; font-size: 24px; letter-spacing: 0.14rem;">Le studio</h2>
+       <p data-template-id="footer-studio-text" class="canva-text mt-4 text-sm leading-relaxed text-blue-100/55" style="color: rgb(183, 202, 233); font-weight: 400; font-style: normal; font-size: 14px; line-height: 1.5;">Nouméa · Paris · partout où une histoire doit trouver son image.</p>
+      </div>
+     </div>
+     <div class="mt-12 flex flex-col justify-between gap-3 border-t border-blue-100/10 pt-5 text-xs text-blue-100/40 md:flex-row">
+      <p data-template-id="footer-copy" class="canva-text" style="color: rgb(142, 169, 207); font-weight: 400; font-style: normal; font-size: 12px;">© 2026 Furnality. Tous droits réservés.</p>
+      <p data-template-id="footer-signature" class="canva-text" style="color: rgb(142, 169, 207); font-weight: 400; font-style: normal; font-size: 12px;">L’image en grand.</p>
+     </div>
     </div>
    </footer>
   </div>
@@ -352,31 +440,31 @@
     document.addEventListener("DOMContentLoaded", () => {
       lucide.createIcons();
 
-      const menuToggle = document.getElementById("menu-toggle");
+      const menuButton = document.getElementById("menu-button");
       const mobileMenu = document.getElementById("mobile-menu");
 
-      menuToggle.addEventListener("click", () => {
-        const isOpen = mobileMenu.classList.toggle("is-open");
-        menuToggle.setAttribute("aria-expanded", String(isOpen));
-        menuToggle.setAttribute("aria-label", isOpen ? "Fermer le menu" : "Ouvrir le menu");
+      menuButton.addEventListener("click", () => {
+        const open = mobileMenu.classList.toggle("open");
+        menuButton.setAttribute("aria-expanded", String(open));
+        menuButton.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
       });
 
       mobileMenu.querySelectorAll("a").forEach((link) => {
         link.addEventListener("click", () => {
-          mobileMenu.classList.remove("is-open");
-          menuToggle.setAttribute("aria-expanded", "false");
-          menuToggle.setAttribute("aria-label", "Ouvrir le menu");
+          mobileMenu.classList.remove("open");
+          menuButton.setAttribute("aria-expanded", "false");
+          menuButton.setAttribute("aria-label", "Ouvrir le menu");
         });
       });
 
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
+            entry.target.classList.add("visible");
             observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.14 });
+      }, { threshold: 0.13 });
 
       document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
     });
