@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furnality — Réseau Audiovisuel Indépendant</title>
+    <style>
+        body { background-color: #0f0f12; color: #ffffff; font-family: system-ui, -apple-system, sans-serif; margin: 0; padding: 20px; }
+        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 15px; max-width: 1000px; margin: 0 auto; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: #6366f1; letter-spacing: 1px; }
+        .badge { background: #10b981; color: #000; font-size: 0.8rem; font-weight: bold; padding: 4px 8px; border-radius: 4px; }
+        .container { max-width: 1000px; margin: 40px auto; }
+        .player-box { background: #1a1a22; border-radius: 12px; padding: 20px; margin-bottom: 30px; border: 1px solid #2a2a35; }
+        iframe { width: 100%; height: 450px; border: none; border-radius: 8px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .card { background: #181820; border: 1px solid #282835; border-radius: 8px; padding: 20px; }
+        h3 { color: #6366f1; margin-top: 0; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">FURNALITY</div>
+        <div><span class="badge">EN DIRECT</span></div>
+    </header>
+
+    <div class="container">
+        <div class="player-box">
+            <h2>Diffusion en Direct (TV / Radio)</h2>
+            <!-- Remplacer le lien iframe ci-dessous par votre lecteur vidéo/radio -->
+            <iframe src="https://www.youtube.com/embed/live_stream?channel=YOUR_CHANNEL_ID" allowfullscreen></iframe>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>Grille des Programmes</h3>
+                <p>Retrouvez vos émissions en direct vidéo et radio au quotidien.</p>
+            </div>
+            <div class="card">
+                <h3>Espace Presse & Kit Média</h3>
+                <p>Téléchargez nos communiqués et fiches techniques.</p>
+            </div>
+            <div class="card">
+                <h3>Contact & Partenariats</h3>
+                <p>Proposer un projet ou rejoindre le réseau.</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
