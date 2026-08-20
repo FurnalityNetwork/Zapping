@@ -26,13 +26,13 @@
         const SUPABASE_URL = "https://qsqenkvrerrbzibkjoml.supabase.co";
         const SUPABASE_KEY = "sb_publishable_FLqzd6wXyc5e_veOYAVN9g_AXBaGASo";
 
-        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         async function loadShows() {
             const container = document.getElementById('shows-container');
 
             // Interrogation de la table 'shows'
-            const { data: shows, error } = await supabase
+            const { data: shows, error } = await supabaseClient
                 .from('shows')
                 .select('*');
 
