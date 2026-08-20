@@ -52,30 +52,44 @@
 
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        let allShows = []; // Stockage local des données chargées
+        let allShows = [];
 
         async function loadShows() {
             const container = document.getElementById('shows-container');
 
-            // Jointure entre 'shows' et la table 'broadcast' grâce à la clé étrangère
-            const { data: shows, error } = await supabaseClient
-                .from('shows')
-                .select(`
-                    *,
-                    broadcast (
-                        name,
-                        broadcast_type
-                    )
-                `);
+            try {
+                // Chargement en parallèle des tables 'shows' et 'broadcast'
+                const [showsRes, broadcastRes] = await Promise.all([
+                    supabaseClient.from('shows').select('*'),
+                    supabaseClient.from('broadcast').select('*')
+                ]);
 
-            if (error) {
-                console.error("Erreur d'accès à la BDD :", error);
-                container.innerHTML = "<p style='color:red;'>Impossible de charger les données.</p>";
-                return;
+                if (showsRes.error || broadcastRes.error) {
+                    console.error("Erreur BDD :", showsRes.error || broadcastRes.error);
+                    container.innerHTML = "<p style='color:red;'>Impossible de charger les données.</p>";
+                    return;
+                }
+
+                const shows = showsRes.data;
+                const broadcasts = broadcastRes.data;
+
+                // Indexation des chaînes par ID pour une association rapide
+                const broadcastMap = {};
+                broadcasts.forEach(b => {
+                    broadcastMap[b.id] = b;
+                });
+
+                // Association manuelle des informations de diffusion
+                allShows = shows.map(show => ({
+                    ...show,
+                    broadcast: broadcastMap[show.broadcast_id] || null
+                }));
+
+                renderShows(allShows);
+            } catch (err) {
+                console.error("Erreur JS :", err);
+                container.innerHTML = "<p style='color:red;'>Erreur d'exécution du script.</p>";
             }
-
-            allShows = shows; // Sauvegarde des émissions dans la variable globale
-            renderShows(allShows); // Affichage initial
         }
 
         function renderShows(showsToDisplay) {
@@ -91,9 +105,8 @@
                 const card = document.createElement('div');
                 card.className = 'card';
 
-                // Récupération des infos de la chaîne liée
-                const channelName = show.broadcast ? show.broadcast.name : 'Inconnu';
-                const mediaType = show.broadcast ? show.broadcast.broadcast_type : 'tv';
+                const channelName = show.broadcast ? show.broadcast.name : 'Canal ' + show.broadcast_id;
+                const mediaType = show.broadcast ? (show.broadcast.broadcast_type || (show.broadcast_id >= 100 ? 'radio' : 'tv')) : 'tv';
 
                 card.innerHTML = `
                     <div>
@@ -116,14 +129,16 @@
         }
 
         function filterShows(type, btnElement) {
-            // Mettre à jour l'état visuel des boutons
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             btnElement.classList.add('active');
 
             if (type === 'all') {
                 renderShows(allShows);
             } else {
-                const filtered = allShows.filter(show => show.broadcast && show.broadcast.broadcast_type === type);
+                const filtered = allShows.filter(show => {
+                    const mediaType = show.broadcast ? (show.broadcast.broadcast_type || (show.broadcast_id >= 100 ? 'radio' : 'tv')) : (show.broadcast_id >= 100 ? 'radio' : 'tv');
+                    return mediaType === type;
+                });
                 renderShows(filtered);
             }
         }
