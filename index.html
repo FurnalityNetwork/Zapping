@@ -1,473 +1,63 @@
-<!doctype html>
-<html lang="fr"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260819-05-5fffd6c","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFLd8sKbwc,2","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Libre Baskerville":"YACgEUFdPdA,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YADLjI9qxTA,0","Nunito":"YACgEX8C5Gg,0","Oleo Script":"YACgEQQ14jI,0","Phantom Sans":"YAHO2E8Pb88,0","Playfair Display":"YACgEYmuCJE,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YADWjpfPmdk,0","Raleway":"YACgEVg3xZg,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Ubuntu":"YACgERDU--Q,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YADlN8CFZ8Q,0","ui-sans-serif":"YACkoN-xg4g,0"}}');</script><script src="/_sdk/7949ff62d67710d5.telemetry_sdk.js" integrity="sha512-KIvXA82Di44YY/RH9/63A9MuTuavYgDFG8PfErJn7Wli4K0LAOk+coo/aPXk3+ZNL96nHh9VYD4PE+fLes+laQ=="></script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Furnality TV — L'image en grand</title>
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Petrona:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --ink: #02040c;
-      --night: #061126;
-      --panel: rgba(12, 24, 51, 0.68);
-      --line: rgba(185, 211, 255, 0.16);
-      --mist: #dce9ff;
-      --blue: #62a5ff;
-      --electric: #a7d1ff;
-    }
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furnality - Émissions & Antenne</title>
+    <!-- SDK officiel Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #121212; color: #ffffff; margin: 0; padding: 20px; }
+        h1 { color: #ff0055; border-bottom: 2px solid #333; padding-bottom: 10px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
+        .card { background-color: #1e1e1e; border: 1px solid #333; border-radius: 8px; padding: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        .badge { background-color: #ff0055; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; }
+        .id-tag { color: #888; font-size: 0.8rem; font-family: monospace; }
+        p { color: #ccc; font-size: 0.95rem; line-height: 1.4; }
+    </style>
+</head>
+<body>
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      width: 100%;
-      overflow-x: hidden;
-      color: var(--mist);
-      background: var(--ink);
-      font-family: "Petrona", serif;
-    }
+    <h1>📺 Réseau Furnality — Catalogue des Émissions</h1>
+    <div id="shows-container" class="grid">Chargement des données en cours...</div>
 
-    .site-shell { width: 100%; overflow: hidden; }
-    .display-face { font-family: "Caledonian", "Times New Roman", serif !important; }
-    .nav-link, .primary-button, .secondary-button, .eyebrow, button, .canva-button, .canva-link, [class*="uppercase"], h1, h2, h3, h4, h5, h6 { font-family: "Caledonian", "Times New Roman", serif !important; }
-    p, span, article, section, footer, main { font-family: "Petrona", serif; }
+    <script>
+        // Configuration de la connexion Supabase
+        const SUPABASE_URL = "https://qsqenkvrerrbzibkjoml.supabase.co";
+        const SUPABASE_KEY = "sb_publishable_FLqzd6wXyc5e_veOYAVN9g_AXBaGASo";
 
-    .top-nav {
-      background: linear-gradient(180deg, rgba(2, 4, 12, .88), rgba(2, 4, 12, 0));
-      backdrop-filter: blur(9px);
-    }
+        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    .nav-link {
-      color: rgba(220, 233, 255, .62);
-      font-size: .7rem;
-      letter-spacing: .13em;
-      font-weight: 700;
-      text-transform: uppercase;
-      transition: color .2s ease;
-    }
-    .nav-link:hover, .nav-link:focus-visible { color: #fff; }
+        async function loadShows() {
+            const container = document.getElementById('shows-container');
 
-    .hero {
-      min-height: calc(100 * min(var(--vh, 1vh), 1vh));
-      position: relative;
-      display: flex;
-      align-items: flex-end;
-      isolation: isolate;
-    }
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background:
-        radial-gradient(circle at 58% 52%, rgba(77, 134, 232, .28), transparent 28%),
-        linear-gradient(90deg, rgba(2,4,12,.96) 0%, rgba(2,4,12,.64) 42%, rgba(2,4,12,.3) 100%);
-    }
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background: linear-gradient(0deg, #02040c 0%, transparent 36%, rgba(2,4,12,.22) 100%);
-    }
-    .hero-image {
-      position: absolute;
-      z-index: -2;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: saturate(.8) contrast(1.12) brightness(.7);
-    }
+            // Interrogation de la table 'shows'
+            const { data: shows, error } = await supabase
+                .from('shows')
+                .select('*');
 
-    .hero-number {
-      font-size: clamp(8rem, 22vw, 20rem);
-      line-height: .65;
-      letter-spacing: -.1em;
-      color: rgba(148, 191, 255, .14);
-      font-weight: 700;
-      user-select: none;
-    }
+            if (error) {
+                console.error("Erreur d'accès à la BDD :", error);
+                container.innerHTML = "<p style='color:red;'>Impossible de charger les données.</p>";
+                return;
+            }
 
-    .pill {
-      border: 1px solid var(--line);
-      background: rgba(8, 18, 41, .48);
-      backdrop-filter: blur(12px);
-      border-radius: 999px;
-    }
+            container.innerHTML = ""; // Vidage du message de chargement
 
-    .primary-button, .secondary-button {
-      display: inline-flex;
-      align-items: center;
-      gap: .65rem;
-      padding: .9rem 1.15rem;
-      border-radius: 999px;
-      font-size: .78rem;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
-    }
-    .primary-button:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(95, 161, 255, .28); }
-    .secondary-button:hover { transform: translateY(-3px); background: rgba(110, 164, 255, .16); }
+            shows.forEach(show => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <span class="badge">${show.category || 'Général'}</span>
+                    <h3>${show.title}</h3>
+                    <p>${show.description}</p>
+                    <div class="id-tag">ID: ${show.id} | Canal ID: ${show.broadcast_id}</div>
+                `;
+                container.appendChild(card);
+            });
+        }
 
-    .section-space { padding: 6.5rem 1.25rem; }
-    .section-inner { max-width: 1360px; margin: 0 auto; }
-
-    .eyebrow {
-      color: var(--blue);
-      font-size: .66rem;
-      font-weight: 700;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-    }
-
-    .line-top { border-top: 1px solid var(--line); }
-
-    .channel-card {
-      min-height: 5.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--line);
-      border-radius: .65rem;
-      background: rgba(10, 20, 43, .6);
-      color: #fff;
-      transition: transform .25s ease, border-color .25s ease, background .25s ease;
-    }
-    .channel-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(129, 181, 255, .7);
-      background: rgba(29, 62, 119, .48);
-    }
-
-    .show-card {
-      position: relative;
-      min-height: 18rem;
-      overflow: hidden;
-      border-radius: 1rem;
-      border: 1px solid var(--line);
-      background: #0a1630;
-    }
-    .show-card img {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      inset: 0;
-      object-fit: cover;
-      filter: saturate(.82) brightness(.72);
-      transition: transform .55s ease, filter .35s ease;
-    }
-    .show-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(0deg, rgba(1,4,13,.96), transparent 68%);
-    }
-    .show-card:hover img { transform: scale(1.07); filter: saturate(1.05) brightness(.88); }
-    .show-card-content { position: absolute; z-index: 1; inset: auto 1.15rem 1.15rem; }
-
-    .program-card {
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: .8rem;
-      background: rgba(12, 24, 51, .66);
-      transition: transform .25s ease, border-color .25s ease;
-    }
-    .program-card:hover { transform: translateY(-5px); border-color: rgba(129,181,255,.74); }
-    .program-card img {
-      width: 100%;
-      aspect-ratio: 16/9;
-      object-fit: cover;
-      filter: saturate(.78);
-      transition: transform .45s ease;
-    }
-    .program-card:hover img { transform: scale(1.05); }
-
-    .feature-panel {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(153, 197, 255, .28);
-      border-radius: 1.4rem;
-      min-height: 33rem;
-      isolation: isolate;
-    }
-    .feature-panel::after {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      inset: 0;
-      background: linear-gradient(90deg, rgba(3,7,18,.94) 4%, rgba(3,7,18,.45) 65%, rgba(3,7,18,.18));
-    }
-    .feature-image {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      inset: 0;
-      z-index: -2;
-      object-fit: cover;
-      filter: saturate(.86) contrast(1.15) brightness(.67);
-    }
-
-    .footer-grid { border-top: 1px solid var(--line); }
-    .footer-link { color: rgba(220,233,255,.56); font-size: .82rem; transition: color .2s ease; }
-    .footer-link:hover { color: #fff; }
-
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    .mobile-menu { display: none; }
-    .mobile-menu.open { display: flex; }
-
-    @media (max-width: 767px) {
-      .desktop-links { display: none; }
-      .section-space { padding: 4.5rem 1.1rem; }
-      .hero { min-height: calc(92 * min(var(--vh, 1vh), 1vh)); }
-      .mobile-menu {
-        position: absolute;
-        top: calc(100% + .7rem);
-        left: 0;
-        right: 0;
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1.25rem;
-        border: 1px solid var(--line);
-        border-radius: 1rem;
-        background: rgba(4, 10, 25, .97);
-        backdrop-filter: blur(20px);
-      }
-      .hero-number { font-size: 9rem; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
-      .reveal { opacity: 1; transform: none; }
-    }
-  </style>
-  <script src="/_sdk/0e8d3a91e1c6f495.data_sdk.js" type="text/javascript" integrity="sha512-c00oDoGjsMgluCLLEyVl3suwEkgjOGGplVFbsilUoBg4aMKNmsL3mwsc9r0dPn95qiSZyjBousQXgROkAW7p/w=="></script>
-  <script src="/_sdk/eba18683f23e5798.resizing_sdk.js" type="text/javascript" integrity="sha512-E0UWUllhwPXaNJtjyTKXWKrIE+FruPfFpO4mRmMDP2LI+U9bOizy5npCq6xx/JyWcvSK7D3TFf2wFR2Mha9kbA=="></script>
- </head>
- <body data-template-id="__page-root" style="background: rgb(2, 4, 12);">
-  <div class="site-shell">
-   <header class="top-nav fixed top-0 z-40 w-full px-5 py-5 md:px-10">
-    <nav class="relative mx-auto flex max-w-7xl items-center justify-between" aria-label="Navigation principale">
-     <a href="#accueil" data-template-id="brand-logo" class="canva-link text-lg font-bold tracking-[0.16em]" style="color: rgb(244, 248, 255); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.12rem;">FURNALITY</a>
-     <div class="desktop-links flex items-center gap-7">
-      <a href="#chaines" data-template-id="nav-channels" class="canva-link nav-link" style="color: rgb(220, 233, 255); font-weight: 700; font-style: normal; font-size: 16px;">Chaînes</a> <a href="#selection" data-template-id="nav-selection" class="canva-link nav-link" style="color: rgb(220, 233, 255); font-weight: 700; font-style: normal; font-size: 16px;">Sélections</a> <a href="#programmes" data-template-id="nav-programs" class="canva-link nav-link" style="color: rgb(220, 233, 255); font-weight: 700; font-style: normal; font-size: 16px;">Programmes</a>
-     </div>
-     <div class="flex items-center gap-3">
-      <a href="#contact" data-template-id="nav-cta" class="canva-button primary-button hidden md:inline-flex" style="background: rgb(220, 233, 255); color: rgb(6, 17, 38); font-weight: 700; font-style: normal; font-size: 16px;">Nous contacter</a> <button id="menu-button" type="button" class="pill inline-flex h-10 w-10 items-center justify-center md:hidden" aria-label="Ouvrir le menu" aria-expanded="false"> <i data-lucide="menu" width="18" height="18"></i> </button>
-     </div>
-     <div id="mobile-menu" class="mobile-menu" aria-label="Menu mobile">
-      <a href="#chaines" data-template-id="mobile-nav-channels" class="canva-link nav-link" style="color: rgb(220, 233, 255); font-weight: 700; font-style: normal; font-size: 16px;">Chaînes</a> <a href="#selection" data-template-id="mobile-nav-selection" class="canva-link nav-link" style="color: rgb(220, 233, 255); font-weight: 700; font-style: normal; font-size: 16px;">Sélections</a> <a href="#programmes" data-template-id="mobile-nav-programs" class="canva-link nav-link" style="color: rgb(220, 233, 255); font-weight: 700; font-style: normal; font-size: 16px;">Programmes</a> <a href="#contact" data-template-id="mobile-nav-contact" class="canva-link nav-link" style="color: rgb(220, 233, 255); font-weight: 700; font-style: normal; font-size: 16px;">Nous contacter</a>
-     </div>
-    </nav>
-   </header>
-   <main>
-    <section id="accueil" class="hero px-5 pb-12 pt-32 md:px-10 md:pb-14">
-     <img data-template-id="hero-image" loading="lazy" class="canva-image hero-image" src="https://images.pexels.com/photos/30018091/pexels-photo-30018091.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920" alt="Vagues abstraites bleu nuit créées en rendu 3D">
-     <div class="absolute right-[8%] top-[31%] z-0"><span class="hero-number">27</span>
-     </div>
-     <div class="relative mx-auto w-full max-w-7xl">
-      <div class="max-w-4xl reveal">
-       <p data-template-id="hero-kicker" class="canva-text eyebrow mb-5" style="color: rgb(143, 194, 255); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.15rem;">Furnality TV · Saison 27</p>
-       <h1 data-template-id="hero-title" class="canva-text display-face max-w-4xl font-semibold leading-[.9] tracking-[-.06em]" style="color: rgb(244, 248, 255); font-family: Caledonian; font-weight: 600; font-style: normal; font-size: 32px;">L’image prend toute la place.</h1>
-       <p data-template-id="hero-description" class="canva-text mt-7 max-w-xl text-base leading-relaxed text-blue-100/80 md:text-lg" style="color: rgb(220, 233, 255); font-weight: 400; font-style: normal; font-size: 18px; line-height: 1.55;">Furnality compose une télévision de paysages, de récits et de formats qui ouvrent le regard.</p>
-       <div class="mt-8 flex flex-wrap gap-3">
-        <a href="#selection" data-template-id="hero-primary-cta" class="canva-button primary-button" style="background: rgb(220, 233, 255); color: rgb(6, 17, 38); font-weight: 700; font-style: normal; font-size: 16px;">Explorer Furnality</a> <a href="#programmes" data-template-id="hero-secondary-cta" class="canva-button secondary-button pill" style="background: rgba(8, 18, 41, 0.48); color: rgb(244, 248, 255); font-weight: 700; font-style: normal; font-size: 16px;">Voir la sélection</a>
-       </div>
-      </div>
-      <div class="mt-16 flex flex-wrap items-end justify-between gap-6 border-t border-blue-100/20 pt-5">
-       <div class="flex flex-wrap gap-8">
-        <div>
-         <p data-template-id="hero-meta-label" class="canva-text text-[10px] font-bold uppercase tracking-[.16em] text-blue-200/50" style="color: rgb(155, 188, 233); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.12rem;">En ce moment</p>
-         <p data-template-id="hero-meta-value" class="canva-text mt-1 text-sm font-semibold" style="color: rgb(244, 248, 255); font-weight: 600; font-style: normal; font-size: 16px;">Zapping · Horizons denses</p>
-        </div>
-        <div>
-         <p data-template-id="hero-time-label" class="canva-text text-[10px] font-bold uppercase tracking-[.16em] text-blue-200/50" style="color: rgb(155, 188, 233); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.12rem;">Prochaine diffusion</p>
-         <p data-template-id="hero-time-value" class="canva-text mt-1 text-sm font-semibold" style="color: rgb(244, 248, 255); font-weight: 600; font-style: normal; font-size: 16px;">Ce soir · 20:30</p>
-        </div>
-       </div><a href="#chaines" class="pill inline-flex h-11 w-11 items-center justify-center transition hover:bg-blue-300 hover:text-slate-950" aria-label="Découvrir les chaînes"> <i data-lucide="arrow-down" width="18" height="18"></i> </a>
-      </div>
-     </div>
-    </section>
-    <section id="chaines" class="section-space">
-     <div class="section-inner">
-      <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-       <div class="reveal">
-        <p data-template-id="channels-kicker" class="canva-text eyebrow mb-4" style="color: rgb(98, 165, 255); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.15rem;">Choisir un signal</p>
-        <h2 data-template-id="channels-title" class="canva-text display-face max-w-2xl font-semibold leading-[.95] tracking-[-.045em]" style="color: rgb(244, 248, 255); font-weight: 600; font-style: normal; font-size: 24px;">Une constellation de chaînes, un seul écran vivant.</h2>
-       </div>
-       <p data-template-id="channels-description" class="canva-text max-w-sm leading-relaxed text-blue-100/60" style="color: rgb(183, 202, 233); font-weight: 400; font-style: normal; font-size: 16px; line-height: 1.55;">Documentaire, musique, récits, voyage et culture visuelle : entrez par l’univers qui vous appelle.</p>
-      </div>
-      <div class="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-       <article data-template-id="channel-one" class="canva-card channel-card" style="background: rgb(8, 26, 61);"><span data-template-id="channel-one-name" class="canva-text text-lg font-bold tracking-tight" style="color: rgb(94, 163, 255); font-weight: 700; font-style: normal; font-size: 16px;">NOVA</span>
-       </article>
-       <article data-template-id="channel-two" class="canva-card channel-card" style="background: rgb(22, 11, 31);"><span data-template-id="channel-two-name" class="canva-text text-lg font-bold tracking-tight" style="color: rgb(255, 61, 105); font-weight: 700; font-style: normal; font-size: 16px;">M/V/C</span>
-       </article>
-       <article data-template-id="channel-three" class="canva-card channel-card" style="background: rgb(7, 29, 29);"><span data-template-id="channel-three-name" class="canva-text text-lg font-bold tracking-tight" style="color: rgb(93, 228, 190); font-weight: 700; font-style: normal; font-size: 16px;">ORBIT</span>
-       </article>
-       <article data-template-id="channel-four" class="canva-card channel-card" style="background: rgb(23, 10, 53);"><span data-template-id="channel-four-name" class="canva-text text-lg font-bold tracking-tight" style="color: rgb(167, 107, 255); font-weight: 700; font-style: normal; font-size: 16px;">PULSE</span>
-       </article>
-       <article data-template-id="channel-five" class="canva-card channel-card" style="background: rgb(36, 28, 5);"><span data-template-id="channel-five-name" class="canva-text text-lg font-bold tracking-tight" style="color: rgb(255, 214, 91); font-weight: 700; font-style: normal; font-size: 16px;">ALT.</span>
-       </article>
-       <article data-template-id="channel-six" class="canva-card channel-card" style="background: rgb(32, 20, 14);"><span data-template-id="channel-six-name" class="canva-text text-lg font-bold tracking-tight" style="color: rgb(255, 156, 70); font-weight: 700; font-style: normal; font-size: 16px;">ONE</span>
-       </article>
-      </div>
-     </div>
-    </section>
-    <section id="selection" class="section-space pt-4">
-     <div class="section-inner line-top pt-12">
-      <div class="flex flex-col justify-between gap-5 md:flex-row md:items-end">
-       <div class="reveal">
-        <p data-template-id="selection-kicker" class="canva-text eyebrow mb-4" style="color: rgb(98, 165, 255); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.15rem;">Les grands formats</p>
-        <h2 data-template-id="selection-title" class="canva-text display-face max-w-3xl font-semibold leading-[.95] tracking-[-.045em]" style="color: rgb(244, 248, 255); font-weight: 600; font-style: normal; font-size: 24px;">À voir sans attendre.</h2>
-       </div><a href="#programmes" data-template-id="selection-link" class="canva-link text-sm font-bold uppercase tracking-[.12em] text-blue-300 transition hover:text-white" style="color: rgb(143, 194, 255); font-weight: 700; font-style: normal; font-size: 16px;">Tout parcourir →</a>
-      </div>
-      <div class="mt-10 grid gap-4 md:grid-cols-12">
-       <article data-template-id="selection-card-one" class="canva-card show-card reveal md:col-span-6 md:min-h-[30rem]" style="background: rgb(10, 22, 48);">
-        <img data-template-id="selection-image-one" loading="lazy" class="canva-image" src="https://images.pexels.com/photos/18831982/pexels-photo-18831982.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1280" alt="Scène de montagne nocturne avec nuages et étoiles">
-        <div class="show-card-content">
-         <p data-template-id="selection-type-one" class="canva-text text-[10px] font-bold uppercase tracking-[.17em] text-blue-300" style="color: rgb(143, 194, 255); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.13rem;">Documentaire original</p>
-         <h3 data-template-id="selection-title-one" class="canva-text mt-2 text-2xl font-bold tracking-tight" style="color: rgb(244, 248, 255); font-weight: 700; font-style: normal; font-size: 19px;">Lignes de crête</h3>
-        </div>
-       </article>
-       <article data-template-id="selection-card-two" class="canva-card show-card reveal md:col-span-3 md:min-h-[30rem]" style="transition-delay: 100ms; background: rgb(10, 22, 48);">
-        <img data-template-id="selection-image-two" loading="lazy" class="canva-image" src="https://images.pexels.com/photos/32635228/pexels-photo-32635228.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Vagues sombres et calmes photographiées au crépuscule">
-        <div class="show-card-content">
-         <p data-template-id="selection-type-two" class="canva-text text-[10px] font-bold uppercase tracking-[.17em] text-blue-300" style="color: rgb(143, 194, 255); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.13rem;">Immersion</p>
-         <h3 data-template-id="selection-title-two" class="canva-text mt-2 text-xl font-bold tracking-tight" style="color: rgb(244, 248, 255); font-weight: 700; font-style: normal; font-size: 19px;">Bleu profond</h3>
-        </div>
-       </article>
-       <article data-template-id="selection-card-three" class="canva-card show-card reveal md:col-span-3 md:min-h-[30rem]" style="transition-delay: 180ms; background: rgb(10, 22, 48);">
-        <img data-template-id="selection-image-three" loading="lazy" class="canva-image" src="https://images.pexels.com/photos/28237726/pexels-photo-28237726.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Aurore boréale illuminant le ciel nocturne en Norvège">
-        <div class="show-card-content">
-         <p data-template-id="selection-type-three" class="canva-text text-[10px] font-bold uppercase tracking-[.17em] text-blue-300" style="color: rgb(143, 194, 255); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.13rem;">Sessions live</p>
-         <h3 data-template-id="selection-title-three" class="canva-text mt-2 text-xl font-bold tracking-tight" style="color: rgb(244, 248, 255); font-weight: 700; font-style: normal; font-size: 19px;">Nuits polaires</h3>
-        </div>
-       </article>
-      </div>
-     </div>
-    </section>
-    <section id="programmes" class="section-space pt-2">
-     <div class="section-inner line-top pt-12">
-      <div class="reveal">
-       <p data-template-id="programs-kicker" class="canva-text eyebrow mb-4" style="color: rgb(98, 165, 255); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.15rem;">Nouveautés Furnality</p>
-       <h2 data-template-id="programs-title" class="canva-text display-face max-w-3xl font-semibold leading-[.95] tracking-[-.045em]" style="color: rgb(244, 248, 255); font-weight: 600; font-style: normal; font-size: 24px;">Des mondes à portée de regard.</h2>
-      </div>
-      <div class="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-       <article data-template-id="program-card-one" class="canva-card program-card reveal" style="background: rgb(12, 24, 51);">
-        <div class="overflow-hidden"><img data-template-id="program-image-one" loading="lazy" class="canva-image" src="https://images.pexels.com/photos/20020265/pexels-photo-20020265.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Forêt dense enveloppée de brume sous un ciel couvert">
-        </div>
-        <div class="p-5">
-         <p data-template-id="program-genre-one" class="canva-text text-[10px] font-bold uppercase tracking-[.14em] text-blue-300" style="color: rgb(143, 194, 255); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.13rem;">Nature</p>
-         <h3 data-template-id="program-title-one" class="canva-text mt-2 text-lg font-bold" style="color: rgb(244, 248, 255); font-weight: 700; font-style: normal; font-size: 19px;">La forêt retient son souffle</h3>
-        </div>
-       </article>
-       <article data-template-id="program-card-two" class="canva-card program-card reveal" style="transition-delay: 80ms; background: rgb(12, 24, 51);">
-        <div class="overflow-hidden"><img data-template-id="program-image-two" loading="lazy" class="canva-image" src="https://images.pexels.com/photos/33442715/pexels-photo-33442715.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Dunes de sable dorées sous un ciel spectaculaire au coucher du soleil">
-        </div>
-        <div class="p-5">
-         <p data-template-id="program-genre-two" class="canva-text text-[10px] font-bold uppercase tracking-[.14em] text-blue-300" style="color: rgb(143, 194, 255); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.13rem;">Évasion</p>
-         <h3 data-template-id="program-title-two" class="canva-text mt-2 text-lg font-bold" style="color: rgb(244, 248, 255); font-weight: 700; font-style: normal; font-size: 19px;">Dunes intérieures</h3>
-        </div>
-       </article>
-       <article data-template-id="program-card-three" class="canva-card program-card reveal" style="transition-delay: 160ms; background: rgb(12, 24, 51);">
-        <div class="overflow-hidden"><img data-template-id="program-image-three" loading="lazy" class="canva-image" src="https://images.pexels.com/photos/16059252/pexels-photo-16059252.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Ville nocturne brumeuse illuminée de lumières néon bleues">
-        </div>
-        <div class="p-5">
-         <p data-template-id="program-genre-three" class="canva-text text-[10px] font-bold uppercase tracking-[.14em] text-blue-300" style="color: rgb(143, 194, 255); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.13rem;">Culture urbaine</p>
-         <h3 data-template-id="program-title-three" class="canva-text mt-2 text-lg font-bold" style="color: rgb(244, 248, 255); font-weight: 700; font-style: normal; font-size: 19px;">Après minuit</h3>
-        </div>
-       </article>
-       <article data-template-id="program-card-four" class="canva-card program-card reveal" style="transition-delay: 240ms; background: rgb(12, 24, 51);">
-        <div class="overflow-hidden"><img data-template-id="program-image-four" loading="lazy" class="canva-image" src="https://images.pexels.com/photos/27564083/pexels-photo-27564083.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="Éruption volcanique et lave lumineuse au crépuscule">
-        </div>
-        <div class="p-5">
-         <p data-template-id="program-genre-four" class="canva-text text-[10px] font-bold uppercase tracking-[.14em] text-blue-300" style="color: rgb(143, 194, 255); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.13rem;">Extrême</p>
-         <h3 data-template-id="program-title-four" class="canva-text mt-2 text-lg font-bold" style="color: rgb(244, 248, 255); font-weight: 700; font-style: normal; font-size: 19px;">Terre en feu</h3>
-        </div>
-       </article>
-      </div>
-     </div>
-    </section>
-    <section id="contact" class="section-space pt-4">
-     <div class="section-inner">
-      <article data-template-id="feature-panel" class="canva-banner feature-panel flex items-end p-7 md:p-14" style="background: rgb(6, 17, 38);">
-       <img data-template-id="feature-image" loading="lazy" class="canva-image feature-image" src="https://images.pexels.com/photos/10461968/pexels-photo-10461968.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920" alt="Traînées lumineuses bleues et blanches sur un fond sombre abstrait">
-       <div class="relative max-w-3xl reveal">
-        <p data-template-id="feature-kicker" class="canva-text eyebrow mb-5" style="color: rgb(143, 194, 255); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.15rem;">Furnality, en direct</p>
-        <h2 data-template-id="feature-title" class="canva-text display-face font-semibold leading-[.88] tracking-[-.065em]" style="color: rgb(244, 248, 255); font-weight: 600; font-style: normal; font-size: 24px;">Zapping. L’instant, en grand.</h2>
-        <p data-template-id="feature-description" class="canva-text mt-6 max-w-xl leading-relaxed text-blue-100/75" style="color: rgb(220, 233, 255); font-weight: 400; font-style: normal; font-size: 17px; line-height: 1.55;">La programmation Furnality se déplace, se mélange et se réinvente chaque soir. Prenez place dans le flux.</p><a href="mailto:hello@furnality.tv?subject=Projet%20Furnality" data-template-id="feature-cta" class="canva-button primary-button mt-8" style="background: rgb(220, 233, 255); color: rgb(6, 17, 38); font-weight: 700; font-style: normal; font-size: 16px;">Proposer un projet</a>
-       </div>
-      </article>
-     </div>
-    </section>
-   </main>
-   <footer class="px-5 pb-8 pt-8 md:px-10">
-    <div class="footer-grid mx-auto max-w-7xl pt-9">
-     <div class="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
-      <div>
-       <p data-template-id="footer-logo" class="canva-text text-xl font-bold tracking-[.16em]" style="color: rgb(244, 248, 255); font-weight: 700; font-style: normal; font-size: 16px; letter-spacing: 0.12rem;">FURNALITY</p>
-       <p data-template-id="footer-intro" class="canva-text mt-4 max-w-xs text-sm leading-relaxed text-blue-100/55" style="color: rgb(183, 202, 233); font-weight: 400; font-style: normal; font-size: 14px; line-height: 1.5;">Furnality imagine une télévision sensible, visuelle et ouverte sur des ailleurs.</p>
-      </div>
-      <div>
-       <h2 data-template-id="footer-explore-label" class="canva-text text-[10px] font-bold uppercase tracking-[.16em] text-blue-200/45" style="color: rgb(142, 169, 207); font-weight: 700; font-style: normal; font-size: 24px; letter-spacing: 0.14rem;">Explorer</h2>
-       <nav class="mt-4 flex flex-col gap-2" aria-label="Explorer Furnality">
-        <a href="#chaines" data-template-id="footer-link-channels" class="canva-link footer-link" style="color: rgb(183, 202, 233); font-weight: 400; font-style: normal; font-size: 16px;">Les chaînes</a> <a href="#selection" data-template-id="footer-link-selection" class="canva-link footer-link" style="color: rgb(183, 202, 233); font-weight: 400; font-style: normal; font-size: 16px;">Les sélections</a> <a href="#programmes" data-template-id="footer-link-programs" class="canva-link footer-link" style="color: rgb(183, 202, 233); font-weight: 400; font-style: normal; font-size: 16px;">Les programmes</a>
-       </nav>
-      </div>
-      <div>
-       <h2 data-template-id="footer-follow-label" class="canva-text text-[10px] font-bold uppercase tracking-[.16em] text-blue-200/45" style="color: rgb(142, 169, 207); font-weight: 700; font-style: normal; font-size: 24px; letter-spacing: 0.14rem;">Suivre Furnality</h2>
-       <div class="mt-4 flex flex-col gap-2">
-        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" data-template-id="footer-instagram" class="canva-link footer-link" style="color: rgb(183, 202, 233); font-weight: 400; font-style: normal; font-size: 16px;">Instagram</a> <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" data-template-id="footer-youtube" class="canva-link footer-link" style="color: rgb(183, 202, 233); font-weight: 400; font-style: normal; font-size: 16px;">YouTube</a> <a href="mailto:hello@furnality.tv" data-template-id="footer-email" class="canva-link footer-link" style="color: rgb(183, 202, 233); font-weight: 400; font-style: normal; font-size: 16px;">hello@furnality.tv</a>
-       </div>
-      </div>
-      <div>
-       <h2 data-template-id="footer-studio-label" class="canva-text text-[10px] font-bold uppercase tracking-[.16em] text-blue-200/45" style="color: rgb(142, 169, 207); font-weight: 700; font-style: normal; font-size: 24px; letter-spacing: 0.14rem;">Le studio</h2>
-       <p data-template-id="footer-studio-text" class="canva-text mt-4 text-sm leading-relaxed text-blue-100/55" style="color: rgb(183, 202, 233); font-weight: 400; font-style: normal; font-size: 14px; line-height: 1.5;">Nouméa · Paris · partout où une histoire doit trouver son image.</p>
-      </div>
-     </div>
-     <div class="mt-12 flex flex-col justify-between gap-3 border-t border-blue-100/10 pt-5 text-xs text-blue-100/40 md:flex-row">
-      <p data-template-id="footer-copy" class="canva-text" style="color: rgb(142, 169, 207); font-weight: 400; font-style: normal; font-size: 12px;">© 2026 Furnality. Tous droits réservés.</p>
-      <p data-template-id="footer-signature" class="canva-text" style="color: rgb(142, 169, 207); font-weight: 400; font-style: normal; font-size: 12px;">L’image en grand.</p>
-     </div>
-    </div>
-   </footer>
-  </div>
-  <script src="/_sdk/d97541380e824b1a.editing_sdk.js" integrity="sha512-iBVkuiyctyjmaqUwrsoYSc/nxwymdEKZMKPeBCNj6uN/7hFPTiMVeunYJjJVnUh1GNECKEyCerl7IHtlqhzSYQ=="></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      lucide.createIcons();
-
-      const menuButton = document.getElementById("menu-button");
-      const mobileMenu = document.getElementById("mobile-menu");
-
-      menuButton.addEventListener("click", () => {
-        const open = mobileMenu.classList.toggle("open");
-        menuButton.setAttribute("aria-expanded", String(open));
-        menuButton.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
-      });
-
-      mobileMenu.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => {
-          mobileMenu.classList.remove("open");
-          menuButton.setAttribute("aria-expanded", "false");
-          menuButton.setAttribute("aria-label", "Ouvrir le menu");
-        });
-      });
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.13 });
-
-      document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
-    });
-  </script>
- 
-</body></html>
+        loadShows();
+    </script>
+</body>
+</html>
