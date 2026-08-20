@@ -47,103 +47,104 @@
     <div id="shows-container" class="grid">Chargement des données en cours...</div>
 
     <script>
-        const SUPABASE_URL = "https://qsqenkvrerrbzibkjoml.supabase.co";
-        const SUPABASE_KEY = "sb_publishable_FLqzd6wXyc5e_veOYAVN9g_AXBaGASo";
+const SUPABASE_URL = "https://qsqenkvrerrbzibkjoml.supabase.co";
+const SUPABASE_KEY = "sb_publishable_FLqzd6wXyc5e_veOYAVN9g_AXBaGASo";
 
-        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        let allShows = [];
+let allShows = [];
 
-        async function loadShows() {
-            const container = document.getElementById('shows-container');
+async function loadShows() {
+    const container = document.getElementById('shows-container');
 
-            try {
-                // Chargement en parallèle des tables 'shows' et 'broadcast'
-                const [showsRes, broadcastRes] = await Promise.all([
-                    supabaseClient.from('shows').select('*'),
-                    supabaseClient.from('broadcast').select('*')
-                ]);
+    try {
+        const [showsRes, broadcastRes] = await Promise.all([
+            supabaseClient.from('shows').select('*'),
+            supabaseClient.from('broadcast').select('*')
+        ]);
 
-                if (showsRes.error || broadcastRes.error) {
-                    console.error("Erreur BDD :", showsRes.error || broadcastRes.error);
-                    container.innerHTML = "<p style='color:red;'>Impossible de charger les données.</p>";
-                    return;
-                }
-
-                const shows = showsRes.data;
-                const broadcasts = broadcastRes.data;
-
-                // Indexation des chaînes par ID pour une association rapide
-                const broadcastMap = {};
-                broadcasts.forEach(b => {
-                    broadcastMap[b.id] = b;
-                });
-
-                // Association manuelle des informations de diffusion
-                allShows = shows.map(show => ({
-                    ...show,
-                    broadcast: broadcastMap[show.broadcast_id] || null
-                }));
-
-                renderShows(allShows);
-            } catch (err) {
-                console.error("Erreur JS :", err);
-                container.innerHTML = "<p style='color:red;'>Erreur d'exécution du script.</p>";
-            }
+        if (showsRes.error || broadcastRes.error) {
+            container.innerHTML = "<p style='color:red;'>Impossible de charger les données.</p>";
+            return;
         }
 
-        function renderShows(showsToDisplay) {
-            const container = document.getElementById('shows-container');
-            container.innerHTML = "";
+        const shows = showsRes.data;
+        const broadcasts = broadcastRes.data;
 
-            if (showsToDisplay.length === 0) {
-                container.innerHTML = "<p style='color:#888;'>Aucune émission trouvée pour cette catégorie.</p>";
-                return;
-            }
+        const broadcastMap = {};
+        broadcasts.forEach(b => {
+            broadcastMap[b.id] = b;
+        });
 
-            showsToDisplay.forEach(show => {
-                const card = document.createElement('div');
-                card.className = 'card';
+        allShows = shows.map(show => ({
+            ...show,
+            broadcast: broadcastMap[show.broadcast_id] || null
+        }));
 
-                const channelName = show.broadcast ? show.broadcast.name : 'Canal ' + show.broadcast_id;
-                const mediaType = show.broadcast ? (show.broadcast.broadcast_type || (show.broadcast_id >= 100 ? 'radio' : 'tv')) : 'tv';
+        renderShows(allShows);
+    } catch (err) {
+        container.innerHTML = "<p style='color:red;'>Erreur d'exécution du script.</p>";
+    }
+}
 
-                card.innerHTML = `
-                    <div>
-                        <div class="card-header">
-                            <span class="badge">${show.category || 'Général'}</span>
-                            <span class="channel-tag">${channelName}</span>
-                        </div>
-                        <div class="card-body">
-                            <h3>${show.title}</h3>
-                            <p>${show.description}</p>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <span class="id-tag">ID: ${show.id}</span>
-                        <span class="media-type ${mediaType === 'radio' ? 'media-radio' : 'media-tv'}">${mediaType === 'radio' ? '📻 Radio' : '📺 TV'}</span>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        }
+function renderShows(showsToDisplay) {
+    const container = document.getElementById('shows-container');
+    container.innerHTML = "";
 
-        function filterShows(type, btnElement) {
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            btnElement.classList.add('active');
+    if (showsToDisplay.length === 0) {
+        container.innerHTML = "<p style='color:#888;'>Aucune émission trouvée pour cette catégorie.</p>";
+        return;
+    }
 
-            if (type === 'all') {
-                renderShows(allShows);
-            } else {
-                const filtered = allShows.filter(show => {
-                    const mediaType = show.broadcast ? (show.broadcast.broadcast_type || (show.broadcast_id >= 100 ? 'radio' : 'tv')) : (show.broadcast_id >= 100 ? 'radio' : 'tv');
-                    return mediaType === type;
-                });
-                renderShows(filtered);
-            }
-        }
+    showsToDisplay.forEach(show => {
+        const card = document.createElement('div');
+        card.className = 'card';
 
-        loadShows();
+        const channelName = show.broadcast ? show.broadcast.name : 'Canal ' + show.broadcast_id;
+        const logoUrl = show.broadcast ? show.broadcast.logo_url : null;
+        const mediaType = show.broadcast ? (show.broadcast.broadcast_type || (show.broadcast_id >= 100 ? 'radio' : 'tv')) : 'tv';
+
+        // Élément HTML pour le logo ou le texte
+        const logoHtml = logoUrl 
+            ? `<img src="${logoUrl}" alt="${channelName}" style="height: 20px; object-fit: contain; vertical-align: middle;" onerror="this.outerHTML='<span class=\\'channel-tag\\'>${channelName}</span>'">` 
+            : `<span class="channel-tag">${channelName}</span>`;
+
+        card.innerHTML = `
+            <div>
+                <div class="card-header">
+                    <span class="badge">${show.category || 'Général'}</span>
+                    <div class="channel-logo-container">${logoHtml}</div>
+                </div>
+                <div class="card-body">
+                    <h3>${show.title}</h3>
+                    <p>${show.description}</p>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="id-tag">ID: ${show.id}</span>
+                <span class="media-type ${mediaType === 'radio' ? 'media-radio' : 'media-tv'}">${mediaType === 'radio' ? '📻 Radio' : '📺 TV'}</span>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+function filterShows(type, btnElement) {
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    btnElement.classList.add('active');
+
+    if (type === 'all') {
+        renderShows(allShows);
+    } else {
+        const filtered = allShows.filter(show => {
+            const mediaType = show.broadcast ? (show.broadcast.broadcast_type || (show.broadcast_id >= 100 ? 'radio' : 'tv')) : (show.broadcast_id >= 100 ? 'radio' : 'tv');
+            return mediaType === type;
+        });
+        renderShows(filtered);
+    }
+}
+
+loadShows();
     </script>
 </body>
 </html>
