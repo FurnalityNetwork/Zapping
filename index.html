@@ -11,6 +11,7 @@
 </head>
 <body>
 
+  <!-- Navigation principale -->
   <header class="top-nav fixed top-0 z-40 w-full px-6 py-4 md:px-12">
     <nav class="relative mx-auto flex max-w-7xl items-center justify-between" aria-label="Navigation principale">
       <div class="logo-box">
@@ -42,9 +43,46 @@
   </header>
 
   <main class="pt-20">
-    <!-- Hero Section reste inchangée... -->
-    
-   <!-- Chaînes Section -->
+    <!-- Section : Accueil / Hero -->
+    <section id="accueil" class="hero px-6 py-20 md:px-12">
+      <div class="absolute right-[5%] top-[15%] z-0 pointer-events-none">
+        <span class="hero-number">F</span>
+      </div>
+
+      <div class="relative mx-auto w-full max-w-7xl z-10">
+        <div class="max-w-3xl">
+          <p class="eyebrow mb-4">Réseau Média de Diffusion Multi-Canal</p>
+          <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-black leading-tight">
+            Chaque canal a sa propre fréquence.
+          </h1>
+          <p class="mt-6 text-lg text-gray-600 max-w-xl">
+            Du gaming à la musique, des tokusatsu aux récits de pop-culture : le réseau Furnality réunit des univers uniques au sein d'une même grille audiovisuelle.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="#chaines" class="primary-button">Découvrir les chaînes</a>
+            <a href="#programmes" class="secondary-button">Grille des antennes</a>
+          </div>
+        </div>
+
+        <div class="mt-20 flex flex-wrap items-end justify-between gap-6 border-t border-gray-200 pt-6">
+          <div class="flex flex-wrap gap-12">
+            <div>
+              <p class="eyebrow text-xs">Canal Généraliste</p>
+              <p class="mt-1 text-sm font-bold text-black" style="color: var(--cos-primary);">CenterofStream</p>
+            </div>
+            <div>
+              <p class="eyebrow text-xs">Flux Musique</p>
+              <p class="mt-1 text-sm font-bold text-black" style="color: var(--d9-mvc-primary);">Music Video Channel (M/V/C)</p>
+            </div>
+          </div>
+          <a href="#chaines" class="inline-flex h-10 w-10 items-center justify-center border border-gray-200 hover:border-black transition-colors" aria-label="Découvrir les chaînes">
+            <i data-lucide="arrow-down" width="18" height="18"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section : Chaînes & Antennes -->
     <section id="chaines" class="section-space">
       <div class="section-inner">
         <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
@@ -52,10 +90,14 @@
             <p class="eyebrow mb-3">Le Réseau Média</p>
             <h2 class="text-3xl font-bold text-black max-w-2xl">Nos signaux & antennes thématiques.</h2>
           </div>
+          <p class="max-w-sm text-sm text-gray-600 leading-relaxed">
+            Chaque chaîne possède son identité visuelle et son identité éditoriale dédiée.
+          </p>
         </div>
 
-        <h3 class="mt-8 text-lg font-bold border-b border-gray-200 pb-2">Télévision</h3>
-        <div class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+        <!-- Télévision -->
+        <h3 class="mt-12 text-lg font-bold border-b border-gray-200 pb-2">Télévision</h3>
+        <div class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
           
           <article class="channel-card ch-cos">
             <img src="Assets/images/default-logo.png" alt="CenterofStream" class="h-10 mb-2 object-contain" />
@@ -63,10 +105,16 @@
             <span class="text-sm font-bold mt-1 text-center leading-tight">CenterofStream</span>
           </article>
 
-          <article class="channel-card ch-mvc">
-            <img src="Assets/images/default-logo.png" alt="MVC" class="h-10 mb-2 object-contain" />
+          <article class="channel-card ch-d9">
+            <img src="Assets/images/default-logo.png" alt="Direct 9" class="h-10 mb-2 object-contain" />
             <span class="text-xs text-gray-400">Canal 2</span>
-            <span class="text-sm font-bold mt-1 text-center leading-tight">MVC</span>
+            <span class="text-sm font-bold mt-1 text-center leading-tight">Direct 9</span>
+          </article>
+
+          <article class="channel-card ch-mvc">
+            <img src="Assets/images/default-logo.png" alt="Music Video Channel" class="h-10 mb-2 object-contain" />
+            <span class="text-xs text-gray-400">Canal 2 (Second)</span>
+            <span class="text-sm font-bold mt-1 text-center leading-tight">Music Video Channel - MVC</span>
           </article>
 
           <article class="channel-card ch-sgfr">
@@ -115,10 +163,22 @@
             <span class="text-sm font-bold mt-1 text-center leading-tight">One by Furnality</span>
           </article>
 
+          <article class="channel-card ch-ovd">
+            <img src="Assets/images/default-logo.png" alt="Furnality OVD 1" class="h-10 mb-2 object-contain" />
+            <span class="text-xs text-gray-400">Canal 11</span>
+            <span class="text-sm font-bold mt-1 text-center leading-tight">Furnality OVD 1</span>
+          </article>
+
+          <article class="channel-card ch-ovd">
+            <img src="Assets/images/default-logo.png" alt="Furnality OVD 2" class="h-10 mb-2 object-contain" />
+            <span class="text-xs text-gray-400">Canal 12</span>
+            <span class="text-sm font-bold mt-1 text-center leading-tight">Furnality OVD 2</span>
+          </article>
         </div>
 
+        <!-- Radio -->
         <h3 class="mt-12 text-lg font-bold border-b border-gray-200 pb-2">Radio</h3>
-        <div class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+        <div class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
           <article class="channel-card ch-radio">
             <img src="Assets/images/default-logo.png" alt="Furnality Radio" class="h-10 mb-2 object-contain" />
             <span class="text-xs text-gray-400">Radio 1</span>
@@ -128,24 +188,28 @@
       </div>
     </section>
 
-    <!-- Programmes (Émissions) Section -->
-    <section id="programmes" class="section-space pt-2">
-      <div class="section-inner line-top pt-12">
-        <div>
-          <p class="eyebrow mb-3">Catalogue</p>
-          <h2 class="text-3xl font-bold text-black">Nos émissions & formats.</h2>
+    <!-- Section : À la une & Programmes -->
+    <section id="programmes" class="section-space line-top">
+      <div class="section-inner">
+        <div class="flex flex-col justify-between gap-5 md:flex-row md:items-end mb-10">
+          <div>
+            <p class="eyebrow mb-3">Catalogue</p>
+            <h2 class="text-3xl font-bold text-black">Nos émissions & formats.</h2>
+          </div>
         </div>
 
-        <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           
+          <!-- Carte 1 -->
           <article class="program-card">
             <div class="p-6">
               <p class="eyebrow text-xs mb-2 text-blue-600">Documentaire</p>
               <h3 class="text-lg font-bold text-black mb-2">De l'État au Privé : La grande guerre de...</h3>
-              <p class="text-sm text-gray-600">Série documentaire retraçant l'histoire...</p>
+              <p class="text-sm text-gray-600">Série documentaire retraçant l'histoire, le développement et la réglementation...</p>
             </div>
           </article>
 
+          <!-- Carte 2 -->
           <article class="program-card">
             <div class="p-6">
               <p class="eyebrow text-xs mb-2 text-red-600">Musique</p>
@@ -154,43 +218,57 @@
             </div>
           </article>
 
-          <article class="program-card">
-            <div class="p-6">
-              <p class="eyebrow text-xs mb-2 text-red-600">Musique</p>
-              <h3 class="text-lg font-bold text-black mb-2">Eurovision Song Contest - ASIA</h3>
-              <p class="text-sm text-gray-600">Déclinaison asiatique officielle du célèbre concours.</p>
-            </div>
-          </article>
-
+          <!-- Carte 3 -->
           <article class="program-card">
             <div class="p-6">
               <p class="eyebrow text-xs mb-2 text-green-600">Gaming</p>
               <h3 class="text-lg font-bold text-black mb-2">L'Origine des Pokémon</h3>
-              <p class="text-sm text-gray-600">Rétrospective dédiée aux origines...</p>
+              <p class="text-sm text-gray-600">Rétrospective dédiée aux origines et à l'évolution de la franchise.</p>
             </div>
           </article>
 
+          <!-- Carte 4 -->
           <article class="program-card">
             <div class="p-6">
               <p class="eyebrow text-xs mb-2 text-purple-600">Talk-Show</p>
               <h3 class="text-lg font-bold text-black mb-2">BancalCast</h3>
-              <p class="text-sm text-gray-600">Podcast officiel du réseau Furnality...</p>
+              <p class="text-sm text-gray-600">Podcast officiel du réseau Furnality réunissant l'équipe autour de divers sujets.</p>
             </div>
           </article>
 
+          <!-- Carte 5 -->
           <article class="program-card">
             <div class="p-6">
               <p class="eyebrow text-xs mb-2 text-yellow-600">Culture</p>
               <h3 class="text-lg font-bold text-black mb-2">Festival de l'Imaginaire et du Livre</h3>
-              <p class="text-sm text-gray-600">Événement culturel dédié aux récits...</p>
+              <p class="text-sm text-gray-600">Événement culturel dédié aux récits de l'imaginaire et à la création littéraire.</p>
             </div>
           </article>
 
         </div>
       </div>
     </section>
+
+    <!-- Section : Contact / Affiliation -->
+    <section id="contact" class="section-space line-top">
+      <div class="section-inner">
+        <article class="feature-panel">
+          <div class="max-w-2xl">
+            <p class="eyebrow mb-3">Furnality Network</p>
+            <h2 class="text-3xl font-bold text-black">Rejoindre le réseau de diffusion.</h2>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Projets de diffusion, partenariats de flux ou propositions de contenus : nous accompagnons les formats originaux et la création indépendante.
+            </p>
+            <a href="mailto:contact@furnality.tv?subject=Projet%20Furnality" class="primary-button mt-6">
+              Contacter la régie
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
   </main>
-  
+
+  <!-- Pied de page -->
   <footer>
     <div class="mx-auto max-w-7xl">
       <div class="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
@@ -201,7 +279,7 @@
           </p>
         </div>
         <div>
-          <h2 class="eyebrow text-xs mb-4">Chaînes Principales</h2>
+          <h4 class="eyebrow text-xs mb-4">Chaînes Principales</h4>
           <nav class="flex flex-col gap-2" aria-label="Chaînes Furnality">
             <a href="#chaines" class="footer-link">CenterofStream</a>
             <a href="#chaines" class="footer-link">Direct 9 / M/V/C</a>
@@ -209,7 +287,7 @@
           </nav>
         </div>
         <div>
-          <h2 class="eyebrow text-xs mb-4">Contact & Média</h2>
+          <h4 class="eyebrow text-xs mb-4">Contact & Média</h4>
           <div class="flex flex-col gap-2">
             <a href="mailto:contact@furnality.tv" class="footer-link">contact@furnality.tv</a>
           </div>
@@ -218,7 +296,7 @@
     </div>
   </footer>
 
-  <!-- Lien vers ton fichier JS -->
+  <!-- Script JS -->
   <script src="index.js"></script>
 </body>
 </html>
