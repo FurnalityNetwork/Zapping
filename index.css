@@ -1,133 +1,70 @@
-@font-face {
-  font-family: 'Caledonian';
-  src: url('./Assets/fonts/Caledonian_Font/Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Caledonian';
-  src: url('./Assets/fonts/Caledonian_Font/Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-}
-
+/* Définition des couleurs principales des chaînes */
 :root {
-  /* Marque Principale Furnality */
-  --color-main-light: #ffffff;
-  --color-main-dark: #000000;
-
-  /* CenterofStream */
-  --cos-primary: #0055ff;
-  --cos-bg: #001133;
-
-  /* Direct 9 & MVC */
-  --d9-mvc-primary: #ff1d25;
-  --d9-mvc-bg: #330507;
-
-  /* Streaming Game FR */
-  --sgfr-primary: #10d050;
-  --sgfr-bg: #033010;
-
-  /* Stream Animation Zone */
-  --saz-primary: #7f00ff;
-  --saz-bg: #1a0033;
-
-  /* Asta of Mitologi */
-  --aom-primary: #fbc531;
-  --aom-bg: #4a3800;
-
-  /* Toku Dungeon */
-  --td-primary: #ff6600;
-  --td-bg: #4d1f00;
-
-  /* CANAL 7 */
-  --c7-primary: #ff007f;
-  --c7-bg: #4d0026;
-
-  /* CANAL 8 */
-  --c8-primary: #5856d6;
-  --c8-bg: #1a1845;
-
-  /* One By Furnality */
-  --obf-primary: #944613;
-  --obf-bg: #260f03;
-
-  /* Nouvelles chaînes ajoutées */
-  --radio-primary: #0055ff;
-
-  /* UI & Layout System */
-  --bg-main: var(--color-main-light);
-  --bg-card: #f8f9fa;
-  --border-light: #e5e7eb;
-  --text-main: #0a0a0a;
-  --text-muted: #525252;
-  --accent-black: var(--color-main-dark);
-  --font-main: 'Caledonian', Georgia, serif;
+  --cos-primary: #e11d48; /* Rouge (Sera aussi utilisé pour la Radio) */
+  --mvc-primary: #2563eb; /* Bleu */
+  --sgfr-primary: #16a34a; /* Vert */
+  --saz-primary: #f59e0b; /* Orange/Jaune */
+  --aom-primary: #9333ea; /* Violet */
+  --td-primary: #ca8a04; /* Moutarde */
+  --d9-primary: #0284c7; /* Bleu clair */
+  --obf-primary: #475569; /* Gris foncé */
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  width: 100%;
-  overflow-x: hidden;
-  color: var(--text-main);
-  background: var(--bg-main);
-  font-family: var(--font-main);
-  line-height: 1.6;
+/* Typographie "Sur-titre" */
+.eyebrow {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  color: #6b7280;
 }
 
-.top-nav {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--border-light);
+/* --- Cartes des Chaînes --- */
+.channel-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
-.logo-box { display: flex; align-items: center; gap: 1rem; }
-.logo-box img { height: 26px; object-fit: contain; }
-.logo-separator { color: var(--border-light); font-size: 1.2rem; font-weight: 300; }
-.nav-link { color: var(--text-muted); font-size: 0.8rem; letter-spacing: 0.12em; font-weight: 700; text-transform: uppercase; transition: color 0.2s ease; }
-.nav-link:hover { color: var(--accent-black); }
 
-.primary-button { display: inline-flex; align-items: center; gap: 0.65rem; padding: 0.75rem 1.5rem; background-color: var(--accent-black); color: #ffffff; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; transition: all 0.2s ease; }
-.primary-button:hover { background-color: #262626; transform: translateY(-2px); }
-.secondary-button { display: inline-flex; align-items: center; gap: 0.65rem; padding: 0.75rem 1.5rem; background-color: transparent; color: var(--text-main); border: 1px solid var(--border-light); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; transition: all 0.2s ease; }
-.secondary-button:hover { border-color: var(--accent-black); transform: translateY(-2px); }
+/* Effet au survol (sauf pour les canaux inactifs en gris) */
+.channel-card:not(.grayscale):hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+  border-color: var(--channel-color, #d1d5db);
+  cursor: pointer;
+}
 
-.section-space { padding: 5rem 1.5rem; }
-.section-inner { max-width: 1360px; margin: 0 auto; }
-.line-top { border-top: 1px solid var(--border-light); }
-.eyebrow { color: var(--text-muted); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
-
-.hero { position: relative; min-height: 85vh; display: flex; align-items: center; background-color: var(--bg-main); border-bottom: 1px solid var(--border-light); }
-.hero-number { font-size: clamp(8rem, 20vw, 18rem); line-height: 0.7; letter-spacing: -0.1em; color: #f0f0f0; font-weight: 700; user-select: none; }
-
-.channel-card { min-height: 5.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid var(--border-light); background: var(--bg-card); color: var(--text-main); font-weight: 700; letter-spacing: 0.05em; padding: 0.75rem; position: relative; overflow: hidden; transition: all 0.25s ease; }
-.channel-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background-color: var(--channel-color, var(--accent-black)); transition: height 0.2s ease; }
-.channel-card:hover { border-color: var(--channel-color, var(--accent-black)); background: #ffffff; transform: translateY(-3px); box-shadow: 0 8px 16px rgba(0,0,0,0.05); }
-.channel-card:hover::before { height: 5px; }
-
+/* Application des couleurs via les variables CSS */
 .ch-cos { --channel-color: var(--cos-primary); }
-.ch-mvc { --channel-color: var(--d9-mvc-primary); }
+.ch-mvc { --channel-color: var(--mvc-primary); }
 .ch-sgfr { --channel-color: var(--sgfr-primary); }
 .ch-saz { --channel-color: var(--saz-primary); }
 .ch-aom { --channel-color: var(--aom-primary); }
 .ch-td { --channel-color: var(--td-primary); }
-.ch-c7 { --channel-color: var(--c7-primary); }
-.ch-c8 { --channel-color: var(--c8-primary); }
-.ch-d9 { --channel-color: var(--d9-mvc-primary); }
+.ch-d9 { --channel-color: var(--d9-primary); }
 .ch-obf { --channel-color: var(--obf-primary); }
-.ch-radio { --channel-color: var(--radio-primary); }
 
-.show-card { position: relative; min-height: 22rem; overflow: hidden; border: 1px solid var(--border-light); background: var(--bg-card); }
-.show-card img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; filter: grayscale(15%) contrast(1.05); transition: transform 0.4s ease, filter 0.4s ease; }
-.show-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 60%); }
-.show-card:hover img { transform: scale(1.04); filter: grayscale(0%); }
-.show-card-content { position: absolute; z-index: 1; bottom: 1.5rem; left: 1.5rem; right: 1.5rem; color: #ffffff; }
+/* La Radio hérite explicitement de la couleur de CenterofStream */
+.ch-radio { --channel-color: var(--cos-primary); } 
 
-.feature-panel { position: relative; overflow: hidden; border: 1px solid var(--border-light); border-left: 4px solid var(--cos-primary); background: var(--bg-card); padding: 4rem 2rem; }
+/* --- Cartes des Programmes --- */
+.program-card {
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+}
 
-footer { background: var(--bg-main); border-top: 1px solid var(--border-light); padding: 4rem 1.5rem 2rem; }
-.footer-link { color: var(--text-muted); font-size: 0.85rem; transition: color 0.2s ease; }
-.footer-link:hover { color: var(--accent-black); text-decoration: underline; }
-
-.mobile-menu { display: none; }
-.mobile-menu.open { display: flex; }
+.program-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+  border-color: #cbd5e1;
+}
