@@ -133,9 +133,9 @@ async function loadShows() {
 
       const categoryColor = categoryColorMap[show.category] || 'text-gray-600';
 
-      // Rendu du logo complet : conteneur flexible qui s'adapte à la taille exacte de l'image
+      // Logo sans restriction de largeur pour éviter le rognage latéral
       const logoHtml = matchingBroadcast.logo_url 
-        ? `<img src="${matchingBroadcast.logo_url}" alt="${matchingBroadcast.name}" class="h-7 w-auto max-w-[130px] object-contain flex-shrink-0" />` 
+        ? `<img src="${matchingBroadcast.logo_url}" alt="${matchingBroadcast.name}" style="height: 24px !important; width: auto !important; max-width: none !important; object-fit: contain !important;" />` 
         : `<span class="text-[10px] font-bold text-gray-700 uppercase">${matchingBroadcast.name}</span>`;
 
       const card = document.createElement('article');
@@ -144,9 +144,9 @@ async function loadShows() {
       card.innerHTML = `
         <div class="p-6 flex flex-col h-full justify-between">
           <div>
-            <div class="flex items-center justify-between gap-2 mb-3">
-              <span class="eyebrow text-xs font-bold ${categoryColor}">${show.category || 'Programme'}</span>
-              <div class="h-8 flex items-center justify-end overflow-visible">
+            <div class="flex items-center justify-between gap-4 mb-3">
+              <span class="eyebrow text-xs font-bold ${categoryColor} shrink-0">${show.category || 'Programme'}</span>
+              <div style="display: flex; align-items: center; justify-content: flex-end; height: 28px; overflow: visible;">
                 ${logoHtml}
               </div>
             </div>
