@@ -118,9 +118,13 @@ async function loadShows() {
     showsContainer.innerHTML = '';
 
     shows.forEach(show => {
+      // Normalisation à 12 chiffres (ex: "101100000001")
       const fullIdStr = String(show.id).padStart(12, '0');
+      
+      // Extraction du code canal sur les 3 premiers chiffres (ex: 101)
       const channelCode = parseInt(fullIdStr.substring(0, 3), 10);
 
+      // Correspondance avec l'antenne dans la table broadcast
       const matchingBroadcast = broadcasts.find(b => 
         (show.broadcast_id && b.id === show.broadcast_id) || 
         b.tv_number === channelCode || 
@@ -128,15 +132,12 @@ async function loadShows() {
         b.id === channelCode
       ) || {
         name: 'Furnality Network',
-        logo_url: null
+        broadcast_type: 'tv'
       };
 
       const categoryColor = categoryColorMap[show.category] || 'text-gray-600';
-
-      // Logo sans restriction de largeur pour éviter le rognage latéral
-      const logoHtml = matchingBroadcast.logo_url 
-        ? `<img src="${matchingBroadcast.logo_url}" alt="${matchingBroadcast.name}" style="height: 24px !important; width: auto !important; max-width: none !important; object-fit: contain !important;" />` 
-        : `<span class="text-[10px] font-bold text-gray-700 uppercase">${matchingBroadcast.name}</span>`;
+      const isRadio = matchingBroadcast.broadcast_type === 'radio';
+      const badgeType = isRadio ? 'RADIO' : 'TV';
 
       const card = document.createElement('article');
       card.className = 'program-card';
@@ -144,11 +145,11 @@ async function loadShows() {
       card.innerHTML = `
         <div class="p-6 flex flex-col h-full justify-between">
           <div>
-            <div class="flex items-center justify-between gap-4 mb-3">
-              <span class="eyebrow text-xs font-bold ${categoryColor} shrink-0">${show.category || 'Programme'}</span>
-              <div style="display: flex; align-items: center; justify-content: flex-end; height: 28px; overflow: visible;">
-                ${logoHtml}
-              </div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="eyebrow text-xs font-bold ${categoryColor}">${show.category || 'Programme'}</span>
+              <span class="badge-broadcast text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded ${isRadio ? 'bg-amber-100 text-amber-800 border-amber-200' : 'bg-gray-100 text-gray-700 border-gray-200'} border">
+                ${badgeType} • ${matchingBroadcast.name}
+              </span>
             </div>
             <h3 class="text-lg font-bold text-black mb-2 leading-snug">${show.title}</h3>
             <p class="text-sm text-gray-600 leading-relaxed">${show.description || ''}</p>
@@ -159,7 +160,7 @@ async function loadShows() {
       showsContainer.appendChild(card);
     });
   } catch (err) {
-    console.error('Erreur chargement des émissions :', err);
+    console.error('Erreur lors du chargement des émissions :', err);
   }
 }
 // 3. Chargement des liens du footer
