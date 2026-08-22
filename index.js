@@ -91,6 +91,27 @@ async function loadBroadcasts() {
 }
 
 // 2. Récupération des programmes (shows)
+// Mappages pour les couleurs de catégories et la chaîne/type associée
+const categoryColorMap = {
+  'Documentaire': 'text-blue-600',
+  'Musique': 'text-red-600',
+  'Gaming': 'text-green-600',
+  'Talk-Show': 'text-purple-600',
+  'Culture': 'text-yellow-600'
+};
+
+// Association des émissions avec leur type et chaîne de diffusion
+const showBroadcasterMap = {
+  "De l'État au Privé : La grande guerre des ondes": { type: "TV", channel: "CenterofStream" },
+  "Eurovision Song Contest - 2026 (Semi Final 1)": { type: "TV", channel: "Music Video Channel - MVC" },
+  "Eurovision Song Contest - 2026 (Semi Final 2)": { type: "TV", channel: "Music Video Channel - MVC" },
+  "Eurovision Song Contest - 2026 (Final)": { type: "TV", channel: "Music Video Channel - MVC" },
+  "Eurovision Song Contest - ASIA": { type: "TV", channel: "Music Video Channel - MVC" },
+  "L'origine des Pokémon": { type: "TV", channel: "Streaming Game FR" },
+  "BancalCast": { type: "Radio", channel: "Furnality Radio" },
+  "Festival de l'Imaginaire et du Livre (concours d'écrivain 2025)": { type: "Radio", channel: "Furnality Radio" }
+};
+
 async function loadShows() {
   try {
     const res = await fetch(`${SUPABASE_URL}/shows?select=*&order=id.asc`, { headers });
@@ -105,11 +126,24 @@ async function loadShows() {
       const card = document.createElement('article');
       card.className = 'program-card';
 
+      // Couleur dynamique selon la catégorie
+      const categoryColor = categoryColorMap[show.category] || 'text-gray-600';
+
+      // Informations de diffusion (TV / Radio & Chaîne)
+      const broadcastInfo = showBroadcasterMap[show.title] || { type: 'TV', channel: 'Furnality Network' };
+
       card.innerHTML = `
-        <div class="p-6">
-          <p class="eyebrow text-xs mb-2 text-blue-600">${show.category || 'Programme'}</p>
-          <h3 class="text-lg font-bold text-black mb-2">${show.title}</h3>
-          <p class="text-sm text-gray-600">${show.description || ''}</p>
+        <div class="p-6 flex flex-col h-full justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <span class="eyebrow text-xs font-bold ${categoryColor}">${show.category || 'Programme'}</span>
+              <span class="badge-broadcast text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-gray-100 text-gray-700 border border-gray-200">
+                ${broadcastInfo.type} • ${broadcastInfo.channel}
+              </span>
+            </div>
+            <h3 class="text-lg font-bold text-black mb-2 leading-snug">${show.title}</h3>
+            <p class="text-sm text-gray-600 leading-relaxed">${show.description || ''}</p>
+          </div>
         </div>
       `;
 
