@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialisation des icônes Lucide
+  // Initialisation des icônes
   if (typeof lucide !== 'undefined') {
     lucide.createIcons();
   }
 
-  // Menu Mobile Toggle
+  // Menu Mobile
   const menuBtn = document.getElementById('menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
 
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
       mobileMenu.classList.toggle('open');
     });
 
-    // Fermeture du menu lors du clic sur un lien mobile
+    // Fermeture du menu au clic sur un lien
     const mobileLinks = mobileMenu.querySelectorAll('a');
     mobileLinks.forEach(link => {
       link.addEventListener('click', () => {
