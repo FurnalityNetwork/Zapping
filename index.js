@@ -22,6 +22,19 @@ const channelClassMap = {
   'Furnality Radio': 'ch-radio'
 };
 
+// Mappage des couleurs d'accentuation CSS pour les badges de chaînes
+const channelBadgeStyleMap = {
+  'CenterofStream': 'bg-blue-50 text-[var(--cos-primary)] border-[var(--cos-primary)]/30',
+  'Music Video Channel - MVC': 'bg-red-50 text-[var(--d9-mvc-primary)] border-[var(--d9-mvc-primary)]/30',
+  'Streaming Game FR': 'bg-emerald-50 text-[var(--sgfr-primary)] border-[var(--sgfr-primary)]/30',
+  'Stream Animation Zone': 'bg-purple-50 text-[var(--saz-primary)] border-[var(--saz-primary)]/30',
+  'Asta of Mitologi': 'bg-amber-50 text-[var(--aom-primary)] border-[var(--aom-primary)]/30',
+  'Toku Dungeon': 'bg-orange-50 text-[var(--td-primary)] border-[var(--td-primary)]/30',
+  'Direct 9': 'bg-red-50 text-[var(--d9-mvc-primary)] border-[var(--d9-mvc-primary)]/30',
+  'One by Furnality': 'bg-amber-900/10 text-[var(--obf-primary)] border-[var(--obf-primary)]/30',
+  'Furnality Radio': 'bg-amber-50 text-amber-700 border-amber-300'
+};
+
 // Mappage des couleurs CSS par catégorie
 const categoryColorMap = {
   'Documentaire': 'text-blue-600',
@@ -32,12 +45,11 @@ const categoryColorMap = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialisation des icônes Lucide
   if (typeof lucide !== 'undefined') {
     lucide.createIcons();
   }
 
-  // Gestion du menu Mobile
+  // Menu Mobile
   const menuBtn = document.getElementById('menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
 
@@ -51,13 +63,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Lancement du chargement dynamique des données
+  // Chargement dynamique des données
   loadBroadcasts();
   loadShows();
   loadFooterLinks();
 });
 
-// 1. Chargement des antennes TV & Radio (section #chaines)
+// 1. Chargement des antennes TV & Radio
 async function loadBroadcasts() {
   try {
     const res = await fetch(`${SUPABASE_URL}/broadcast?select=*&order=id.asc`, { headers });
@@ -102,7 +114,7 @@ async function loadBroadcasts() {
   }
 }
 
-// 2. Chargement des émissions (section #programmes) avec décodage des 12 chiffres
+// 2. Chargement des émissions avec badges aux couleurs de chaque chaîne
 async function loadShows() {
   try {
     const [showsRes, broadcastRes] = await Promise.all([
@@ -119,13 +131,9 @@ async function loadShows() {
     showsContainer.innerHTML = '';
 
     shows.forEach(show => {
-      // Normalisation à 12 chiffres (ex: "101100000001")
       const fullIdStr = String(show.id).padStart(12, '0');
-      
-      // Extraction du code canal sur les 3 premiers chiffres (ex: 101)
       const channelCode = parseInt(fullIdStr.substring(0, 3), 10);
 
-      // Correspondance avec l'antenne dans la table broadcast
       const matchingBroadcast = broadcasts.find(b => 
         (show.broadcast_id && b.id === show.broadcast_id) || 
         b.tv_number === channelCode || 
@@ -140,6 +148,9 @@ async function loadShows() {
       const isRadio = matchingBroadcast.broadcast_type === 'radio';
       const badgeType = isRadio ? 'RADIO' : 'TV';
 
+      // Style spécifique de la chaîne pour le badge
+      const badgeStyle = channelBadgeStyleMap[matchingBroadcast.name] || 'bg-gray-100 text-gray-700 border-gray-200';
+
       const card = document.createElement('article');
       card.className = 'program-card';
 
@@ -148,7 +159,7 @@ async function loadShows() {
           <div>
             <div class="flex items-center justify-between gap-2 mb-3">
               <span class="eyebrow text-xs font-bold ${categoryColor}">${show.category || 'Programme'}</span>
-              <span class="badge-broadcast text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded ${isRadio ? 'bg-amber-100 text-amber-800 border-amber-200' : 'bg-gray-100 text-gray-700 border-gray-200'} border">
+              <span class="badge-broadcast text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded border ${badgeStyle}">
                 ${badgeType} • ${matchingBroadcast.name}
               </span>
             </div>
@@ -161,11 +172,11 @@ async function loadShows() {
       showsContainer.appendChild(card);
     });
   } catch (err) {
-    console.error('Erreur lors du chargement des émissions :', err);
+    console.error('Erreur chargement des émissions :', err);
   }
 }
 
-// 3. Chargement des réseaux sociaux dans le footer
+// 3. Chargement des liens du footer
 async function loadFooterLinks() {
   try {
     const res = await fetch(`${SUPABASE_URL}/footer_links?select=*&order=id.asc`, { headers });
