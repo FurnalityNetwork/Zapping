@@ -128,18 +128,15 @@ async function loadShows() {
         b.id === channelCode
       ) || {
         name: 'Furnality Network',
-        broadcast_type: 'tv',
         logo_url: null
       };
 
       const categoryColor = categoryColorMap[show.category] || 'text-gray-600';
-      const isRadio = matchingBroadcast.broadcast_type === 'radio';
-      const badgeType = isRadio ? 'RADIO' : 'TV';
 
-      // Affichage du logo de l'antenne dans le tag s'il existe
-      const logoHtml = matchingBroadcast.logo_url 
-        ? `<img src="${matchingBroadcast.logo_url}" alt="${matchingBroadcast.name}" class="h-3.5 w-auto object-contain inline-block" />` 
-        : '';
+      // Logo uniquement (fallback texte si pas de logo dans Supabase)
+      const badgeContent = matchingBroadcast.logo_url 
+        ? `<img src="${matchingBroadcast.logo_url}" alt="${matchingBroadcast.name}" class="h-4 w-auto object-contain" />` 
+        : `<span class="text-[10px] uppercase font-bold text-gray-700">${matchingBroadcast.name}</span>`;
 
       const card = document.createElement('article');
       card.className = 'program-card';
@@ -149,11 +146,8 @@ async function loadShows() {
           <div>
             <div class="flex items-center justify-between gap-2 mb-3">
               <span class="eyebrow text-xs font-bold ${categoryColor}">${show.category || 'Programme'}</span>
-              <span class="badge-broadcast text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded border bg-neutral-900 text-white border-black flex items-center gap-1.5 shadow-sm">
-                <span>${badgeType}</span>
-                <span class="opacity-40">•</span>
-                ${logoHtml}
-                <span>${matchingBroadcast.name}</span>
+              <span class="badge-broadcast px-2.5 py-1 rounded bg-gray-100 border border-gray-200 flex items-center justify-center shadow-sm">
+                ${badgeContent}
               </span>
             </div>
             <h3 class="text-lg font-bold text-black mb-2 leading-snug">${show.title}</h3>
@@ -168,7 +162,6 @@ async function loadShows() {
     console.error('Erreur chargement des émissions :', err);
   }
 }
-
 // 3. Chargement des liens du footer
 async function loadFooterLinks() {
   try {
