@@ -133,10 +133,10 @@ async function loadShows() {
 
       const categoryColor = categoryColorMap[show.category] || 'text-gray-600';
 
-      // Affichage du logo entier sans rognage
-      const badgeContent = matchingBroadcast.logo_url 
-        ? `<img src="${matchingBroadcast.logo_url}" alt="${matchingBroadcast.name}" class="h-6 max-w-[120px] w-auto object-contain block" />` 
-        : `<span class="text-[10px] uppercase font-bold text-gray-700">${matchingBroadcast.name}</span>`;
+      // Rendu du logo complet : conteneur flexible qui s'adapte à la taille exacte de l'image
+      const logoHtml = matchingBroadcast.logo_url 
+        ? `<img src="${matchingBroadcast.logo_url}" alt="${matchingBroadcast.name}" class="h-7 w-auto max-w-[130px] object-contain flex-shrink-0" />` 
+        : `<span class="text-[10px] font-bold text-gray-700 uppercase">${matchingBroadcast.name}</span>`;
 
       const card = document.createElement('article');
       card.className = 'program-card';
@@ -146,9 +146,9 @@ async function loadShows() {
           <div>
             <div class="flex items-center justify-between gap-2 mb-3">
               <span class="eyebrow text-xs font-bold ${categoryColor}">${show.category || 'Programme'}</span>
-              <span class="badge-broadcast px-2.5 py-1 rounded bg-gray-100 border border-gray-200 flex items-center justify-center shadow-sm shrink-0">
-                ${badgeContent}
-              </span>
+              <div class="h-8 flex items-center justify-end overflow-visible">
+                ${logoHtml}
+              </div>
             </div>
             <h3 class="text-lg font-bold text-black mb-2 leading-snug">${show.title}</h3>
             <p class="text-sm text-gray-600 leading-relaxed">${show.description || ''}</p>
