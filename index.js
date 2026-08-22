@@ -7,7 +7,7 @@ const headers = {
   'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
 };
 
-// Mappage des classes CSS de couleur par chaîne
+// Mappage des classes CSS par chaîne
 const channelClassMap = {
   'CenterofStream': 'ch-cos',
   'Music Video Channel - MVC': 'ch-mvc',
@@ -22,20 +22,7 @@ const channelClassMap = {
   'Furnality Radio': 'ch-radio'
 };
 
-// Mappage des couleurs d'accentuation CSS pour les badges de chaînes
-const channelBadgeStyleMap = {
-  'CenterofStream': 'bg-blue-50 text-[var(--cos-primary)] border-[var(--cos-primary)]/30',
-  'Music Video Channel - MVC': 'bg-red-50 text-[var(--d9-mvc-primary)] border-[var(--d9-mvc-primary)]/30',
-  'Streaming Game FR': 'bg-emerald-50 text-[var(--sgfr-primary)] border-[var(--sgfr-primary)]/30',
-  'Stream Animation Zone': 'bg-purple-50 text-[var(--saz-primary)] border-[var(--saz-primary)]/30',
-  'Asta of Mitologi': 'bg-amber-50 text-[var(--aom-primary)] border-[var(--aom-primary)]/30',
-  'Toku Dungeon': 'bg-orange-50 text-[var(--td-primary)] border-[var(--td-primary)]/30',
-  'Direct 9': 'bg-red-50 text-[var(--d9-mvc-primary)] border-[var(--d9-mvc-primary)]/30',
-  'One by Furnality': 'bg-amber-900/10 text-[var(--obf-primary)] border-[var(--obf-primary)]/30',
-  'Furnality Radio': 'bg-amber-50 text-amber-700 border-amber-300'
-};
-
-// Mappage des couleurs CSS par catégorie
+// Mappage des couleurs par catégorie
 const categoryColorMap = {
   'Documentaire': 'text-blue-600',
   'Musique': 'text-red-600',
@@ -114,7 +101,7 @@ async function loadBroadcasts() {
   }
 }
 
-// 2. Chargement des émissions avec badges aux couleurs de chaque chaîne
+// 2. Chargement des émissions avec tags noirs et icône de chaîne
 async function loadShows() {
   try {
     const [showsRes, broadcastRes] = await Promise.all([
@@ -141,15 +128,18 @@ async function loadShows() {
         b.id === channelCode
       ) || {
         name: 'Furnality Network',
-        broadcast_type: 'tv'
+        broadcast_type: 'tv',
+        logo_url: null
       };
 
       const categoryColor = categoryColorMap[show.category] || 'text-gray-600';
       const isRadio = matchingBroadcast.broadcast_type === 'radio';
       const badgeType = isRadio ? 'RADIO' : 'TV';
 
-      // Style spécifique de la chaîne pour le badge
-      const badgeStyle = channelBadgeStyleMap[matchingBroadcast.name] || 'bg-gray-100 text-gray-700 border-gray-200';
+      // Affichage du logo de l'antenne dans le tag s'il existe
+      const logoHtml = matchingBroadcast.logo_url 
+        ? `<img src="${matchingBroadcast.logo_url}" alt="${matchingBroadcast.name}" class="h-3.5 w-auto object-contain inline-block" />` 
+        : '';
 
       const card = document.createElement('article');
       card.className = 'program-card';
@@ -159,8 +149,11 @@ async function loadShows() {
           <div>
             <div class="flex items-center justify-between gap-2 mb-3">
               <span class="eyebrow text-xs font-bold ${categoryColor}">${show.category || 'Programme'}</span>
-              <span class="badge-broadcast text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded border ${badgeStyle}">
-                ${badgeType} • ${matchingBroadcast.name}
+              <span class="badge-broadcast text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded border bg-neutral-900 text-white border-black flex items-center gap-1.5 shadow-sm">
+                <span>${badgeType}</span>
+                <span class="opacity-40">•</span>
+                ${logoHtml}
+                <span>${matchingBroadcast.name}</span>
               </span>
             </div>
             <h3 class="text-lg font-bold text-black mb-2 leading-snug">${show.title}</h3>
