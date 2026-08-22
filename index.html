@@ -11,11 +11,6 @@
 </head>
 <body>
 
-<!-- En-tête (Optionnel, juste pour structurer la page) -->
-  <header class="bg-white border-b border-gray-200 py-4 px-6 fixed w-full top-0 z-10">
-    <div class="max-w-7xl mx-auto flex items-center">
-      <h1 class="text-xl font-black tracking-tight">FURNALITY NETWORK</h1>
-    </div>
   <header class="top-nav fixed top-0 z-40 w-full px-6 py-4 md:px-12">
     <nav class="relative mx-auto flex max-w-7xl items-center justify-between" aria-label="Navigation principale">
       <div class="logo-box">
@@ -46,8 +41,6 @@
     </nav>
   </header>
 
-  <main class="pt-24 pb-12">
-    <!-- Section : Chaînes -->
   <main class="pt-20">
     <section id="accueil" class="hero px-6 py-20 md:px-12">
       <div class="absolute right-[5%] top-[15%] z-0 pointer-events-none">
@@ -92,7 +85,6 @@
     
     <!-- Chaînes Section -->
     <section id="chaines" class="section-space">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="section-inner">
         <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
@@ -106,9 +98,8 @@
 
         <div class="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
         <h3 class="mt-8 text-lg font-bold border-b border-gray-200 pb-2">Télévision</h3>
-        <div class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         <div class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-
+          
           <article class="channel-card ch-cos">
             <img src="Assets/images/default-logo.png" alt="CenterofStream" class="h-10 mb-2 object-contain" />
             <span class="text-xs text-gray-400">Canal 1</span>
@@ -121,12 +112,10 @@
           </article>
 
           <article class="channel-card ch-mvc">
-            <img src="Assets/images/default-logo.png" alt="MVC" class="h-10 mb-2 object-contain" />
             <span class="text-xs text-gray-400">Canal 2 (Second)</span>
             <span class="text-sm font-bold mt-1 text-center">M/V/C</span>
             <img src="Assets/images/default-logo.png" alt="Music Video Channel - MVC" class="h-10 mb-2 object-contain" />
             <span class="text-xs text-gray-400">Canal 2</span>
-            <span class="text-sm font-bold mt-1 text-center leading-tight">MVC</span>
             <span class="text-sm font-bold mt-1 text-center leading-tight">Music Video Channel - MVC</span>
           </article>
 
@@ -159,7 +148,6 @@
           </article>
           <article class="channel-card ch-c7">
 
-          <article class="channel-card opacity-50 grayscale cursor-not-allowed" title="Inactif">
           <article class="channel-card opacity-50 grayscale" title="Inactif">
             <span class="text-xs text-gray-400">Canal 7</span>
             <span class="text-sm font-bold mt-1 text-center">CANAL 7</span>
@@ -167,7 +155,6 @@
           </article>
           <article class="channel-card ch-c8">
 
-          <article class="channel-card opacity-50 grayscale cursor-not-allowed" title="Inactif">
           <article class="channel-card opacity-50 grayscale" title="Inactif">
             <span class="text-xs text-gray-400">Canal 8</span>
             <span class="text-sm font-bold mt-1 text-center">CANAL 8</span>
@@ -202,7 +189,6 @@
         </div>
 
         <h3 class="mt-12 text-lg font-bold border-b border-gray-200 pb-2">Radio</h3>
-        <div class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         <div class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
           <article class="channel-card ch-radio">
             <img src="Assets/images/default-logo.png" alt="Furnality Radio" class="h-10 mb-2 object-contain" />
@@ -213,9 +199,6 @@
       </div>
     </section>
 
-<!-- Section : Programmes (Émissions) -->
-    <section id="programmes" class="section-space line-top">
-      <div class="section-inner">
     <section id="selection" class="section-space pt-4">
     <!-- Programmes (Émissions) Section -->
     <section id="programmes" class="section-space pt-2">
@@ -228,23 +211,13 @@
           <a href="#programmes" class="text-xs font-bold uppercase tracking-widest text-black hover:underline">Découvrir l'antenne →</a>
         <div>
           <p class="eyebrow mb-3">Catalogue</p>
-          <h2 class="text-3xl font-bold mb-10">Nos émissions & formats.</h2>
           <h2 class="text-3xl font-bold text-black">Nos émissions & formats.</h2>
         </div>
 
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          
-          <!-- Carte Émission -->
-          <article class="show-card">
-            <!-- Pensez à mettre le bon chemin vers l'image de l'émission -->
-            <img src="Assets/images/docu-etat.jpg" alt="De l'État au Privé">
         <div class="mt-10 grid gap-6 md:grid-cols-12">
           <article class="show-card md:col-span-6 md:min-h-[28rem]">
             <img loading="lazy" src="https://images.pexels.com/photos/18831982/pexels-photo-18831982.jpeg?auto=compress&cs=tinysrgb&w=1280" alt="CenterofStream">
             <div class="show-card-content">
-              <p class="eyebrow text-blue-400 mb-2">Documentaire</p>
-              <h3 class="text-xl font-bold mb-2">De l'État au Privé : La grande guerre de...</h3>
-              <p class="text-sm opacity-90 line-clamp-3">Série documentaire retraçant l'histoire, le développement et la réglementation...</p>
               <p class="eyebrow text-blue-300 mb-1" style="color: var(--cos-primary);">CenterofStream · Canal 1</p>
               <h3 class="text-2xl font-bold">L'antenne centrale & direct événementiel</h3>
         <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -262,9 +235,6 @@
               <p class="eyebrow text-red-400 mb-1" style="color: var(--d9-mvc-primary);">Music Video Channel</p>
               <h3 class="text-xl font-bold">Directs VJ & Electro-Pop</h3>
 
-          <!-- Carte Émission -->
-          <article class="show-card">
-            <img src="Assets/images/eurovision.jpg" alt="Eurovision 2026">
           <article class="program-card">
             <div class="p-6">
               <p class="eyebrow text-xs mb-2 text-red-600">Musique</p>
@@ -275,9 +245,6 @@
           <article class="show-card md:col-span-3 md:min-h-[28rem]">
             <img loading="lazy" src="https://images.pexels.com/photos/28237726/pexels-photo-28237726.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Streaming Game FR">
             <div class="show-card-content">
-              <p class="eyebrow text-red-400 mb-2">Musique</p>
-              <h3 class="text-xl font-bold mb-2">Eurovision Song Contest - 2026</h3>
-              <p class="text-sm opacity-90">Semi Final 1, Semi Final 2, et la Grande Finale.</p>
               <p class="eyebrow text-green-400 mb-1" style="color: var(--sgfr-primary);">Streaming Game FR</p>
               <h3 class="text-xl font-bold">Sessions Game & Retro</h3>
 
@@ -292,13 +259,6 @@
       </div>
     </section>
 
-          <!-- Carte Émission -->
-          <article class="show-card">
-            <img src="Assets/images/bancalcast.jpg" alt="BancalCast">
-            <div class="show-card-content">
-              <p class="eyebrow text-purple-400 mb-2">Talk-Show</p>
-              <h3 class="text-xl font-bold mb-2">BancalCast</h3>
-              <p class="text-sm opacity-90">Podcast officiel du réseau Furnality réunissant l'équipe autour de divers sujets.</p>
     <section id="contact" class="section-space pt-4">
       <div class="section-inner">
         <article class="feature-panel">
@@ -332,7 +292,6 @@
             </div>
           </article>
 
-          <!-- Vous pouvez ajouter les autres émissions ici sur le même modèle -->
           <article class="program-card">
             <div class="p-6">
               <p class="eyebrow text-xs mb-2 text-yellow-600">Culture</p>
@@ -365,8 +324,6 @@
           </div>
         </div>
       </div>
-    </section>
-  </main>
     </div>
   </footer>
 
@@ -374,5 +331,3 @@
   <script src="index.js"></script>
 </body>
 </html>
-    </section>
-  </main>
