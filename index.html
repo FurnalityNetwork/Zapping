@@ -1,360 +1,501 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Furnality Zapping — Replay & Streaming</title>
-    <!-- SDK officiel Supabase -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <style>
-        /* Polices Caledonian */
-        @font-face {
-            font-family: 'Caledonian';
-            src: url('./Assets/fonts/Caledonian_Font/Regular.ttf') format('truetype');
-            font-weight: 400;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Caledonian';
-            src: url('./Assets/fonts/Caledonian_Font/Bold.ttf') format('truetype');
-            font-weight: 700;
-            font-style: normal;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Furnality TV — L'image en grand</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
 
-        :root {
-            --bg-main: #ffffff;
-            --bg-card: #f8f9fa;
-            --border-light: #e5e7eb;
-            --text-main: #0a0a0a;
-            --text-muted: #525252;
-            --accent-black: #000000;
-            --font-main: 'Caledonian', Georgia, serif, system-ui;
-        }
+  <style>
+    /* Declaration de la police Caledonian */
+    @font-face {
+      font-family: 'Caledonian';
+      src: url('./Assets/fonts/Caledonian_Font/Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Caledonian';
+      src: url('./Assets/fonts/Caledonian_Font/Bold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    :root {
+      --bg-main: #ffffff;
+      --bg-card: #f8f9fa;
+      --border-light: #e5e7eb;
+      --text-main: #0a0a0a;
+      --text-muted: #525252;
+      --accent-black: #000000;
+      --font-main: 'Caledonian', Georgia, serif;
+    }
 
-        body { 
-            font-family: var(--font-main); 
-            background-color: var(--bg-main); 
-            color: var(--text-main); 
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            line-height: 1.6;
-        }
-        
-        /* Navbar Header Style OBC avec tes SVGs */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.25rem 3rem;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid var(--border-light);
-        }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      width: 100%;
+      overflow-x: hidden;
+      color: var(--text-main);
+      background: var(--bg-main);
+      font-family: var(--font-main);
+      line-height: 1.6;
+    }
 
-        .logo-box {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
+    /* Navbar Éditorial */
+    .top-nav {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-light);
+    }
 
-        .logo-box img {
-            height: 26px;
-            object-fit: contain;
-        }
+    .logo-box {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
 
-        .logo-separator {
-            color: var(--border-light);
-            font-size: 1.2rem;
-            font-weight: 300;
-        }
+    .logo-box img {
+      height: 26px;
+      object-fit: contain;
+    }
 
-        .main-content { 
-            flex: 1; 
-            max-width: 1400px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
+    .logo-separator {
+      color: var(--border-light);
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
 
-        h1 { 
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--accent-black); 
-            border-bottom: 1px solid var(--border-light); 
-            padding-bottom: 15px; 
-            margin-bottom: 30px; 
-            letter-spacing: -0.5px;
-        }
-        
-        /* Filtres Minimalistes */
-        .filter-container { display: flex; gap: 10px; margin-bottom: 30px; }
-        .filter-btn { 
-            background-color: transparent; 
-            color: var(--text-muted); 
-            border: 1px solid var(--border-light); 
-            padding: 8px 18px; 
-            font-family: var(--font-main);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer; 
-            transition: all 0.2s ease; 
-        }
-        .filter-btn:hover, .filter-btn.active { 
-            background-color: var(--accent-black); 
-            color: #ffffff; 
-            border-color: var(--accent-black); 
-        }
+    .nav-link {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+    }
+    .nav-link:hover { color: var(--accent-black); }
 
-        /* Grille des cartes Émissions */
-        .grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-            gap: 25px; 
-        }
+    /* Buttons */
+    .primary-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.75rem 1.5rem;
+      background-color: var(--accent-black);
+      color: #ffffff;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+    .primary-button:hover {
+      background-color: #262626;
+      transform: translateY(-2px);
+    }
 
-        .card { 
-            background-color: var(--bg-main); 
-            border: 1px solid var(--border-light); 
-            padding: 20px; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: space-between; 
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
+    .secondary-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.75rem 1.5rem;
+      background-color: transparent;
+      color: var(--text-main);
+      border: 1px solid var(--border-light);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+    .secondary-button:hover {
+      border-color: var(--accent-black);
+      transform: translateY(-2px);
+    }
 
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-        }
-        
-        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .badge { 
-            background-color: var(--accent-black); 
-            color: #fff; 
-            padding: 3px 8px; 
-            font-size: 0.7rem; 
-            font-weight: bold; 
-            text-transform: uppercase; 
-            letter-spacing: 1px;
-        }
-        
-        .channel-logo-container { height: 28px; display: flex; align-items: center; }
-        .channel-logo-container img { height: 28px; max-width: 100px; object-fit: contain; }
-        .channel-tag { font-size: 0.8rem; font-weight: bold; color: var(--text-muted); background: var(--bg-card); padding: 4px 8px; border: 1px solid var(--border-light); }
-        
-        .card-body h3 { margin: 0 0 8px 0; color: var(--text-main); font-size: 1.2rem; }
-        .card-body p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0; }
-        
-        .card-footer { 
-            margin-top: 20px; 
-            padding-top: 12px; 
-            border-top: 1px solid var(--border-light); 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-        }
-        .id-tag { color: #999; font-size: 0.75rem; font-family: monospace; }
-        .media-type { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; padding: 3px 8px; font-weight: bold; }
-        .media-tv { background-color: #000; color: #fff; }
-        .media-radio { background-color: var(--bg-card); color: var(--text-main); border: 1px solid var(--border-light); }
+    /* Sections Layout */
+    .section-space { padding: 5rem 1.5rem; }
+    .section-inner { max-width: 1360px; margin: 0 auto; }
+    .line-top { border-top: 1px solid var(--border-light); }
 
-        /* Footer Dynamique Éditorial */
-        footer { 
-            margin-top: 60px; 
-            background-color: var(--bg-main); 
-            border-top: 1px solid var(--border-light); 
-            padding: 40px 20px; 
-        }
-        .footer-grid { 
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-            gap: 30px; 
-        }
-        .footer-col h4 { 
-            color: var(--accent-black); 
-            margin-top: 0; 
-            margin-bottom: 15px; 
-            font-size: 0.9rem; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-        }
-        .footer-col ul { list-style: none; padding: 0; margin: 0; }
-        .footer-col li { margin-bottom: 8px; }
-        .footer-col a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
-        .footer-col a:hover { color: var(--accent-black); text-decoration: underline; }
-        .footer-bottom { margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border-light); text-align: center; color: var(--text-muted); font-size: 0.8rem; }
-    </style>
+    .eyebrow {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      background-color: var(--bg-main);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .hero-number {
+      font-size: clamp(8rem, 20vw, 18rem);
+      line-height: 0.7;
+      letter-spacing: -0.1em;
+      color: #f0f0f0;
+      font-weight: 700;
+      user-select: none;
+    }
+
+    /* Cards Éditoriales */
+    .channel-card {
+      min-height: 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border-light);
+      background: var(--bg-card);
+      color: var(--text-main);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      transition: all 0.2s ease;
+    }
+    .channel-card:hover {
+      border-color: var(--accent-black);
+      background: #ffffff;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.04);
+    }
+
+    .show-card {
+      position: relative;
+      min-height: 22rem;
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+      background: var(--bg-card);
+    }
+    .show-card img {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      inset: 0;
+      object-fit: cover;
+      filter: grayscale(20%) contrast(1.05);
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+    .show-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 60%);
+    }
+    .show-card:hover img {
+      transform: scale(1.04);
+      filter: grayscale(0%);
+    }
+    .show-card-content {
+      position: absolute;
+      z-index: 1;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      right: 1.5rem;
+      color: #ffffff;
+    }
+
+    .program-card {
+      border: 1px solid var(--border-light);
+      background: #ffffff;
+      transition: all 0.2s ease;
+    }
+    .program-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      border-color: var(--accent-black);
+    }
+    .program-card img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+    }
+
+    .feature-panel {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+      background: var(--bg-card);
+      padding: 4rem 2rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-main);
+      border-top: 1px solid var(--border-light);
+      padding: 4rem 1.5rem 2rem;
+    }
+    .footer-link {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      transition: color 0.2s ease;
+    }
+    .footer-link:hover { color: var(--accent-black); text-decoration: underline; }
+
+    .mobile-menu { display: none; }
+    .mobile-menu.open { display: flex; }
+  </style>
 </head>
 <body>
 
-    <!-- Header avec tes SVGs -->
-    <header class="navbar">
-        <div class="logo-box">
-            <img src="Assets/images/Furnality Logo.svg" alt="Furnality" onerror="this.style.display='none'">
-            <span class="logo-separator">|</span>
-            <img src="Assets/images/ZAPPING.svg" alt="Zapping" onerror="this.style.display='none'">
+  <!-- Top Navigation -->
+  <header class="top-nav fixed top-0 z-40 w-full px-6 py-4 md:px-12">
+    <nav class="relative mx-auto flex max-w-7xl items-center justify-between" aria-label="Navigation principale">
+      
+      <div class="logo-box">
+        <img src="Assets/images/Furnality Logo.svg" alt="Furnality" onerror="this.style.display='none'">
+        <span class="logo-separator">|</span>
+        <img src="Assets/images/ZAPPING.svg" alt="Zapping" onerror="this.style.display='none'">
+      </div>
+
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#chaines" class="nav-link">Chaînes</a>
+        <a href="#selection" class="nav-link">Sélections</a>
+        <a href="#programmes" class="nav-link">Programmes</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="#contact" class="primary-button hidden md:inline-flex">Nous contacter</a>
+        <button id="menu-button" type="button" class="inline-flex h-10 w-10 items-center justify-center border border-gray-200 md:hidden" aria-label="Ouvrir le menu">
+          <i data-lucide="menu" width="18" height="18"></i>
+        </button>
+      </div>
+
+      <div id="mobile-menu" class="mobile-menu absolute top-full left-0 right-0 flex-col gap-4 p-6 bg-white border-b border-gray-200 shadow-lg">
+        <a href="#chaines" class="nav-link">Chaînes</a>
+        <a href="#selection" class="nav-link">Sélections</a>
+        <a href="#programmes" class="nav-link">Programmes</a>
+        <a href="#contact" class="nav-link">Nous contacter</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="pt-20">
+
+    <!-- Hero Section -->
+    <section id="accueil" class="hero px-6 py-20 md:px-12">
+      <div class="absolute right-[5%] top-[15%] z-0 pointer-events-none">
+        <span class="hero-number">27</span>
+      </div>
+
+      <div class="relative mx-auto w-full max-w-7xl z-10">
+        <div class="max-w-3xl">
+          <p class="eyebrow mb-4">Furnality TV · Saison 27</p>
+          <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-black leading-tight">
+            L’image prend toute la place.
+          </h1>
+          <p class="mt-6 text-lg text-gray-600 max-w-xl">
+            Furnality compose une télévision de paysages, de récits et de formats qui ouvrent le regard.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="#selection" class="primary-button">Explorer Furnality</a>
+            <a href="#programmes" class="secondary-button">Voir la sélection</a>
+          </div>
         </div>
-    </header>
 
-    <div class="main-content">
-        <h1>Catalogue des Émissions & Replays</h1>
+        <div class="mt-20 flex flex-wrap items-end justify-between gap-6 border-t border-gray-200 pt-6">
+          <div class="flex flex-wrap gap-12">
+            <div>
+              <p class="eyebrow text-xs">En ce moment</p>
+              <p class="mt-1 text-sm font-bold text-black">Zapping · Horizons denses</p>
+            </div>
+            <div>
+              <p class="eyebrow text-xs">Prochaine diffusion</p>
+              <p class="mt-1 text-sm font-bold text-black">Ce soir · 20:30</p>
+            </div>
+          </div>
+          <a href="#chaines" class="inline-flex h-10 w-10 items-center justify-center border border-gray-200 hover:border-black transition-colors" aria-label="Découvrir les chaînes">
+            <i data-lucide="arrow-down" width="18" height="18"></i>
+          </a>
+        </div>
+      </div>
+    </section>
 
-        <!-- Filtres -->
-        <div class="filter-container">
-            <button class="filter-btn active" onclick="filterShows('all', this)">Toutes les émissions</button>
-            <button class="filter-btn" onclick="filterShows('tv', this)">📺 Télévision</button>
-            <button class="filter-btn" onclick="filterShows('radio', this)">📻 Radio</button>
+    <!-- Chaînes Section -->
+    <section id="chaines" class="section-space">
+      <div class="section-inner">
+        <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <p class="eyebrow mb-3">Choisir un signal</p>
+            <h2 class="text-3xl font-bold text-black max-w-2xl">Une constellation de chaînes, un seul écran vivant.</h2>
+          </div>
+          <p class="max-w-sm text-sm text-gray-600 leading-relaxed">
+            Documentaire, musique, récits, voyage et culture visuelle : entrez par l’univers qui vous appelle.
+          </p>
         </div>
 
-        <div id="shows-container" class="grid">Chargement des émissions...</div>
+        <div class="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+          <article class="channel-card">NOVA</article>
+          <article class="channel-card">M/V/C</article>
+          <article class="channel-card">ORBIT</article>
+          <article class="channel-card">PULSE</article>
+          <article class="channel-card">ALT.</article>
+          <article class="channel-card">ONE</article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sélection Section -->
+    <section id="selection" class="section-space pt-4">
+      <div class="section-inner line-top pt-12">
+        <div class="flex flex-col justify-between gap-5 md:flex-row md:items-end">
+          <div>
+            <p class="eyebrow mb-3">Les grands formats</p>
+            <h2 class="text-3xl font-bold text-black">À voir sans attendre.</h2>
+          </div>
+          <a href="#programmes" class="text-xs font-bold uppercase tracking-widest text-black hover:underline">Tout parcourir →</a>
+        </div>
+
+        <div class="mt-10 grid gap-6 md:grid-cols-12">
+          <article class="show-card md:col-span-6 md:min-h-[28rem]">
+            <img loading="lazy" src="https://images.pexels.com/photos/18831982/pexels-photo-18831982.jpeg?auto=compress&cs=tinysrgb&w=1280" alt="Montagne">
+            <div class="show-card-content">
+              <p class="eyebrow text-gray-300 mb-1">Documentaire original</p>
+              <h3 class="text-2xl font-bold">Lignes de crête</h3>
+            </div>
+          </article>
+
+          <article class="show-card md:col-span-3 md:min-h-[28rem]">
+            <img loading="lazy" src="https://images.pexels.com/photos/32635228/pexels-photo-32635228.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Mer">
+            <div class="show-card-content">
+              <p class="eyebrow text-gray-300 mb-1">Immersion</p>
+              <h3 class="text-xl font-bold">Bleu profond</h3>
+            </div>
+          </article>
+
+          <article class="show-card md:col-span-3 md:min-h-[28rem]">
+            <img loading="lazy" src="https://images.pexels.com/photos/28237726/pexels-photo-28237726.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Aurore">
+            <div class="show-card-content">
+              <p class="eyebrow text-gray-300 mb-1">Sessions live</p>
+              <h3 class="text-xl font-bold">Nuits polaires</h3>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Programmes Section -->
+    <section id="programmes" class="section-space pt-2">
+      <div class="section-inner line-top pt-12">
+        <div>
+          <p class="eyebrow mb-3">Nouveautés Furnality</p>
+          <h2 class="text-3xl font-bold text-black">Des mondes à portée de regard.</h2>
+        </div>
+
+        <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          
+          <article class="program-card">
+            <img loading="lazy" src="https://images.pexels.com/photos/20020265/pexels-photo-20020265.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Forêt">
+            <div class="p-5">
+              <p class="eyebrow text-xs mb-1">Nature</p>
+              <h3 class="text-lg font-bold text-black">La forêt retient son souffle</h3>
+            </div>
+          </article>
+
+          <article class="program-card">
+            <img loading="lazy" src="https://images.pexels.com/photos/33442715/pexels-photo-33442715.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Dunes">
+            <div class="p-5">
+              <p class="eyebrow text-xs mb-1">Évasion</p>
+              <h3 class="text-lg font-bold text-black">Dunes intérieures</h3>
+            </div>
+          </article>
+
+          <article class="program-card">
+            <img loading="lazy" src="https://images.pexels.com/photos/16059252/pexels-photo-16059252.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Ville">
+            <div class="p-5">
+              <p class="eyebrow text-xs mb-1">Culture urbaine</p>
+              <h3 class="text-lg font-bold text-black">Après minuit</h3>
+            </div>
+          </article>
+
+          <article class="program-card">
+            <img loading="lazy" src="https://images.pexels.com/photos/27564083/pexels-photo-27564083.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Volcan">
+            <div class="p-5">
+              <p class="eyebrow text-xs mb-1">Extrême</p>
+              <h3 class="text-lg font-bold text-black">Terre en feu</h3>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Panel Section -->
+    <section id="contact" class="section-space pt-4">
+      <div class="section-inner">
+        <article class="feature-panel">
+          <div class="max-w-2xl">
+            <p class="eyebrow mb-3">Furnality, en direct</p>
+            <h2 class="text-3xl font-bold text-black">Zapping. L’instant, en grand.</h2>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              La programmation Furnality se déplace, se mélange et se réinvente chaque soir. Prenez place dans le flux.
+            </p>
+            <a href="mailto:hello@furnality.tv?subject=Projet%20Furnality" class="primary-button mt-6">
+              Proposer un projet
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer Éditorial -->
+  <footer>
+    <div class="mx-auto max-w-7xl">
+      <div class="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
+        <div>
+          <p class="text-lg font-bold tracking-widest text-black">FURNALITY</p>
+          <p class="mt-3 text-sm text-gray-500 max-w-xs leading-relaxed">
+            Furnality imagine une télévision sensible, visuelle et ouverte sur des ailleurs.
+          </p>
+        </div>
+        
+        <div>
+          <h2 class="eyebrow text-xs mb-4">Explorer</h2>
+          <nav class="flex flex-col gap-2" aria-label="Explorer Furnality">
+            <a href="#chaines" class="footer-link">Les chaînes</a>
+            <a href="#selection" class="footer-link">Les sélections</a>
+            <a href="#programmes" class="footer-link">Les programmes</a>
+          </nav>
+        </div>
+
+        <div>
+          <h2 class="eyebrow text-xs mb-4">Suivre Furnality</h2>
+          <div class="flex flex-col gap-2">
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="footer-link">Instagram</a>
+            <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" class="footer-link">YouTube</a>
+            <a href="mailto:hello@furnality.tv" class="footer-link">hello@furnality.tv</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 pt-6 border-t border-gray-200 text-center text-xs text-gray-500">
+        &copy; 2026 Furnality Group — Tous droits réservés.
+      </div>
     </div>
+  </footer>
 
-    <!-- Footer Dynamique -->
-    <footer>
-        <div id="footer-links-container" class="footer-grid">Chargement du pied de page...</div>
-        <div class="footer-bottom">
-            &copy; 2026 Furnality Group — Tous droits réservés.
-        </div>
-    </footer>
+  <script>
+    // Lucide Icons Init
+    lucide.createIcons();
 
-    <script>
-        const SUPABASE_URL = "https://qsqenkvrerrbzibkjoml.supabase.co";
-        const SUPABASE_KEY = "sb_publishable_FLqzd6wXyc5e_veOYAVN9g_AXBaGASo";
+    // Menu Mobile toggle
+    const menuBtn = document.getElementById('menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
 
-        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-        let allShows = [];
-
-        async function initApp() {
-            const [showsRes, broadcastRes, footerRes] = await Promise.all([
-                supabaseClient.from('shows').select('*'),
-                supabaseClient.from('broadcast').select('*'),
-                supabaseClient.from('footer_links').select('*').order('order_index', { ascending: true })
-            ]);
-
-            if (showsRes.data && broadcastRes.data) {
-                const broadcastMap = {};
-                broadcastRes.data.forEach(b => { broadcastMap[b.id] = b; });
-
-                allShows = showsRes.data.map(show => ({
-                    ...show,
-                    broadcast: broadcastMap[show.broadcast_id] || null
-                }));
-
-                renderShows(allShows);
-            } else {
-                document.getElementById('shows-container').innerHTML = "<p style='color:red;'>Erreur lors du chargement des émissions.</p>";
-            }
-
-            if (footerRes.data) {
-                renderFooter(footerRes.data);
-            } else {
-                document.getElementById('footer-links-container').innerHTML = "<p style='color:#666;'>Liens indisponibles.</p>";
-            }
-        }
-
-        function renderShows(showsToDisplay) {
-            const container = document.getElementById('shows-container');
-            container.innerHTML = "";
-
-            if (showsToDisplay.length === 0) {
-                container.innerHTML = "<p style='color:#888;'>Aucune émission trouvée pour cette catégorie.</p>";
-                return;
-            }
-
-            showsToDisplay.forEach(show => {
-                const card = document.createElement('div');
-                card.className = 'card';
-
-                const channelName = show.broadcast ? show.broadcast.name : 'Canal ' + show.broadcast_id;
-                const logoUrl = show.broadcast ? show.broadcast.logo_url : null;
-                const mediaType = show.broadcast ? (show.broadcast.broadcast_type || (show.broadcast_id >= 100 ? 'radio' : 'tv')) : 'tv';
-
-                const logoHtml = logoUrl 
-                    ? `<img src="${logoUrl}" alt="${channelName}" onerror="this.outerHTML='<span class=\\'channel-tag\\'>${channelName}</span>'">` 
-                    : `<span class="channel-tag">${channelName}</span>`;
-
-                card.innerHTML = `
-                    <div>
-                        <div class="card-header">
-                            <span class="badge">${show.category || 'Général'}</span>
-                            <div class="channel-logo-container">${logoHtml}</div>
-                        </div>
-                        <div class="card-body">
-                            <h3>${show.title}</h3>
-                            <p>${show.description}</p>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <span class="id-tag">ID: ${show.id}</span>
-                        <span class="media-type ${mediaType === 'radio' ? 'media-radio' : 'media-tv'}">${mediaType === 'radio' ? 'Radio' : 'TV'}</span>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        }
-
-        function renderFooter(links) {
-            const container = document.getElementById('footer-links-container');
-            container.innerHTML = "";
-
-            if (links.length === 0) {
-                container.innerHTML = "<p style='color:#666;'>Aucun lien configuré.</p>";
-                return;
-            }
-
-            const categories = {};
-            links.forEach(link => {
-                const cat = link.category || 'Général';
-                if (!categories[cat]) categories[cat] = [];
-                categories[cat].push(link);
-            });
-
-            Object.keys(categories).forEach(catName => {
-                const col = document.createElement('div');
-                col.className = 'footer-col';
-                
-                let linksList = categories[catName].map(l => 
-                    `<li><a href="${l.url}" target="_blank" rel="noopener noreferrer">${l.label}</a></li>`
-                ).join('');
-
-                col.innerHTML = `
-                    <h4>${catName}</h4>
-                    <ul>${linksList}</ul>
-                `;
-                container.appendChild(col);
-            });
-        }
-
-        function filterShows(type, btnElement) {
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            btnElement.classList.add('active');
-
-            if (type === 'all') {
-                renderShows(allShows);
-            } else {
-                const filtered = allShows.filter(show => {
-                    const mediaType = show.broadcast ? (show.broadcast.broadcast_type || (show.broadcast_id >= 100 ? 'radio' : 'tv')) : (show.broadcast_id >= 100 ? 'radio' : 'tv');
-                    return mediaType === type;
-                });
-                renderShows(filtered);
-            }
-        }
-
-        initApp();
-    </script>
+    if(menuBtn && mobileMenu) {
+      menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('open');
+      });
+    }
+  </script>
 </body>
 </html>
