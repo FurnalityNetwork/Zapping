@@ -304,3 +304,10 @@ footer {
 
 .mobile-menu { display: none; }
 .mobile-menu.open { display: flex; }
+
+/* Badge de diffusion sur les cartes d'émissions */
+.badge-broadcast {
+  white-space: nowrap;
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+}
