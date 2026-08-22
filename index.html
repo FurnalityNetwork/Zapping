@@ -3,73 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Furnality - Émissions & Antenne</title>
+    <title>Furnality Zapping — Replay & Streaming</title>
     <!-- SDK officiel Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
+        /* Polices Caledonian */
+        @font-face {
+            font-family: 'Caledonian';
+            src: url('./Assets/fonts/Caledonian_Font/Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Caledonian';
+            src: url('./Assets/fonts/Caledonian_Font/Bold.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        :root {
+            --bg-main: #ffffff;
+            --bg-card: #f8f9fa;
+            --border-light: #e5e7eb;
+            --text-main: #0a0a0a;
+            --text-muted: #525252;
+            --accent-black: #000000;
+            --font-main: 'Caledonian', Georgia, serif, system-ui;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background-color: #121212; 
-            color: #ffffff; 
-            margin: 0; 
-            padding: 20px; 
+            font-family: var(--font-main); 
+            background-color: var(--bg-main); 
+            color: var(--text-main); 
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
+            line-height: 1.6;
         }
         
-        .main-content { flex: 1; }
+        /* Navbar Header Style OBC avec tes SVGs */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 3rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-light);
+        }
 
-        h1 { color: #ff0055; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 20px; }
-        
-        /* Conteneur des filtres */
-        .filter-container { display: flex; gap: 10px; margin-bottom: 25px; }
-        .filter-btn { background-color: #1e1e1e; color: #ccc; border: 1px solid #333; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-weight: bold; transition: all 0.2s ease; }
-        .filter-btn:hover { background-color: #2a2a2a; color: #fff; }
-        .filter-btn.active { background-color: #ff0055; color: #fff; border-color: #ff0055; }
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
 
-        /* Grille des cartes */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
-        .card { background-color: #1e1e1e; border: 1px solid #333; border-radius: 8px; padding: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); display: flex; flex-direction: column; justify-content: space-between; }
-        
-        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-        .badge { background-color: #ff0055; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; }
-        
-        /* Ajustement des logos à 30px */
-        .channel-logo-container { height: 30px; display: flex; align-items: center; }
-        .channel-logo-container img { height: 30px; max-width: 120px; object-fit: contain; }
-        .channel-tag { font-size: 0.85rem; font-weight: bold; color: #888; background: #2a2a2a; padding: 4px 8px; border-radius: 4px; }
-        
-        .card-body h3 { margin: 0 0 10px 0; color: #fff; }
-        .card-body p { color: #ccc; font-size: 0.95rem; line-height: 1.4; margin: 0; }
-        
-        .card-footer { margin-top: 15px; padding-top: 10px; border-top: 1px solid #2a2a2a; display: flex; justify-content: space-between; align-items: center; }
-        .id-tag { color: #666; font-size: 0.75rem; font-family: monospace; }
-        .media-type { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; padding: 2px 6px; border-radius: 3px; font-weight: bold; }
-        .media-tv { background-color: #007bc4; color: #fff; }
-        .media-radio { background-color: #e67e22; color: #fff; }
+        .logo-box img {
+            height: 26px;
+            object-fit: contain;
+        }
 
-        /* Style du Footer Dynamique */
+        .logo-separator {
+            color: var(--border-light);
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        .main-content { 
+            flex: 1; 
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        h1 { 
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent-black); 
+            border-bottom: 1px solid var(--border-light); 
+            padding-bottom: 15px; 
+            margin-bottom: 30px; 
+            letter-spacing: -0.5px;
+        }
+        
+        /* Filtres Minimalistes */
+        .filter-container { display: flex; gap: 10px; margin-bottom: 30px; }
+        .filter-btn { 
+            background-color: transparent; 
+            color: var(--text-muted); 
+            border: 1px solid var(--border-light); 
+            padding: 8px 18px; 
+            font-family: var(--font-main);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer; 
+            transition: all 0.2s ease; 
+        }
+        .filter-btn:hover, .filter-btn.active { 
+            background-color: var(--accent-black); 
+            color: #ffffff; 
+            border-color: var(--accent-black); 
+        }
+
+        /* Grille des cartes Émissions */
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 25px; 
+        }
+
+        .card { 
+            background-color: var(--bg-main); 
+            border: 1px solid var(--border-light); 
+            padding: 20px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .badge { 
+            background-color: var(--accent-black); 
+            color: #fff; 
+            padding: 3px 8px; 
+            font-size: 0.7rem; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+        }
+        
+        .channel-logo-container { height: 28px; display: flex; align-items: center; }
+        .channel-logo-container img { height: 28px; max-width: 100px; object-fit: contain; }
+        .channel-tag { font-size: 0.8rem; font-weight: bold; color: var(--text-muted); background: var(--bg-card); padding: 4px 8px; border: 1px solid var(--border-light); }
+        
+        .card-body h3 { margin: 0 0 8px 0; color: var(--text-main); font-size: 1.2rem; }
+        .card-body p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0; }
+        
+        .card-footer { 
+            margin-top: 20px; 
+            padding-top: 12px; 
+            border-top: 1px solid var(--border-light); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        .id-tag { color: #999; font-size: 0.75rem; font-family: monospace; }
+        .media-type { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; padding: 3px 8px; font-weight: bold; }
+        .media-tv { background-color: #000; color: #fff; }
+        .media-radio { background-color: var(--bg-card); color: var(--text-main); border: 1px solid var(--border-light); }
+
+        /* Footer Dynamique Éditorial */
         footer { 
-            margin-top: 50px; 
-            background-color: #181818; 
-            border-top: 1px solid #2a2a2a; 
-            padding: 30px 20px; 
-            border-radius: 8px; 
+            margin-top: 60px; 
+            background-color: var(--bg-main); 
+            border-top: 1px solid var(--border-light); 
+            padding: 40px 20px; 
         }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-        .footer-col h4 { color: #ff0055; margin-top: 0; margin-bottom: 12px; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .footer-grid { 
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 30px; 
+        }
+        .footer-col h4 { 
+            color: var(--accent-black); 
+            margin-top: 0; 
+            margin-bottom: 15px; 
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+        }
         .footer-col ul { list-style: none; padding: 0; margin: 0; }
         .footer-col li { margin-bottom: 8px; }
-        .footer-col a { color: #aaa; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
-        .footer-col a:hover { color: #fff; text-decoration: underline; }
-        .footer-bottom { margin-top: 25px; padding-top: 15px; border-top: 1px solid #222; text-align: center; color: #666; font-size: 0.8rem; }
+        .footer-col a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+        .footer-col a:hover { color: var(--accent-black); text-decoration: underline; }
+        .footer-bottom { margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border-light); text-align: center; color: var(--text-muted); font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
+    <!-- Header avec tes SVGs -->
+    <header class="navbar">
+        <div class="logo-box">
+            <img src="Assets/images/Furnality Logo.svg" alt="Furnality" onerror="this.style.display='none'">
+            <span class="logo-separator">|</span>
+            <img src="Assets/images/ZAPPING.svg" alt="Zapping" onerror="this.style.display='none'">
+        </div>
+    </header>
+
     <div class="main-content">
-        <h1>📺 Réseau Furnality — Catalogue des Émissions</h1>
+        <h1>Catalogue des Émissions & Replays</h1>
 
         <!-- Filtres -->
         <div class="filter-container">
@@ -98,7 +239,6 @@
         let allShows = [];
 
         async function initApp() {
-            // Chargement des données en parallèle (shows, broadcast, footer_links)
             const [showsRes, broadcastRes, footerRes] = await Promise.all([
                 supabaseClient.from('shows').select('*'),
                 supabaseClient.from('broadcast').select('*'),
@@ -119,7 +259,6 @@
                 document.getElementById('shows-container').innerHTML = "<p style='color:red;'>Erreur lors du chargement des émissions.</p>";
             }
 
-            // Traitement du Footer
             if (footerRes.data) {
                 renderFooter(footerRes.data);
             } else {
@@ -144,7 +283,6 @@
                 const logoUrl = show.broadcast ? show.broadcast.logo_url : null;
                 const mediaType = show.broadcast ? (show.broadcast.broadcast_type || (show.broadcast_id >= 100 ? 'radio' : 'tv')) : 'tv';
 
-                // Logo 30px avec secours en texte
                 const logoHtml = logoUrl 
                     ? `<img src="${logoUrl}" alt="${channelName}" onerror="this.outerHTML='<span class=\\'channel-tag\\'>${channelName}</span>'">` 
                     : `<span class="channel-tag">${channelName}</span>`;
@@ -162,7 +300,7 @@
                     </div>
                     <div class="card-footer">
                         <span class="id-tag">ID: ${show.id}</span>
-                        <span class="media-type ${mediaType === 'radio' ? 'media-radio' : 'media-tv'}">${mediaType === 'radio' ? '📻 Radio' : '📺 TV'}</span>
+                        <span class="media-type ${mediaType === 'radio' ? 'media-radio' : 'media-tv'}">${mediaType === 'radio' ? 'Radio' : 'TV'}</span>
                     </div>
                 `;
                 container.appendChild(card);
@@ -178,7 +316,6 @@
                 return;
             }
 
-            // Regroupement des liens par catégorie
             const categories = {};
             links.forEach(link => {
                 const cat = link.category || 'Général';
@@ -186,7 +323,6 @@
                 categories[cat].push(link);
             });
 
-            // Affichage par colonne pour chaque catégorie
             Object.keys(categories).forEach(catName => {
                 const col = document.createElement('div');
                 col.className = 'footer-col';
