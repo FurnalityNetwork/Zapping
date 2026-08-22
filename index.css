@@ -52,6 +52,9 @@
   --obf-primary: #944613;
   --obf-bg: #260f03;
 
+  /* Nouvelles chaînes ajoutées */
+  --radio-primary: #0055ff;
+
   /* UI & Layout System */
   --bg-main: var(--color-main-light);
   --bg-card: #f8f9fa;
@@ -112,6 +115,7 @@ body {
 .ch-c8 { --channel-color: var(--c8-primary); }
 .ch-d9 { --channel-color: var(--d9-mvc-primary); }
 .ch-obf { --channel-color: var(--obf-primary); }
+.ch-radio { --channel-color: var(--radio-primary); }
 
 .show-card { position: relative; min-height: 22rem; overflow: hidden; border: 1px solid var(--border-light); background: var(--bg-card); }
 .show-card img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; filter: grayscale(15%) contrast(1.05); transition: transform 0.4s ease, filter 0.4s ease; }
