@@ -1,9 +1,29 @@
-<main class="pt-20">
-    <!-- Hero Section reste inchangée... -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furnality Network - Base de données</title>
     
-    <!-- Chaînes Section -->
+    <!-- Script Tailwind CSS pour garantir que la grille et la mise en page fonctionnent -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lien vers votre fichier CSS personnalisé -->
+    <link rel="stylesheet" href="index.css">
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans antialiased">
+
+  <!-- En-tête (Optionnel, juste pour structurer la page) -->
+  <header class="bg-white border-b border-gray-200 py-4 px-6 fixed w-full top-0 z-10">
+    <div class="max-w-7xl mx-auto flex items-center">
+      <h1 class="text-xl font-black tracking-tight">FURNALITY NETWORK</h1>
+    </div>
+  </header>
+
+  <main class="pt-24 pb-12">
+    <!-- Section : Chaînes -->
     <section id="chaines" class="section-space">
-      <div class="section-inner">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
             <p class="eyebrow mb-3">Le Réseau Média</p>
@@ -50,12 +70,12 @@
             <span class="text-sm font-bold mt-1 text-center leading-tight">Toku Dungeon</span>
           </article>
 
-          <article class="channel-card opacity-50 grayscale" title="Inactif">
+          <article class="channel-card opacity-50 grayscale cursor-not-allowed" title="Inactif">
             <span class="text-xs text-gray-400">Canal 7</span>
             <span class="text-sm font-bold mt-1 text-center leading-tight">CANAL 7</span>
           </article>
 
-          <article class="channel-card opacity-50 grayscale" title="Inactif">
+          <article class="channel-card opacity-50 grayscale cursor-not-allowed" title="Inactif">
             <span class="text-xs text-gray-400">Canal 8</span>
             <span class="text-sm font-bold mt-1 text-center leading-tight">CANAL 8</span>
           </article>
@@ -85,9 +105,9 @@
       </div>
     </section>
 
-    <!-- Programmes (Émissions) Section -->
-    <section id="programmes" class="section-space pt-2">
-      <div class="section-inner line-top pt-12">
+    <!-- Section : Programmes (Émissions) -->
+    <section id="programmes" class="mt-16 border-t border-gray-200 pt-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div>
           <p class="eyebrow mb-3">Catalogue</p>
           <h2 class="text-3xl font-bold text-black">Nos émissions & formats.</h2>
@@ -98,23 +118,23 @@
           <article class="program-card">
             <div class="p-6">
               <p class="eyebrow text-xs mb-2 text-blue-600">Documentaire</p>
-              <h3 class="text-lg font-bold text-black mb-2">De l'État au Privé : La grande guerre de...</h3>
-              <p class="text-sm text-gray-600">Série documentaire retraçant l'histoire...</p>
+              <h3 class="text-lg font-bold text-black mb-2 leading-tight">De l'État au Privé : La grande guerre de...</h3>
+              <p class="text-sm text-gray-600 line-clamp-3">Série documentaire retraçant l'histoire, le développement et la réglementation des réseaux de diffusion...</p>
             </div>
           </article>
 
           <article class="program-card">
             <div class="p-6">
               <p class="eyebrow text-xs mb-2 text-red-600">Musique</p>
-              <h3 class="text-lg font-bold text-black mb-2">Eurovision Song Contest - 2026</h3>
-              <p class="text-sm text-gray-600">Semi Final 1, Semi Final 2, et la Grande Finale.</p>
+              <h3 class="text-lg font-bold text-black mb-2 leading-tight">Eurovision Song Contest - 2026</h3>
+              <p class="text-sm text-gray-600">Le mythique concours annuel de la chanson. Semi Final 1, Semi Final 2, et la Grande Finale.</p>
             </div>
           </article>
 
           <article class="program-card">
             <div class="p-6">
               <p class="eyebrow text-xs mb-2 text-red-600">Musique</p>
-              <h3 class="text-lg font-bold text-black mb-2">Eurovision Song Contest - ASIA</h3>
+              <h3 class="text-lg font-bold text-black mb-2 leading-tight">Eurovision Song Contest - ASIA</h3>
               <p class="text-sm text-gray-600">Déclinaison asiatique officielle du célèbre concours.</p>
             </div>
           </article>
@@ -122,24 +142,24 @@
           <article class="program-card">
             <div class="p-6">
               <p class="eyebrow text-xs mb-2 text-green-600">Gaming</p>
-              <h3 class="text-lg font-bold text-black mb-2">L'Origine des Pokémon</h3>
-              <p class="text-sm text-gray-600">Rétrospective dédiée aux origines...</p>
+              <h3 class="text-lg font-bold text-black mb-2 leading-tight">L'Origine des Pokémon</h3>
+              <p class="text-sm text-gray-600">Rétrospective dédiée aux origines, à la création et à l'évolution de la franchise.</p>
             </div>
           </article>
 
           <article class="program-card">
             <div class="p-6">
               <p class="eyebrow text-xs mb-2 text-purple-600">Talk-Show</p>
-              <h3 class="text-lg font-bold text-black mb-2">BancalCast</h3>
-              <p class="text-sm text-gray-600">Podcast officiel du réseau Furnality...</p>
+              <h3 class="text-lg font-bold text-black mb-2 leading-tight">BancalCast</h3>
+              <p class="text-sm text-gray-600">Podcast officiel du réseau Furnality réunissant l'équipe autour de divers sujets.</p>
             </div>
           </article>
 
           <article class="program-card">
             <div class="p-6">
               <p class="eyebrow text-xs mb-2 text-yellow-600">Culture</p>
-              <h3 class="text-lg font-bold text-black mb-2">Festival de l'Imaginaire et du Livre</h3>
-              <p class="text-sm text-gray-600">Événement culturel dédié aux récits...</p>
+              <h3 class="text-lg font-bold text-black mb-2 leading-tight">Festival de l'Imaginaire et du Livre</h3>
+              <p class="text-sm text-gray-600">Les élèves de Cycle 2 de la Ville explorent des événements culturels dédiés aux récits.</p>
             </div>
           </article>
 
@@ -147,3 +167,6 @@
       </div>
     </section>
   </main>
+
+</body>
+</html>
