@@ -10,7 +10,9 @@ const headers = {
 // Mappage des classes CSS par chaîne
 const channelClassMap = {
   'CenterofStream': 'ch-cos',
+  'SoundofSkully': 'ch-sos',
   'Music Video Channel - MVC': 'ch-mvc',
+  'Music Video Channel': 'ch-mvc',
   'Streaming Game FR': 'ch-sgfr',
   'Stream Animation Zone': 'ch-saz',
   'Asta of Mitologi': 'ch-aom',
