@@ -218,6 +218,7 @@ body {
 .ch-cos { --channel-color: var(--cos-primary); }
 .ch-d9 { --channel-color: var(--d9-mvc-primary); }
 .ch-mvc { --channel-color: var(--d9-mvc-primary); }
+.ch-sos { --channel-color: var(--d9-mvc-primary); }
 .ch-sgfr { --channel-color: var(--sgfr-primary); }
 .ch-saz { --channel-color: var(--saz-primary); }
 .ch-aom { --channel-color: var(--aom-primary); }
