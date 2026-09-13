@@ -72,14 +72,7 @@ async function loadBroadcasts() {
     tvContainer.innerHTML = '';
     radioContainer.innerHTML = '';
 
-    // Filtrage pour exclure explicitement les IDs 11 et 12 (ou tv_number / radio_number 11 et 12)
-    const filteredData = data.filter(item => 
-      item.id !== 11 && item.id !== 12 && 
-      item.tv_number !== 11 && item.tv_number !== 12 && 
-      item.radio_number !== 11 && item.radio_number !== 12
-    );
-
-    filteredData.forEach(item => {
+    data.forEach(item => {
       const isTv = item.broadcast_type === 'tv';
       const container = isTv ? tvContainer : radioContainer;
 
