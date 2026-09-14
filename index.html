@@ -117,89 +117,75 @@
     </section>
   </main>
 
-<!-- Pied de page - Zapping (Redirections corrigées) -->
+<!-- Pied de page - Zapping (Conservation de l'existant + 8 liens Legacy) -->
 <footer class="bg-white border-t border-gray-200 py-12 px-6">
-  <div class="max-w-6xl mx-auto">
+  <div class="max-w-7xl mx-auto">
     
-    <!-- Grille des 5 colonnes -->
-    <div class="grid grid-cols-1 md:grid-cols-5 gap-8 pb-10 border-b border-gray-100 text-xs">
+    <!-- Grille des colonnes du footer -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 pb-10 border-b border-gray-200 text-xs">
       
-      <!-- Colonne 1 : Présentation & Drapeau NC -->
+      <!-- Colonne 1 : Identité & Drapeau NC -->
       <div class="space-y-3">
-        <p class="font-extrabold text-black uppercase tracking-wider">FURNALITY</p>
-        <p class="text-gray-500 leading-relaxed text-[11px]">
-          Le Son, l'Image, une Famille. Un groupe indépendant basé en Nouvelle-Calédonie.
+        <p class="text-base font-bold tracking-widest text-black uppercase">FURNALITY</p>
+        <p class="text-gray-500 leading-relaxed text-xs">
+          Du Son, de l’Image, une Famille.<br>
+          Le média francophone et 100% indépendant.
         </p>
         <div class="pt-2 flex flex-col items-start gap-1">
           <img src="Assets/images/DCNC.svg" alt="Drapeau Commun NC" class="h-6 w-auto object-contain mb-1" />
-          <p class="text-[11px] font-bold text-black leading-tight">Studio Nouméa,</p>
-          <p class="text-[11px] font-bold text-black leading-tight">Nouvelle-Calédonie</p>
+          <p class="text-xs font-bold text-black leading-tight">Studio Nouméa,</p>
+          <p class="text-xs font-bold text-black leading-tight">Nouvelle-Calédonie</p>
         </div>
       </div>
 
-      <!-- Colonne 2 : Réseaux Furnality (Liés au JS / Base de données) -->
+      <!-- Colonne 2 : Réseaux Furnality (Injectés par Supabase) -->
       <div>
-        <p class="font-extrabold text-black uppercase tracking-wider mb-3">FURNALITY</p>
-        <ul class="space-y-2 text-gray-600 text-[11px]">
-          <li><a href="#" data-social="furnality-youtube" target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-black">YouTube</a></li>
-          <li><a href="#" data-social="furnality-twitch" target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-black">Twitch</a></li>
-          <li><a href="#" data-social="furnality-instagram" target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-black">Instagram</a></li>
-          <li><a href="#" data-social="furnality-tiktok" target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-black">TikTok</a></li>
-          <li><a href="#" data-social="furnality-discord" target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-black">Discord</a></li>
-          <li><a href="#" data-social="furnality-projets" class="hover:underline hover:text-black">Projets</a></li>
-        </ul>
+        <h4 class="eyebrow text-xs mb-4">Furnality</h4>
+        <nav id="footer-furnality" class="flex flex-col gap-2" aria-label="Réseaux Furnality">
+          <!-- Injecté dynamiquement depuis Supabase -->
+        </nav>
       </div>
 
-      <!-- Colonne 3 : Réseaux Office Broadcaster (Liés au JS / Base de données) -->
+      <!-- Colonne 3 : Réseaux Office Broadcaster (Injectés par Supabase) -->
       <div>
-        <p class="font-extrabold text-black uppercase tracking-wider mb-3">OFFICE BROADCASTER</p>
-        <ul class="space-y-2 text-gray-600 text-[11px]">
-          <li><a href="#" data-social="obc-youtube" target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-black">YouTube</a></li>
-          <li><a href="#" data-social="obc-twitch" target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-black">Twitch</a></li>
-          <li><a href="#" data-social="obc-instagram" target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-black">Instagram</a></li>
-          <li><a href="#" data-social="obc-tiktok" target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-black">TikTok</a></li>
-          <li><a href="#" data-social="obc-projets" class="hover:underline hover:text-black">Projets</a></li>
-        </ul>
+        <h4 class="eyebrow text-xs mb-4">Office Broadcaster</h4>
+        <nav id="footer-office" class="flex flex-col gap-2" aria-label="Réseaux Office Broadcaster">
+          <!-- Injecté dynamiquement depuis Supabase -->
+        </nav>
       </div>
 
-      <!-- Colonne 4 : Chaînes & Radios (Liés au JS / Base de données) -->
+      <!-- Colonne 4 : Chaînes & Marques (Injectés par Supabase) -->
       <div>
-        <p class="font-extrabold text-black uppercase tracking-wider mb-3">CHAÎNES & RADIOS</p>
-        <ul class="space-y-2 text-gray-600 text-[11px]">
-          <li><a href="#" data-channel="centerofstream-yt" target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-black">CenterofStream (YouTube)</a></li>
-          <li><a href="#" data-channel="centerofstream-insta" target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-black">CenterofStream (Instagram)</a></li>
-          <li><a href="#" data-channel="soundofskully-yt" target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-black">SoundofSkully (YouTube)</a></li>
-          <li><a href="#" data-channel="streaminggamefr-yt" target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-black">Streaming Game FR (YouTube)</a></li>
-          <li><a href="#" data-channel="streamanimationzone-yt" target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-black">Stream Animation Zone (YouTube)</a></li>
-          <li><a href="#" data-channel="astaofmitologi-yt" target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-black">Asta of Mitologi (YouTube)</a></li>
-          <li><a href="#" data-channel="tokudungeon-yt" target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-black">Toku Dungeon (YouTube)</a></li>
-          <li><a href="#" data-channel="direct9-web" target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-black">Direct 9 (Site Web)</a></li>
-          <li><a href="#" data-channel="onebyfurnality-yt" target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-black">One by Furnality (YouTube)</a></li>
-          <li><a href="#" data-channel="furnalityradio-yt" target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-black">Furnality Radio (YouTube)</a></li>
-        </ul>
+        <h4 class="eyebrow text-xs mb-4">Chaînes & Marques</h4>
+        <nav id="footer-channels" class="flex flex-col gap-2" aria-label="Réseaux Chaînes">
+          <!-- Injecté dynamiquement depuis Supabase -->
+        </nav>
       </div>
 
-      <!-- Colonne 5 : INFORMATIONS & LÉGAL (Accès direct vers furnalitynetwork.github.io/legacy/...) -->
+      <!-- Colonne 5 : INFORMATIONS & LÉGAL (Les 8 Registres Legacy) -->
       <div>
-        <p class="font-extrabold text-black uppercase tracking-wider mb-3">INFORMATIONS & LÉGAL</p>
-        <ul class="space-y-2 text-gray-600 text-[11px]">
-          <li><a href="/legacy/mentions-legales.html" class="hover:underline hover:text-black">Mentions Légales</a></li>
-          <li><a href="/legacy/cgu-conditions.html" class="hover:underline hover:text-black">CGU & Conditions d'Utilisation</a></li>
-          <li><a href="/legacy/confidentialite-donnees.html" class="hover:underline hover:text-black">Politique de Confidentialité</a></li>
-          <li><a href="/legacy/gestion-cookies.html" class="hover:underline hover:text-black">Gestion des Traceurs & Cookies</a></li>
-          <li><a href="/legacy/charte-antenne.html" class="hover:underline hover:text-black">Charte des Antennes & Concessions</a></li>
-          <li><a href="/legacy/acces-restreint.html" class="hover:underline hover:text-black">Accès aux Contenus Restreints</a></li>
-          <li><a href="/legacy/devenir-membre.html" class="hover:underline hover:text-black">Devenir Membre & Créer sa Chaîne</a></li>
-          <li><a href="/legacy/fondateurs-contributeurs.html" class="hover:underline hover:text-black">Fondateurs & Crédits</a></li>
-        </ul>
+        <h4 class="eyebrow text-xs mb-4">Informations & Légal</h4>
+        <nav class="flex flex-col gap-2" aria-label="Registre Juridique Legacy">
+          <a href="/legacy/mentions-legales.html" class="footer-link">Mentions Légales</a>
+          <a href="/legacy/cgu-conditions.html" class="footer-link">CGU & Conditions</a>
+          <a href="/legacy/confidentialite-donnees.html" class="footer-link">Confidentialité</a>
+          <a href="/legacy/gestion-cookies.html" class="footer-link">Traceurs & Cookies</a>
+          <a href="/legacy/charte-antenne.html" class="footer-link">Charte des Antennes</a>
+          <a href="/legacy/acces-restreint.html" class="footer-link">Accès Restreints</a>
+          <a href="/legacy/devenir-membre.html" class="footer-link">Devenir Membre</a>
+          <a href="/legacy/fondateurs-contributeurs.html" class="footer-link">Fondateurs & Crédits</a>
+        </nav>
       </div>
 
     </div>
 
     <!-- Mentions de bas de page -->
-    <div class="pt-6 flex flex-col md:flex-row items-center justify-between text-xs text-gray-400 gap-4">
-      <p>© 2026 Furnality — Tous droits réservés.</p>
-      <p class="font-semibold text-gray-600">Furnality Zapping</p>
+    <div class="mt-8 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500 gap-4">
+      <p>&copy; 2026 Furnality — Tous droits réservés.</p>
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 bg-emerald-500"></span>
+        <span class="font-semibold text-gray-700">Furnality Zapping</span>
+      </div>
     </div>
 
   </div>
