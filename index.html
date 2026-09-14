@@ -120,28 +120,51 @@
   <!-- Pied de page -->
 <footer class="bg-white border-t border-gray-200 pt-16 pb-8 px-6 md:px-12">
   <div class="mx-auto max-w-7xl">
-    <div class="grid gap-10 md:grid-cols-4">
-      <div>
-        <div class="flex items-center gap-2 mb-3">
-          <p class="text-lg font-bold tracking-widest text-black">FURNALITY</p>
-          <img src="Assets/images/DCNC.svg" alt="Nouvelle-Calédonie" class="h-4 w-auto object-contain" />
+    <!-- Grille des liens à 5 colonnes sur grand écran -->
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
+      
+      <!-- Bloc de marque & Drapeau Studio -->
+      <div class="lg:col-span-1 flex flex-col justify-between">
+        <div>
+          <p class="text-lg font-bold tracking-widest text-black mb-3">FURNALITY</p>
+          <p class="text-sm text-gray-500 max-w-xs leading-relaxed">
+            du Son, de l’Image, une Famille.
+            <br> Le média francophone et 100% indépendant.
+          </p>
         </div>
-        <p class="text-sm text-gray-500 max-w-xs leading-relaxed">
-          du Son, de l’Image, une Famille.
-          <br> Le média francophone et 100% indépendant.
-        </p>
+
+        <!-- Emplacement Drapeau & Studio -->
+        <div class="mt-8 flex flex-col items-start gap-1.5">
+          <img src="Assets/images/DCNC.svg" alt="Drapeau Commun NC" class="h-8 w-auto object-contain" />
+          <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Studio Nouméa, Nouvelle-Calédonie</span>
+        </div>
       </div>
 
+      <!-- Colonne 1 : Furnality -->
       <div>
         <h4 class="eyebrow text-xs mb-4">Furnality</h4>
-        <nav id="footer-furnality" class="flex flex-col gap-2" aria-label="Réseaux Furnality"></nav>
+        <nav id="footer-furnality" class="flex flex-col gap-2 text-sm text-gray-500" aria-label="Réseaux Furnality">
+          <!-- Injecté via JS ou liens directs -->
+        </nav>
       </div>
 
+      <!-- Colonne 2 : Office Broadcaster -->
       <div>
         <h4 class="eyebrow text-xs mb-4">Office Broadcaster</h4>
-        <nav id="footer-office" class="flex flex-col gap-2" aria-label="Réseaux Office Broadcaster"></nav>
+        <nav id="footer-office" class="flex flex-col gap-2 text-sm text-gray-500" aria-label="Réseaux Office Broadcaster">
+          <!-- Injecté via JS ou liens directs -->
+        </nav>
       </div>
 
+      <!-- Colonne 3 : Chaînes & Radios (Nouvelle catégorie) -->
+      <div>
+        <h4 class="eyebrow text-xs mb-4">Chaînes & Radios</h4>
+        <nav id="footer-channels" class="flex flex-col gap-2 text-sm text-gray-500" aria-label="Réseaux Chaînes & Radios">
+          <!-- Injecté via JS ou liens directs -->
+        </nav>
+      </div>
+
+      <!-- Colonne 4 : Informations & Légal -->
       <div>
         <h4 class="eyebrow text-xs mb-4">Informations & Légal</h4>
         <nav class="flex flex-col gap-2 text-sm text-gray-500">
@@ -150,13 +173,12 @@
           <a href="legal.html?tab=privacy" class="hover:text-black transition">Confidentialité & Données</a>
         </nav>
       </div>
+
     </div>
 
+    <!-- Copyright du bas -->
     <div class="mt-12 pt-6 border-t border-gray-200 flex flex-col md:flex-row items-center justify-between text-sm text-gray-500">
-      <div class="flex items-center gap-2">
-        <p>&copy; 2026 Furnality — Tous droits réservés. Édité depuis Nouméa, Nouvelle-Calédonie</p>
-        <img src="Assets/images/DCNC.svg" alt="NC" class="h-3.5 w-auto object-contain inline" />
-      </div>
+      <p>&copy; 2026 Furnality — Tous droits réservés.</p>
       <p class="mt-2 md:mt-0 font-medium text-black">Furnality Zapping</p>
     </div>
   </div>
